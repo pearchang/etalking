@@ -1,0 +1,153 @@
+{include="header"}
+<form class=fill>
+  <div class="class">
+   {include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Consultants Area</a><span>My Classes - DEMO Report</span></div>
+    <div class="main-title">
+      <h1>DEMO Report</h1>
+    </div>
+    <div class="class-report">
+      <ul>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Test  Level</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+			{loop="$items[1]['options']"}
+            <label>
+              <input {if="$data[1]==$key"}checked{/if} type="radio" value="{$key}" name="items[1]">{$value}
+            </label>
+			{/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h3>Q1</h3>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+		  {loop="$items[2]['options']"}
+            <label>
+              <input {if="$data[2]==$key"}checked{/if} type="radio" value="{$key}" name="items[2]">{$value}
+            </label>
+           {/loop} 
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h3>Q2</h3>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[3]['options']"}
+            <label>
+              <input {if="$data[3]==$key"}checked{/if} type="radio" value="{$key}" name="items[3]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h3>Q3</h3>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[4]['options']"}
+            <label>
+              <input {if="$data[4]==$key"}checked{/if} type="radio" value="{$key}" name="items[4]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Speaking</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[5]['options']"}
+            <label>
+              <input {if="$data[5]==$key"}checked{/if} type="radio" value="{$key}" name="items[5]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Listening</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[6]['options']"}
+            <label>
+              <input {if="$data[6]==$key"}checked{/if} type="radio" value="{$key}" name="items[6]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Reading</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[7]['options']"}
+            <label>
+              <input {if="$data[7]==$key"}checked{/if} type="radio" value="{$key}" name="items[7]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Grammar</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[8]['options']"}
+            <label>
+              <input {if="$data[8]==$key"}checked{/if} type="radio" value="{$key}" name="items[8]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Vocabulary</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[9]['options']"}
+            <label>
+              <input {if="$data[9]==$key"}checked{/if} type="radio" value="{$key}" name="items[9]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Pronunciation</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$items[10]['options']"}
+            <label>
+              <input {if="$data[10]==$key"}checked{/if} type="radio" value="{$key}" name="items[10]">{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>Summary</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            <p>               
+              Student Name <span>{$member['first_name']} {$member['last_name']}</span>
+            </p>
+            <textarea name="items[11]">{$data[11]}</textarea>
+            <p>Maximum 500 characters<br>Please fill out descriptive report for the student with at least two good areas to compliment on, one to two areas the student needs to improve on, and with minimal of a suggestion on how to improve on the area(s) stated above.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="class-report-button class-report-button-teacher"><a href="javascript:history.back();" class="button round">{if="$data"}Back{else}Cancel{/if}</a>{if="!$data"}<a class="button round submit">Save</a>{/if}</div>
+    </div>
+  </div>
+  <input type=hidden name="id" value="{$_GET['classroom']}">
+  <input type=hidden name="member_id" value="{$member['id']}">
+</form>
+
+ {include="footer"}
+ 
+ <script src="js/teacher.report_demo.js"></script>

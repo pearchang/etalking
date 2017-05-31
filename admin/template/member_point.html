@@ -1,0 +1,102 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="member_brief"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-number">#</th>
+            <th class="col-md" align="center">日期</th>
+            <th class="col-md" align="center">類型</th>
+            <th class="col-md" align="left">項目</th>
+            <th class="col-md" align="right">堂數異動</th>
+            <th class="col-md" align="right">剩餘堂數</th>
+          </tr>
+          </thead>
+          <tbody>
+          {if="isset($nodata)"}
+          <tr>
+            <td colspan="6" align="center" class="nodata">沒有資料</td>
+          </tr>
+          {else}
+          {loop="$list"}
+          <tr>
+            <td align="right">{$value.i}</td>
+            <td align="center">{$value.cdate}</td>
+            <td align="center">{$value.type_text}</td>
+            <td align="left">{$value.brief}</td>
+            <td align="right">{$value.io}</td>
+            <td align="right">{$value.balance}</td>
+          </tr>
+          {/loop}
+          {/if}
+          </tbody>
+        </table>
+        {$page_control}
+      </div>
+      <!-- end left column -->
+    </div>
+  </div>
+</div>
+  <!-- end left column -->
+  {include="footer"}
+<script language="javascript">
+function cancel(id)
+{
+  if (!confirm('確定要取消預約課程嗎?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/member_class/cancel',
+    data: {
+      id : id
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已成功取消');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function back(id)
+{
+  var reason = prompt("請輸入退點原因:");
+  if (reason == null || reason == "")
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/member_class/back',
+    data: {
+      id : id,
+      reason : reason
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('退點完成');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+</script>

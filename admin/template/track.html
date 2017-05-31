@@ -1,0 +1,248 @@
+{include="header"}
+
+
+
+  <div class="table-wrapper section">
+
+    {include="table_header"}
+	
+		<hr>
+		<div class="row">
+		
+			<table border=0 class="filters" width='70%'>
+			
+				<tr>
+			
+					<td>FILTER </td>
+				
+					<td><select class="ui-select" name="track">
+						{loop="$filter_track"}
+							<option value="{$key}" {if="$key==GetParam('track')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+					<td><select class="ui-select" name="gender">
+						{loop="$filter_gender"}
+							<option value="{$key}" {if="$key==GetParam('gender')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+					<td><select class="ui-select" name="age">
+						{loop="$filter_age"}
+							<option value="{$key}" {if="$key==GetParam('age')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+					<td><select class="ui-select" name="effect">
+						{loop="$filter_effect"}
+							<option value="{$key}" {if="$key==GetParam('effect')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+					<td><select class="ui-select" name="track_type">
+						{loop="$filter_track_type"}
+							<option value="{$key}" {if="$key==GetParam('track_type')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+					
+					<td><select class="ui-select" name="contract">
+						{loop="$filter_contract"}
+							<option value="{$key}" {if="$key==GetParam('contract')"}selected{/if} >{$value}</option>
+						{/loop}
+						</select>&nbsp;
+					</td>
+					
+				</tr>
+			</table>
+			<br>
+			<table border=0 width='100%'>
+				<tr>
+					<td align='left' width='50%'>共 {$total_item} 筆</td>
+					<td align='right' width='50%'><a onclick="pie();" style="cursor:pointer">檢視圓餅圖</a></td>
+				</tr>
+			</table>
+		</div>
+
+
+				<div class="row">
+
+                <!-- left column -->
+
+                <div class="col-md-12">
+
+                  <table class="table table-hover">
+
+                    <thead>
+
+                    <tr>
+
+                      <th class="col-number">#</th>
+
+                      <th class="col-md" align="center">留單時間</th>
+
+                      <th class="col-md" align="center">姓名</th>
+
+                      <th class="col-md" align="center">來源</th>
+
+                      <th class="col-md" align="center">Track</th>
+
+                      <th class="col-md" align="center">性別</th>
+					  
+					  <th class="col-md" align="center">年齡</th>
+
+                      <th class="col-md" align="center">手機</th>
+					  
+					  <th class="col-md" align="center">email</th>
+
+                      <th class="col-md" align="center">追蹤狀態</th>
+					  
+					  <th class="col-md" align="center">撥打次數</th>
+					  
+					  <th class="col-md" align="center">成交金額</th>                    
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {if="isset($nodata)"}
+
+                      <tr>
+
+                        <td colspan="10" align="center" class="nodata">沒有資料</td>
+
+                      </tr>
+
+                    {else}
+
+                      {loop="$list"}
+
+                      <tr>
+
+                        <td align="right">{$value.i}</td>
+
+                        <td align="center">{$value.request_date}</td>
+
+                        <td align="center">{$value.member_name}</td>
+
+                        <td align="center">{$value.source}</td>
+
+                        <td align="center">{$value.track}</td>
+						
+						<td align="center">{$value.gender_text}</td>
+						
+						<td align="center">{$value.age}</td>
+						
+						<td align="center">{$value.mobile}</td>
+
+                        <td align="center">{$value.email}</td>
+
+                        <td align="center">{$value.contact_status}</td>
+						
+						<td align="center">{$value.cnt}</td>
+						 
+						<td align="center">{$value.contract}</td>
+
+                      </tr>
+
+                      {/loop}
+
+                    {/if}
+
+                    </tbody>
+
+                  </table>
+
+                  {$page_control}
+
+              </div>
+
+                <!-- end left column -->
+
+
+
+                <!-- right column -->
+
+                <div class="col-md-4 column">
+
+                </div>
+
+                <!-- end right column -->
+
+            </div>
+
+          </div>
+
+{include="footer"}
+
+<script>
+
+
+	$('.filters').find('.ui-select').change(function(){
+		do_search();
+	});
+	
+  function do_search()
+
+  {
+
+    var url = make_url( '{$FUNC}?');
+
+    window.location.replace(url);
+
+    return false;
+
+  }
+  
+  function make_url( url ){
+  
+    url += '&keyword=' + encodeURIComponent($('#search_keyword').val())
+
+	$('.filters').find('.ui-select').each(function(){
+		url += '&'+ $(this).attr('name') +'=' + encodeURIComponent( $(this).val());
+	});
+
+    if ($('#search_begin').length > 0 && $('#search_begin').val() != '' && $('#search_end').val() != '')
+    {
+
+      url += '&search_begin=' + encodeURIComponent($('#search_begin').val());
+
+      url += '&search_end=' + encodeURIComponent($('#search_end').val());
+
+    }
+	return url;
+  }
+  
+  function pie(){
+  
+	{if="$total_item"}
+	
+	/*
+	
+		$.fancybox({
+
+			type : 'iframe',
+
+			href : make_url( 'track/pie?' ),			
+	
+			width: '600'
+
+		});	*/
+		
+		window.open(make_url( 'track/pie?' ));
+		
+	{else}
+
+		alert("無資料");
+  
+	{/if}
+  }
+
+</script>

@@ -1,0 +1,65 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+  <div class="class">
+    {include="profile"}	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>我的帳戶-點數明細</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/account">帳戶設定</a></li>
+        <li><a href="/student/points" class="active">點數明細</a></li>
+        <li><a href="/student/contract">合約資料</a></li>
+        <li><a href="/student/rule">學員公約暨上課須知</a></li>
+      </ul>
+    </nav>
+	<form class="fill">
+	<input type="hidden" value="0" name="type">
+    <div class="search-filter search-filter-student">
+		<span class="date"><b>日期</b>
+        <input type="text" id="datepicker1" placeholder="Start" name="sdate" value="{$sdate}"><b>~</b>
+        <input type="text" id="datepicker2" placeholder="End" name="edate" value="{$edate}"></span>
+		<span class="status form-class"><b>項目</b>
+        <input type="text" placeholder="All" value="" disabled="" class='type'>
+        <ul class="form-class-select">
+          <li><a data-class="All"  data-value='0'>全部</a></li>
+        {loop="$var_point_type"}
+          <li><a data-class="{$value}"  data-value='{$key}'>{$value}</a></li>
+		{/loop}
+        </ul>
+		</span>
+      <div class="search-filter-button"><a class="button submit">SEND</a><a href="/student/points" class="button reset">Reset</a></div>
+    </div>
+	</form>
+    <div class="account-table account-table-student row">
+      <table>
+        <thead>
+          <td> <b>日期</b></td>
+          <td> <b>項目</b></td>
+          <td> <b>增加/扣除點數</b></td>
+        </thead>
+		{loop="$data"}
+        <tr>
+          <td data-title="日期">{$value['cdate']}</td>
+          <td data-title="項目" class="left-align">
+				<span class="label label-student">{$value['title']}</span><br>
+				{function="nl2br($value['brief'])"}
+			{noparse}
+			<!--
+			{if="$value['type']==10 || $value['type']==100"}				
+				<ul class="account-table-info account-table-info-student">
+					<li> <b>課程類型 </b><span>{$value['brief']['type']}</span></li>
+					<li> <b>課程時間 </b><span>{$value['brief']['open_time']}</span></li>
+				</ul>
+			{/if}
+			-->
+			{/noparse}
+          </td>
+          <td data-title="增加/扣除點數"> <span class='{if="$value['io']>0"}plus{else}minus{/if}'>{$value['io']}</span></td>
+        </tr>
+        {/loop}
+      </table>
+     {$paginate}
+    </div>
+  </div>
+  
+{include="footer"}
+<script src="js/student.points.js"></script>

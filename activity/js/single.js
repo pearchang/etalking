@@ -1,0 +1,1 @@
+$(document).ready(function(){$(document).foundation();var o=$(".gotop");o.on("click touchstart",function(){$("html, body").animate({scrollTop:0},400,"swing")}).focus(function(){$(this).blur()})});

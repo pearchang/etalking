@@ -1,0 +1,23 @@
+	<div class="class-top class-top-student">
+      <div class="class-top-inner">
+        <div class="row">
+          <div class="class-top-title class-top-title-student columns large-4">
+            <h2>學員專區</h2>
+            <h3> <b>{$member['first_name']} {$member['last_name']}</b></h3>
+			{if="isset($contract['begin'])"}
+            <p> <b>合約期限 </b><a href="/student/contract"><span>{$contract['begin']} ~ {$contract['end']}</span></a></p>
+			{/if}
+		  </div>
+          <div class="class-top-sum class-top-sum-student columns large-8">
+            <ul>
+              <li><a href="/student/points"><span class="num" id="points"></span></a><b>剩餘點數</b></li>
+              <li><a href="/student/classroom"><span class="num" id="classes"></span></a><b>已預約課程</b></li>
+              <li><a href="/student/classroom"><span class="num" id="overdue"></span></a><b>即將開始課程</b></li>
+              <li>
+                <div class="level-circle" data-level="{$level_percent}"> <span>{$member['level']}</span></div><b>等級</b>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>

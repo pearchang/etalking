@@ -1,0 +1,59 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+學員: <div class="col-md-6">
+<!--  <input id="consultant" class="form-control" size="32"><input type="hidden" name="consultant_id" id="consultant_id"> -->
+<select name="member_id" id="member_id">
+  {loop="$list"}
+  <option value="{$value.id}">{$value.first_name} {$value.last_name} ({$value.member_name})</option>
+  {/loop}
+</select>
+</div>
+<br>
+備註: <div class="col-md-6">
+  <input id="memo" class="form-control" size="20">
+</div>
+
+<br><br><br><br><br>
+<input type="button" class="btn-glow primary" value="確認送出" onclick="dosubmit();">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn-glow" value="取 消" onClick="parent.$.fancybox.close();"><br><br>
+{include="footer_foot"}
+<script language="javascript">
+$("#member_id").select2({width:'400px'});
+function dosubmit()
+{
+  if ($('#member_id').val() == "" || $('#member_id').val() == "0")
+  {
+    alert ('請選擇學員');
+    return;
+  }
+
+  $.ajax({
+    type: 'post',
+    url: '/admin/member_bl_member/add',
+    data: {
+      member_id: {$member_id},
+      black_id: $('#member_id option:selected').val(),
+      memo: $('#memo').val(),
+      special: 'popup'
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+        top.location.href = top.location.href;
+    },
+    error: function () {
+      alert('失敗的操作');
+    }
+  });
+}
+{if="$not_available"}
+  alert('找不到學員');
+  top.$.fancybox.close();
+{/if}
+</script>

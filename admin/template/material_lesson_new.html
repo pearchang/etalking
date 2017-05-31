@@ -1,0 +1,66 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="material_brief"}
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+<!--      <div class="field-box" id="div_sn">
+        <div class="text">
+          <label>教材編號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="sn" id="sn" value="{$sn}" required />
+          </div>
+        </div>
+      </div> -->
+      <div class="field-box" id="div_title">
+        <div class="text">
+          <label>教材名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="title" id="title" value="{$title}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_eng_title">
+        <div class="text">
+          <label>英文名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="eng_title" id="eng_title" value="{$eng_title}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_brief">
+        <div class="text">
+          <label>簡介:</label>
+          <div class="col-md-6">
+            {$editor_brief}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      {$FILES}
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<div id="reserved" style="display: none;">
+
+</div>
+<script language="javascript">
+function checkForm(frm)
+{
+}
+
+</script>
+<!-- end left column -->
+{include="footer"}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<base href="/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>ETALKING</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/touch-icon_57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon_72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon_114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon_144x144.png" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/single.css" />
+</head>
+
+<body class="orange">
+
+<header>
+	<nav class="row menu-wrapper">
+		<h1 class="logo"><a href="/" target="_blank"><span>ETALKING</span></a></h1>
+	</nav>
+</header>
+<div class="content">
+	<form class="login_form">
+    <div class="row">
+        <div class="columns small-12">
+            <h2 class="text-center">歡迎使用 ETALKING 企業專區</h2>
+            <p class="text-center primary">請輸入帳號密碼登入</p>
+        </div>
+        <div class="columns small-12 medium-10 medium-centered large-7 large-centered">
+
+          <div class="row form-box">
+            <div class="columns small-12 large-12 large-centered  login_error" style="display:none">
+                <div data-alert class="alert-box alert radius">
+                  Log in failed, please Enter your ID numbers and password
+                </div>
+            </div>			
+            <div class="columns small-12 large-12 large-centered">
+              <div class="row collapse prefix-radius">
+                <div class="small-2 large-2 columns">
+                  <span class="prefix"><i class="material-icons">&#xE8A6;</i></span>
+                </div>
+                <div class="small-10 large-10 columns">
+                  <input type="text" placeholder="ID Numbers" value="{$enterprise_account}" name="account">
+                </div>
+              </div>
+            </div>
+            <div class="columns small-12 large-12 large-centered">
+              <div class="row collapse prefix-radius">
+                <div class="small-2 large-2 columns">
+                  <span class="prefix"><i class="material-icons key">&#xE0DA;</i></span>
+                </div>
+                <div class="small-10 large-10 columns">
+                  <input type="password" placeholder="Password" name="password" value="{$enterprise_password}">
+                </div>
+              </div>
+            </div>
+            <div class="note-box">
+                <div class="columns small-12 medium-3 large-3">
+                    <a href="/enterprise/forgot"><u>忘記密碼?</u></a>
+                </div>
+                <div class="columns small-12 medium-9 large-9 end small-text-left medium-text-right check-block">
+                    <input type="checkbox" name="keep" id="keep" checked="checked"><label for="keep">記住我的帳號密碼</label><a href="clear_cookie.php?type=enterprise"> (清除密碼記憶)</a>
+                </div>
+            </div>
+            <div class="btn-box">
+                <div class="columns small-12 medium-6 large-6 text-center">
+                    <div class="g-recaptcha" data-sitekey="{$CAPCHA_PUBLIC_KEY}"></div>
+                </div>
+                <div class="columns small-12 medium-4">
+                    <a class="button round expand login_btn">登入</a>
+                </div>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+	</form>
+</div>
+<!--a class="gotop no-text"><span>TOP</span></a-->
+<footer class="withlogo">
+    <img src="images/logo_footer.png" alt="">
+</footer>
+<div class="copyright">Copyright © 2016 文樺數位互動股份有限公司</div>
+<!-- JS -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="js/foundation/foundation.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="js/single.js"></script>
+<!-- @@placeholder=js -->
+<script src="js/crud.enterprise.js"></script>
+<script src="js/enterprise.login.js"></script>
+</body>
+</html>

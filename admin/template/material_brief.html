@@ -1,0 +1,39 @@
+<div class="col-md-12 column">
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_sn">
+      <div class="text">
+        <label>編號:</label>
+        <div class="col-md-6">
+          <input class="form-control inline-input" type="text" value="{$mt_sn}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_title">
+      <div class="text">
+        <label>教材名稱:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$mt_title}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_eng_title">
+      <div class="text">
+        <label>英文名稱:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$mt_eng_title}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 column">
+  <ul class="nav nav-tabs">
+    <li class="" id="mm_material"><a href="/admin/material/edit?id={$material_id}">教材基本資料</a></li>
+    <li class="" id="mm_material_lesson"><a href="/admin/material_lesson?mid={$material_id}">各章節教材</a></li>
+  </ul>
+</div>
+<br>

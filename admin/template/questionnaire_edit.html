@@ -1,0 +1,30 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$MODIFY_URL}" enctype="multipart/form-data">
+      <div class="field-box" id="div_type">
+        <div class="text">
+          <label>類型<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$type_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_text">
+        <div class="text">
+          <label>名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="text" id="text" value="{$text}" required />
+          </div>
+        </div>
+      </div>
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}

@@ -1,0 +1,71 @@
+{include="header"}
+<div class="row form-wrapper">
+    <div class="col-md-12 column">
+        <form name="frm" method="post" action="{$UPDATE_URL}">
+            <div class="field-box" id="div_config1">
+              <div class="text">
+                <label>寄件者Email<sup>*</sup>:</label>
+                <div class="col-md-2">
+                    <input class="form-control" type="text" name="config1" id="config1" value="{$config1}" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                  <span>單一email</span>
+                </div>
+              </div>
+            </div>
+          <div class="field-box" id="div_config2">
+            <div class="text">
+              <label>寄件者名稱<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config2" id="config2" value="{$config2}" required>
+              </div>
+            </div>
+          </div>
+          <div class="field-box" id="div_config3">
+            <div class="text">
+              <label>需求收件者Email<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config3" id="config3" value="{$config3}" required><span>以分號區分收件者</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-box" id="div_config7">
+            <div class="text">
+              <label>企業需求收件者Email<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config7" id="config7" value="{$config7}" required>
+                <span>以分號區分收件者</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-box" id="div_config4">
+            <div class="text">
+              <label>PM收件者Email<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config4" id="config4" value="{$config4}" required>
+                <span>以分號區分收件者 (用於教室無法提供顧問、教材)</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-box" id="div_config5">
+            <div class="text">
+              <label>一對一點數<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config5" id="config5" value="{$config5}" required>
+              </div>
+            </div>
+          </div>
+          <div class="field-box" id="div_config6">
+            <div class="text">
+              <label>小班制點數<sup>*</sup>:</label>
+              <div class="col-md-2">
+                <input class="form-control" type="text" name="config6" id="config6" value="{$config6}" required>
+              </div>
+            </div>
+          </div>
+          <div class="submit-box">
+              <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="button" class="btn-glow" value="取 消" onClick="this.form.reset();">
+          </div>
+        </form>
+    </div>
+</div>
+{include="footer"}

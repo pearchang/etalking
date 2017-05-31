@@ -1,0 +1,27 @@
+{include="header_head"}
+
+<form name="frm" method="post" action="demolist/change_sales_save">
+
+<table align=center> 
+	<tr>
+		<td align=center><label>指派DEMO業務</label><br></td>
+	</tr>     
+	<tr>
+		<td align=center>
+		<select class="form-control" name="sales_id">
+		{loop="$options"}
+			<option value="{$value['value']}" {if="$value['value']==$sales_id"}selected{/if}>{$value['text']}</option>
+		{/loop}
+		</select></td>
+	</tr>
+	<tr>
+		<td align=center>
+		<br>
+		<input class="btn-flat primary" type="submit" value="送出">
+		</td>
+	</tr>
+</table>
+<input type=hidden name=cid value='{$cid}'>
+</form>
+
+{include="footer_foot"}

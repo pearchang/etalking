@@ -1,0 +1,425 @@
+{include="header"}
+<div class="table-wrapper section">
+  <div class="col-md-6 column">
+    <ul class="nav nav-tabs">
+      <li class="active"><a>基本資料</a></li>
+    </ul>
+  </div>
+  <div class="col-md-6 column">
+    <ul class="nav nav-tabs">
+      <li class="active"><a>DEMO紀錄</a></li>
+    </ul>
+  </div>
+  <div class="row form-wrapper">
+  <div class="col-md-6 with-sidebar column"> <!-- left -->
+    <br>
+    <form name="frm" method="post" action="{$UPDATE_URL}" enctype="multipart/form-data">
+    <div class="field-box" id="div_member_name">
+      <div class="text">
+        <label>姓名<sup>*</sup>:</label>
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="member_name" id="member_name" value="{$member_name}" required />
+        </div>
+      </div>
+    </div>
+      <div class="field-box" id="div_gender">
+        <div class="text">
+          <label>性別<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$gender_select}
+          </div>
+        </div>
+      </div>
+    <div class="field-box" id="div_mobile">
+      <div class="text">
+        <label>行動電話<sup>*</sup>:</label>
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="mobile" id="mobile" value="{$mobile}" required />
+        </div>
+      </div>
+    </div>
+    <div class="field-box" id="div_email">
+      <div class="text">
+        <label>Email<sup>*</sup>:</label>
+        <div class="col-md-6">
+          <input class="form-control" type="text" name="email" id="email" value="{$email}" required />
+        </div>
+      </div>
+    </div>
+      <div class="field-box" id="div_prefer">
+        <div class="text">
+          <label>顧問偏好<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$prefer_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_grade">
+        <div class="text">
+          <label>筆試成績<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="number" name="grade" id="grade" value="{$grade}" required min="0" max="9999" />
+          </div>
+        </div>
+      </div>
+    <input type="hidden" name="id" value="{$id}">
+    <div class="submit-box">
+      <input type="submit" class="btn-glow primary" value="更新資料">
+    </div>
+  </form>
+  </div>
+  <div class="col-md-6 form-sidebar">
+    <br>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th class="col-number">#</th>
+        <th class="col-md" align="left">DEMO時間</th>
+        <th class="col-md" align="center">教室編號</th>
+        <th class="col-md" align="left">顧問</th>
+        <th class="col-md" align="left">WebEx名稱</th>
+        <th class="col-md">功能</th>
+      </tr>
+      </thead>
+      <tbody>
+      {if="empty($demo_list)"}
+      <tr>
+        <td colspan="6" align="center" class="nodata">沒有資料</td>
+      </tr>
+      {else}
+      {loop="$demo_list"}
+      <tr>
+        <td align="right">{$value.i}</td>
+        <td><b>{$value.date}</b> {$value.time_text}</td>
+        <td align="center">{$value.sn}</td>
+        <td>{$value.consultant_text}</td>
+        <td>{$value.webex_name}<br>
+          <div style="float: left; padding-top: 5px;">
+            <div style="float: left;"><input type="checkbox" class="use_url" id="use_url_{$value.id}" data-id="{$value.id}" {$value.use_url}></div>
+            <label for="use_url_{$value.id}" style="margin-left:-5px;">URL</label>
+          </div>
+        </td>
+        <td align="center">
+          {if="$value.status2==10"}
+            {if="$value.can_enter"}
+              <button class="btn-flat white" onClick="enter({$value.id}, '{$value.sn}');"><i class="icon-edit"></i>進入教室</button>
+            {else}
+              <button class="btn-flat gray" ><i class="icon-edit"></i>進入教室</button>
+            {/if}
+            <button class="btn-flat white" onClick="done({$value.id});"><i class="icon-edit"></i>完成DEMO</button>
+            <button class="btn-flat white" onClick="fail({$value.id});"><i class="icon-remove"></i>DEMO失敗</button>
+            {if="$value.report"}
+            <button class="btn-flat white" onClick="report({$value.id});"><i class="icon-remove"></i>檢視評鑑</button>
+            {else}
+            <button class="btn-flat gray"><i class="icon-remove"></i>尚未評鑑</button>
+            {/if}
+          {elseif="$value.status2!=20"}
+            {if="$value.can_enter"}
+              <button class="btn-flat white" onClick="enter({$value.id}, '{$value.sn}');"><i class="icon-edit"></i>進入教室</button>
+            {else}
+              <button class="btn-flat gray" ><i class="icon-edit"></i>進入教室</button>
+            {/if}
+            {if="$value.can_cancel"}
+              <button class="btn-flat white" onClick="cancel({$value.id});"><i class="icon-remove"></i>取消預約</button>
+            {else}
+              <button class="btn-flat gray"><i class="icon-remove"></i>取消預約</button>
+            {/if}
+          {else}
+            {if="$value.report"}
+            <button class="btn-flat white" onClick="report({$value.id});"><i class="icon-remove"></i>檢視評鑑</button>
+            {else}
+            <button class="btn-flat gray"><i class="icon-remove"></i>尚未評鑑</button>
+            {/if}
+          {/if}
+        </td>
+      </tr>
+      {/loop}
+      {/if}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="col-md-12 column">
+    <ul class="nav nav-tabs">
+      <li class="active"><a>聯絡紀錄</a></li>
+    </ul>
+    <br>
+  </div>
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="left">時間</th>
+					
+					<th class="col-md" align="left">下次聯繫時間</th>
+                    <th class="col-md" align="left">類型</th>
+                    <th class="col-md" align="left">內容</th>
+                    <th class="col-md" align="left">操作者</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {if="isset($nodata)"}
+                    <tr>
+                      <td colspan="4" align="center" class="nodata">沒有資料</td>
+                    </tr>
+                  {else}
+                    {loop="$list"}
+                    <tr>
+                      <td align="right">{$value.i}</td>
+                      <td>{$value.cdate}</td>
+					  
+					  <td>{$value.next_time}</td>
+                      <td>{$value.type_text}</td>
+                      <td>{$value.content}</td>
+                      <td>{$value.creator_text}</td>
+                    </tr>
+                    {/loop}
+                  {/if}
+                  </tbody>
+                </table>
+                <table width="100%"><tr><td width="5%" nowrap="">
+                  <button class="btn-flat white" onclick="go('/admin/new_contract/new?id={$id}');"><i class="icon-remove"></i>建立合約</button>
+                  
+                  <button class="btn-flat white" onclick="release();"><i class="icon-remove"></i>釋出</button>
+                </td><td>{$page_control}</td></tr></table>
+              </div>
+              <!-- end left column -->
+          </div>
+        </div>
+<script language="javascript">
+function release()
+{
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/check_demo',
+    data: {
+      id : {$id}
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        var reason = prompt("請輸入釋出原因:");
+        //console.log(reason);
+        if (reason == null || reason == "")
+          return;
+        if (!confirm('確定要釋出嗎?'))
+          return;
+        $.ajax({
+          type: 'post',
+          url: '/admin/request_develop/release',
+          data: {
+            id : {$id},
+            reason: reason
+          },
+          dataType: 'json',
+          success: function (result) {
+            if (result.status)
+            {
+              alert('已成功釋出');
+              go('/admin/request');
+            }
+            else
+              alert(result.msg);
+          },
+          error: function () {
+            alert('操作失敗');
+          }
+        });
+      }
+      else
+      {
+        alert('還有預約的DEMO無法釋出');;
+      }
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function cancel(id)
+{
+  var memo = prompt("請輸入取消原因:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('確定要取消DEMO預約嗎?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/cancel',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已成功取消');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function demo()
+{
+    $.fancybox({
+          type : 'iframe',
+          href : '/admin/request_develop/demo?id={$id}',
+		  
+		  width:850,
+          title : ''
+    });
+}
+/*
+function demo()
+{
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/check_demo',
+    data: {
+      id : {$id}
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        $.fancybox({
+          type : 'iframe',
+          href : '/admin/request_develop/demo?id={$id}',
+          title : '預約DEMO',
+        });
+      }
+      else
+      {
+        alert('一次僅能預約一個DEMO時段');;
+      }
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+*/
+
+function enter(id, sn)
+{
+//  $.fancybox({
+//    type : 'iframe',
+//    href : '/admin/demolist/enter?id=' + id,
+//    title : '進入教室 ' + sn,
+//  });
+//  window.open('/admin/demolist/enter?id=' + id);
+//  window.location.href = window.location.href;
+  window.location.href = '/admin/demolist/enter?id=' + id;
+}
+
+function report(id)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/request_develop/report?id=' + id,
+    title : 'DEMO評鑑',
+  });
+}
+
+function done(id)
+{
+  var memo = prompt("請輸入備註:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('完成DEMO後教室將自動關閉，再次開啟需重新預約，是否確認完成DEMO?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/demolist/done',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('完成DEMO，已關閉WebEx教室');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function fail(id)
+{
+  var memo = prompt("請輸入失敗原因:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('DEMO失敗後教室將自動關閉，再次開啟需重新預約，是否確認DEMO失敗?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/demolist/fail',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已關閉WebEx教室，如要再DEMO請重新預約');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+</script>
+{include="footer"}
+<script language="javascript">
+  $(function () {
+    $('.use_url').click (function (event) {
+      var e = $(event.target);
+      console.log(e.prop('checked'));
+      $.ajax({
+        url: '/admin/free/use_url',
+        data: {
+          id: e.data('id'),
+          use_url: e.prop('checked') ? '1' : '0'
+        },
+        dataType: 'json',
+        success: function (result) {
+          if (!result.status)
+            alert(result.msg);
+          else
+          {
+            alert ('設定完成');
+            parent.parent.location.href = parent.parent.location.href;
+          }
+        },
+        error: function () {
+          alert('設定失敗');
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,34 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+  <tr><td align="right" nowrap width="5%">教室編號:</td><td>{$sn}</td></tr>
+  <tr><td align="right">日期:</td><td>{$date}</td></tr>
+  <tr><td align="right">時段:</td><td>{$time_text}</td></tr>
+  <tr><td align="right" valign="top">評鑑:</td><td>
+    <div class="tab-pane">
+      <table cellpadding="3" cellspacing="0" border="0" width="100%">
+        {loop="$list.0.ques_list"}
+        <tr><td align="right" nowrap width="5%" valign="top">{$value.question}:</td><td>{$value.answer}</td></tr>
+        {/loop}
+      </table>
+    </div>
+  </td></tr>
+  <tr><td colspan="2" align="right"><input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br></td></tr>
+</table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+$('.nav-tabs a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+
+$(function () {
+  $('.nav-tabs li:first-child').addClass('active');
+  $('.tab-pane:first-child').addClass('active');
+});
+</script>

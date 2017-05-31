@@ -1,0 +1,329 @@
+{include="header"}
+
+<div class="table-wrapper section">
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="center">預約時間</th>
+                    <th class="col-md" align="center">教室編號</th>
+                    <th class="col-md" align="center">姓名</th>
+                    <th class="col-md" align="center">性別</th>
+                    <th class="col-md" align="center">電話</th>
+                    <th class="col-md" align="center">Email</th>
+					
+					<th class="col-md" align="center">負責業務</th>
+					
+					<th class="col-md" align="center">DEMO業務</th>
+                    <th class="col-md" align="center">顧問</th>
+                    <th class="col-md" align="center">WebEx名稱</th>
+                    <th class="col-md-2" align="center">功能</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {if="isset($nodata)"}
+                    <tr>
+                      <td colspan="10" align="center" class="nodata">沒有資料</td>
+                    </tr>
+                  {else}
+                    {loop="$list"}
+                    <tr>
+                      <td align="right">{$value.i}</td>
+                      <td align="center" width=100>{$value.date} {$value.time_text}</td>
+                      <td align="center">{$value.sn}</td>
+                      <td align="center"><a href="javascript:" onclick="popup({$value.member_id}, '{$value.member_name}')">{$value.member_name}</a></td>
+                      <td align="center">{$value.gender_text}</td>
+                      <td align="center">{$value.mobile}</td>
+                      <td align="center">{$value.email}</td>
+					  
+					  <td align="center">{$value.creator_text}</td>
+					  
+					  <td align="center">{$value.demo_sales_text}<a style='cursor:pointer' onClick="popup_sales({$value.cid},{$value.demo_sales});">(更換)</a></td>
+                      <td align="center">{$value.consultant_id_text}</td>
+                      <td align="center">{$value.webex_name}<br>
+                        <div style="float: left; padding-top: 5px;">
+                        <div style="float: left;"><input type="checkbox" class="use_url" id="use_url_{$value.classroom_id}" data-id="{$value.classroom_id}" {$value.use_url}></div>
+                        <label for="use_url_{$value.classroom_id}" style="margin-left:-5px;">URL</label>
+                      </div>
+                      </td>
+                      <td align="center"><div style="text-align:center;">
+                        {if="$value.status2==10"}
+                          {if="$value.can_enter"}
+                            <button class="btn-flat white" onClick="enter({$value.classroom_id}, '{$value.sn}');"><i class="icon-edit"></i>進入教室</button>
+                          {else}
+                            <button class="btn-flat gray" ><i class="icon-edit"></i>進入教室</button>
+                          {/if}
+                          <button class="btn-flat white" onClick="done({$value.classroom_id});"><i class="icon-edit"></i>完成DEMO</button>
+                          <button class="btn-flat white" onClick="fail({$value.classroom_id});"><i class="icon-remove"></i>DEMO失敗</button>
+                        {elseif="$value.status2!=20"}
+                          {if="$value.can_enter"}
+                            <button class="btn-flat white" onClick="enter({$value.classroom_id}, '{$value.sn}');"><i class="icon-edit"></i>進入教室</button>
+                          {else}
+                            <button class="btn-flat gray" ><i class="icon-edit"></i>進入教室</button>
+                          {/if}
+                          {if="$value.can_cancel"}
+                            <button class="btn-flat white" onClick="cancel({$value.classroom_id});"><i class="icon-remove"></i>取消預約</button>
+                          {else}
+                            <button class="btn-flat gray"><i class="icon-remove"></i>取消預約</button>
+                          {/if}
+                        {else}
+                        {/if}
+                          {if="$value.report"}
+                          <button class="btn-flat white" onClick="report({$value.classroom_id});"><i class="icon-remove"></i>檢視評鑑</button>
+                          {else}
+                          <button class="btn-flat gray"><i class="icon-remove"></i>尚未評鑑</button>
+                          {/if}
+                      </div></td>
+                    </tr>
+                    {/loop}
+                  {/if}
+                  </tbody>
+                </table>
+                {$page_control}
+              </div>
+              <!-- end left column -->
+          </div>
+        </div>
+		
+{include="footer"}
+<script language="javascript">
+	$("#search_filter").removeAttr("onChange");
+  $("#search_filter").change(function(){
+  
+		id = $(this).val();
+	
+		$.ajax({
+		url : 'demolist/ajax' ,
+		type: "POST",
+		dataType:'json',
+		data: "filter="+ id ,
+		success: function(data){
+			$("#search_filter2").find('option').remove();
+			$.each(data,function(i,item){
+				$("#search_filter2").append( item );
+			});
+			
+		},
+		error: function(){
+            alert('網路連線不穩定，請重新操作一次');
+		}
+		});
+		return false;
+  });
+  
+  function changeFilter()
+  {
+	if($(this).attr('id')=="search_filter"){
+	
+		$.ajax({
+		url : 'demolist/ajax' ,
+		type: "POST",
+		dataType:'json',
+		data: "filter="+ $("#search_filter").val() ,
+		success: function(data){
+			
+		},
+		error: function(){
+            alert('網路連線不穩定，請重新操作一次');
+		}
+		});
+		return false;
+	
+	}else{
+		do_search();
+	}
+  }
+
+  function do_search()
+  {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    var arr = new Array();
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      var p = decodeURIComponent(pair[0]);
+      if (p != 'keyword' && p != 'filter' && p != 'filter2' && p != 'search_begin' && p != 'search_end')
+        arr.push(vars[i]);
+    }
+    var url = '{$FUNC}?' + arr.join('&');
+    url += '&filter=' + encodeURIComponent($('#search_filter').val());
+
+    url += '&filter2=' + encodeURIComponent($('#search_filter2').val());
+
+    if ($('#search_begin').length > 0 && $('#search_begin').val() != '' && $('#search_end').val() != '')
+    {
+      url += '&search_begin=' + encodeURIComponent($('#search_begin').val());
+      url += '&search_end=' + encodeURIComponent($('#search_end').val());
+    }
+
+    window.location.replace(url);
+    return false;
+  }
+
+</script>
+<script language="javascript">
+
+function popup(id, title)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/demolist/history?id=' + id,
+    title : title,
+  });
+}
+
+function popup_sales(cid, sales_id)
+{
+	//alert( cid + " , " + sales_id );return false;	
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/demolist/change_sales?cid=' + cid + "&sales_id=" + sales_id,
+	
+	width: 300,
+    title : '',
+  });
+}
+function enter(id, sn)
+{
+//  $.fancybox({
+//    type : 'iframe',
+//    href : '/admin/demolist/enter?id=' + id,
+//    title : '進入教室 ' + sn,
+//  });
+//  window.open('/admin/demolist/enter?id=' + id);
+//  window.location.href = window.location.href;
+  window.location.href = '/admin/demolist/enter?id=' + id;
+}
+
+function cancel(id)
+{
+  var memo = prompt("請輸入取消原因:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('確定要取消DEMO預約嗎?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/cancel',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已成功取消');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function done(id)
+{
+  var memo = prompt("請輸入備註:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('完成DEMO後教室將自動關閉，再次開啟需重新預約，是否確認完成DEMO?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/demolist/done',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('完成DEMO，已關閉WebEx教室');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function fail(id)
+{
+  var memo = prompt("請輸入失敗原因:");
+  if (memo == null || memo == "")
+    return;
+  if (!confirm('DEMO失敗後教室將自動關閉，再次開啟需重新預約，是否確認DEMO失敗?'))
+      return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/demolist/fail',
+    data: {
+      id : id,
+      memo: memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已關閉WebEx教室，如要再DEMO請重新預約');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function report(id)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/request_develop/report?id=' + id,
+    title : 'DEMO評鑑',
+  });
+}
+</script>
+
+<script language="javascript">
+$(function () {
+  $('.use_url').click (function (event) {
+    var e = $(event.target);
+    console.log(e.prop('checked'));
+    $.ajax({
+      url: '/admin/free/use_url',
+      data: {
+        id: e.data('id'),
+        use_url: e.prop('checked') ? '1' : '0'
+      },
+      dataType: 'json',
+      success: function (result) {
+        if (!result.status)
+          alert(result.msg);
+        else
+        {
+          alert ('設定完成');
+          parent.parent.location.href = parent.parent.location.href;
+        }
+      },
+      error: function () {
+        alert('設定失敗');
+      }
+    });
+  });
+});
+</script>

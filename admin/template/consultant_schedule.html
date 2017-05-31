@@ -1,0 +1,111 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="consultant_brief"}
+  <div class="col-md-12 column form-sidebar">
+    固: 固定課表(有空)、自: 自行勾選(有空)、Ｄ: DEMO、一: 一對一課程、小: 小班制、選: 選修制、大: 大會堂<br>
+    <br>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center" width="4%">
+        <table width="100%" cellspacing="0" cellpadding="0"><tr><td height="40">&nbsp;</td></tr></table>
+        <table width="100%" cellspacing="0" cellpadding="0">
+          {loop="$hour_list"}
+          <tr><td height="60" align="center">{$value1.hour}:00<br> ~ <br>{$value1.hour}:45</td></tr>
+          {/loop}
+        </table>
+      </td>
+      {loop="$date_list"}
+      <td align="center">
+        <table width="100%" cellspacing="0" cellpadding="0"><tr><td height="40" align="center" nowrap="">{$value.date}<br>{$value.name}</td></tr></table>
+        <table width="100%" cellspacing="0" cellpadding="0">
+          {loop="$value.hour_list"}
+          <tr><td height="60" style="border: 1px solid #CCCCCC;" align="center" id="td_{$value.date}_{$value.hour}">
+            {$value.data}
+          </td></tr>
+          {/loop}
+        </table>
+      </td>
+      {/loop}
+    </tr>
+  </table>
+
+</div>
+</div>
+{include="footer"}
+<script language="javascript">
+function cancel_click()
+{
+  var date = $(this).attr('data-date');
+  var time = $(this).attr('data-time');
+  var fixed = $(this).attr('data-fixed');
+  var avail = $(this).attr('data-avail');
+  if (fixed == '0')
+    url = '/admin/consultant_schedule/cancel';
+  else
+    url = '/admin/consultant_schedule/cancel_fixed';
+  $.ajax({
+    type: 'post',
+    url: url,
+    data: {
+      id: '{$consultant_id}',
+      date: date,
+      time: time
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+      { // 取消後判斷avail & fixed
+        var s = '';
+        if ((fixed == '0' && avail == '20') || (fixed == '10' && avail == '0')) // checkbox取代
+          s = "<input type=checkbox name='available[]' id='available_" + date + "_" + time + "' data-date='" + date + "' data-time='" + time + "'>";
+        else // if (fixed == '10' && avail == '20')
+          s = "<span class='available' id='available_" + date + "_" + time + "' data-date='" + date + "' data-time='" + time + "' data-avail='20' data-fixed='0'>自</span>";
+        $("#td_" + date + "_" + time).html(s);
+        if (fixed == '0' && avail == '20')
+          $("#available_" + date + "_" + time).on('click', add_click).uniform();
+        else
+          $("#available_" + date + "_" + time).on('click', cancel_click).uniform();
+      }
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+function add_click()
+{
+  var date = $(this).attr('data-date');
+  var time = $(this).attr('data-time');
+  $.ajax({
+    type: 'post',
+    url: '/admin/consultant_schedule/add',
+    data: {
+      id: '{$consultant_id}',
+      date: date,
+      time: time
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+      { // 新增後用span取代
+        var s = "<span class='available' id='available_" + date + "_" + time + "' data-date='" + date + "' data-time='" + time + "' data-avail='20' data-fixed='0'>自</span>";
+        $("#td_" + date + "_" + time).html(s);
+        $("#available_" + date + "_" + time).on('click', cancel_click).css('cursor', 'pointer');
+      }
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+$(function () {
+  $('.available').on('click', cancel_click).css('cursor', 'pointer');
+  $('input[type=checkbox]').on('click', add_click);
+});
+</script>

@@ -1,0 +1,62 @@
+#main-view {
+	top: 125px;
+}
+
+.step-two tbody td {
+    text-align: left;
+}
+
+.fixed-notes {
+	display: block;
+    line-height: 50px;
+    color: #fff;
+}
+.fixed-notes.active {
+	background: #ff176b;
+}
+
+.step-two .doc-table {
+	margin-top: 25px;
+}
+
+.round-label {
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}
+
+.step-two .label-default {
+    background: #fff;
+    color: #b1b1b1;
+    border: 1px solid;
+}
+
+.sign-receipt-box-2 .modal-dialog {
+    margin-top: 100px;
+}
+
+.overflow {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.btn-box-in span:first-child {
+    float: left;
+}
+
+.btn-box-in span:nth-child(2n) {
+    float: right;
+}
+
+
+
+
+
+

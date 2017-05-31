@@ -1,0 +1,268 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="member_brief"}
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$MODIFY2_URL}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+      <div class="field-box" id="div_type">
+        <div class="text">
+          <label>類別:</label>
+          <div class="col-md-6">
+            <input class="form-control inline-input" type="text" readonly="readonly" value="{$type_text}">
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_account">
+        <div class="text">
+          <label>帳號(證件號碼)<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="account" id="account" value="{$account}" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_password">
+        <div class="text">
+          <label>變更密碼:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="password" id="password" value="" />不變更不需輸入
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_member_name">
+        <div class="text">
+          <label>中文姓名<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="member_name" id="member_name" value="{$member_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_first_name">
+        <div class="text">
+          <label>英文名<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="first_name" id="first_name" value="{$first_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_last_name">
+        <div class="text">
+          <label>英文姓<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="last_name" id="last_name" value="{$last_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_legal">
+        <div class="text">
+          <label>法定代理人<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="legal" id="legal" value="{$legal}" />未滿16歲必填
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_gender">
+        <div class="text">
+          <label>性別<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$gender_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_mobile">
+        <div class="text">
+          <label>行動電話<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="mobile" id="mobile" value="{$mobile}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_tel">
+        <div class="text">
+          <label>電話:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="tel" id="tel" value="{$tel}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_email">
+        <div class="text">
+          <label>Email<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="email" id="email" value="{$email}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_birthdate">
+        <div class="text">
+          <label>生日<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$birthdate}" name="birthdate" id="birthdate" class="form-control date" picker="date" required onblur="birthDateChange($(this));" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_address">
+        <div class="text">
+          <label>地址<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="address" id="address" value="{$address}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_enterprise">
+        <div class="text">
+          <label>所屬企業:</label>
+          <div class="col-md-6">
+            {$enterprise_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_education">
+        <div class="text">
+          <label>教育程度:</label>
+          <div class="col-md-6">
+            {$education_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_grade">
+        <div class="text">
+          <label>筆試成績:</label>
+          <div class="col-md-6">
+            <input class="form-control inline-input" type="text" readonly="readonly" value="{$grade}">
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_level">
+        <div class="text">
+          <label>等級<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$level_select}
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="field-box" id="div_prefer">
+        <div class="text">
+          <label>顧問偏好<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$prefer_select}
+          </div>
+        </div>
+      </div> -->
+      <div class="field-box" id="div_interest">
+        <div class="text">
+          <label>興趣<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {$interest_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_interest2" style="margin-bottom: 0px;">
+        <div class="text">
+          <label>&nbsp;</label>
+          <div class="col-md-9">
+            <span style="color:blue;">興趣請至少勾選3項</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_skill">
+        <div class="text">
+          <label>欲加強的能力<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {$skill_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_skill2" style="margin-bottom: 0px;">
+        <div class="text">
+          <label>&nbsp;</label>
+          <div class="col-md-9">
+            <span style="color:blue;">欲加強的能力請勾選1~3項</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_note">
+        <div class="text">
+          <label>內部備註(選課用):</label>
+          <div class="col-md-6">
+            {$editor_note}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_note2">
+        <div class="text">
+          <label>內部備註:</label>
+          <div class="col-md-6">
+            {$editor_note2}
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<script language="javascript">
+  function checkForm(frm)
+  {
+    var l = $('form[name=frm] input[name="interest[]"]:checked').length;
+    if (l < 3)
+    {
+      alert('請至少選擇3個興趣');
+      return false;
+    }
+    var l = $('form[name=frm] input[name="skill[]"]:checked').length;
+    if (l < 1 || l > 3)
+    {
+      alert('欲加強能力僅能選擇1~3項');
+      return false;
+    }
+  }
+
+  function birthDateChange(f)
+  {
+    var date = new Date(f.val());
+    if (date == 'Invalid Date')
+    {
+      alert('請輸入正確的生日');
+      return;
+    }
+    var age = getAge(f.val());
+    //console.log(age);
+    if (age < 16)
+    {
+      $('#div_legal label').html("法定代理人<sup>*</sup>:");
+      $('#div_legal input').attr('required', true);
+    }
+    else
+    {
+      $('#div_legal label').html("法定代理人:");
+      $('#div_legal input').attr('required', false);
+    }
+  }
+</script>
+<!-- end left column -->
+{include="footer"}
+<script language="javascript">
+  var sales_can_not_edit = '{$sales_can_not_edit}';
+  $(birthDateChange($('#birthdate')));
+  //$($('input[name=level_id]').attr('disabled', true));
+  if (sales_can_not_edit == '1')
+  {
+    $('input').attr('disabled', true);
+    $('select').attr('disabled', true);
+    $('textarea').attr('disabled', true);
+    $('.btn-glow').hide();
+  }
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<base href="/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>ETALKING</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/touch-icon_57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon_72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon_114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon_144x144.png" />
+    <link rel="stylesheet" href="css/single.css" />
+</head>
+
+<body>
+
+<header>
+	<nav class="row menu-wrapper">
+		<h1 class="logo"><a href="/" target="_blank"><span>ETALKING</span></a></h1>
+	</nav>
+</header>
+<div class="content">
+	<div class="row">
+		<div class="columns small-12">
+			<h2 class="text-center">歡迎來到ETALKING免費體驗DEMO課程</h2>
+			<p class="text-center primary">線上試讀體驗課程約需20分鐘，請提早10分鐘前上線準備喔！</p>
+		</div>
+	</div>
+	<div class="material-box">
+		<div class="row">
+			<div class="columns small-12 medium-6 large-5 large-offset-1">
+				<h4 class="primary"><b>筆試</b></h4>
+				<p>為了更能清楚了解每位學員的程度，試讀課程前將會請學員先完成筆試測試，已便後續顧問安排。</p>
+				<h4 class="primary"><b>線上英外語您需要準備</b></h4>
+				<ol><li>連上網路</li><li>網路耳機麥克風(筆電可免準備，採擴音功能)</li><li>與顧問測試通話品質 這樣就完成準備工作囉</li></ol>
+				<h4 class="primary"><b>試讀後我們提供</b></h4>
+				<ol><li>程度測試結果與分析</li><li>顧問語言學習建議</li></ol>
+				<h4 class="primary"><b>課程考慮或喜歡我們的老師我們會提供</b></h4>
+				<ol><li>教師挑選</li><li>課程選擇</li><li>選課系統教學</li></ol>
+			</div>
+			<div class="columns small-12 medium-6 large-6 end">
+				<h5 class="text-center"><b>請於下列時間點擊按鈕進入教室!</b></h5>
+				{if="$date"}
+				<div class="time-box text-center">
+					<div class="top">
+						<h4><b>{$date['date']}</b></h4>
+						<h5>{$date['week']}</h5>
+						<h5>{$date['start_time']}</h5>
+						<h5 class="during">~</h5>
+						<h5>{$date['end_time']}</h5>
+					</div>
+					<a class="btn enter_webex {$disable}" data-type='10' data-id="{$classroom_id}" >進入教室</a>
+				</div>
+				{/if}
+				<p class="note-cox">進行試讀請踴躍發言，不用擔心說錯，家教老師才能依照您個人程度及需求做課程建議。若有任何需求或疑問，請立即向語言顧問反應。</p>
+			</div>
+		</div>
+	</div>
+</div>
+<a class="gotop no-text"><span>TOP</span></a>
+<footer class="withlogo">
+	<img src="images/logo_footer.png" alt="">
+</footer>
+<div class="copyright">Copyright © 2016 文樺數位互動股份有限公司</div>
+
+  <div id="systemModal" data-reveal="" aria-labelledby="modalTitle" aria-hidden="true" role="dialog" class="reveal-modal reveal-modal-student small">
+    <p></p>
+	<a aria-label="Close" class="button round close-reveal-modal btn">確認</a>
+  </div>
+
+<!-- JS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/foundation/foundation.js"></script>
+<script src="js/foundation/foundation.reveal.js"></script>
+<script src="js/single.js"></script>
+<script src="js/crud.js"></script>
+<script src="js/student.js"></script>
+<!-- @@placeholder=js -->
+</body>
+</html>

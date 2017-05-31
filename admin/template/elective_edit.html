@@ -1,0 +1,127 @@
+{include="header"}
+{if="$type==40"}
+<div class="table-wrapper section">
+  <div class="col-md-6 column">
+    <ul class="nav nav-tabs">
+      <li class="active"><a>課程資料</a></li>
+    </ul>
+  </div>
+  <div class="col-md-6 column">
+    <ul class="nav nav-tabs">
+      <li class="active"><a>排課</a></li>
+    </ul>
+  </div>
+  {/if}
+  <div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-6 column">
+    <form name="frm" id="frm" method="post" action="{$MODIFY_URL}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+      <div class="field-box" id="div_type">
+        <div class="text">
+          <label>類型<sup>*</sup>:</label>
+          <div class="col-md-9">
+            <input class="form-control inline-input" type="text" value="{$type_text}" readonly />
+            <input type="hidden" name="type" value="{$type}">
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_course_name">
+        <div class="text">
+          <label>課程名稱<sup>*</sup>:</label>
+          <div class="col-md-9">
+            <input class="form-control" type="text" name="course_name" id="course_name" value="{$course_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_material_id">
+        <div class="text">
+          <label>教材<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {if="$type==50"}
+            <select name="material_id" id="material_id">
+              {loop="$mat_list"}
+              <option value="{$value.id}">{$value.eng_title} ({$value.title})</option>
+              {/loop}
+            </select>
+            {else}
+            <input class="form-control" type="text" name="material_text" id="material_text" value="{$material_text}" required readonly />
+            {/if}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_consultant_id">
+        <div class="text">
+          <label>顧問<sup>*</sup>:</label>
+          <div class="col-md-9">
+            <div class="col-md-12">
+              <input class="form-control" type="text" name="consultant_text" id="consultant_text" value="{$consultant_text}" required readonly />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_point">
+        <div class="text">
+          <label>點數<sup>*</sup>:</label>
+          <div class="col-md-3">
+            <input class="form-control" type="number" name="point" id="point" value="{$point}" required min="0.1" max="999" step="0.1" readonly />
+          </div>
+        </div>
+      </div>
+      {if="$type==50"}
+      <div class="field-box" id="div_begin_date">
+        <div class="text">
+          <label>開課日期<sup>*</sup>:</label>
+          <div class="col-md-3">
+            <input type="text" value="{$begin_date}" name="begin_date" id="begin_date" class="form-control date" picker="date" required readonly />
+          </div>
+        </div>
+      </div>
+      {/if}
+      <div class="field-box" id="div_brief">
+        <div class="text">
+          <label>簡介:</label>
+          <div class="col-md-6">
+            {$editor_brief}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      {$IMAGES}
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+    <div class="col-md-6 form-sidebar" {if="$type==50"}style="display:none;"{/if}>
+      <br>
+      <table class="table" id="tbl_material">
+        <thead>
+        <tr>
+          <th class="col-number">#</th>
+          <th class="col-md" align="center">開課時間</th>
+          <th class="col-md" align="left">教材</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop="$list"}
+        <tr><td align="right">{$value.i}</td>
+          <td align="center" class="col-md-3">
+            {$value.date} {$value.time}:00
+          </td>
+          <td>{$value.material_text}</td></tr>
+        {/loop}
+        </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{include="footer"}

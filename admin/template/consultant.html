@@ -1,0 +1,46 @@
+{include="header"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md" align="left">登入帳號</th>
+                      <th class="col-md" align="left">姓名</th>
+                      <th class="col-md" align="left">電話</th>
+                      <th class="col-md" align="left">Email</th>
+                      <th class="col-md">狀態</th>
+                      <th class="col-md-2">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="7" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="right">{$value.i}</td>
+                        <td>{$value.account}</td>
+                        <td>{$value.first_name} {$value.last_name}</td>
+                        <td>{$value.tel}</td>
+                        <td>{$value.email}</td>
+                        <td align="center"><span class="label label-{$value.status_text_color}">{$value.status_text}</span></td>
+                        <td><div style="text-align:center;"><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>詳細內容</button>
+                          {if="$admin_manager"}<button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button>{/if}</div></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+            </div>
+          </div>
+{include="footer"}

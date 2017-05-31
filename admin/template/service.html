@@ -1,0 +1,51 @@
+{include="header"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md-1">時間</th>
+                      <th class="col-md-2">Email</th>
+                      <th class="col-md-1">姓名</th>
+                      <th class="col-md-1">電話</th>
+                      <th class="col-md">留言內容</th>
+                      <th class="col-md-1">狀態</th>
+                      <th class="col-md-1">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="8" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="right">{$value.i}</td>
+                        <td align="center">{$value.cdate}</span></td>
+                        <td>{$value.email}</td>
+                        <td>{$value.name}</td>
+                        <td>{$value.mobile}</td>
+                        <td>{$value.content|SubString:32}</td>
+                        <td align="center"><span class="label label-{$value.status_color}">{$value.status_text}</span></td>
+                        <td><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-book"></i>檢視</button></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+                <!-- right column -->
+                <div class="col-md-4 column">
+                </div>
+                <!-- end right column -->
+            </div>
+          </div>
+{include="footer"}

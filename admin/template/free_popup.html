@@ -1,0 +1,120 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<form name="frm" id="frm" method="post" action="/admin/free/move">
+<input type="hidden" name="id" value="{$id}">
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+  <tr><td align="right" nowrap>教室編號:</td><td>{$sn}</td></tr>
+  <tr><td align="right">日期:</td><td>{$date} {$type}</td></tr>
+  <tr><td align="right">時段:</td><td>{$time_text}</td></tr>
+  <tr><td align="right">類型:</td><td>{$type_text}</td></tr>
+  <tr><td align="right">等級:</td><td>{$level_text}</td></tr>
+  <tr><td align="right">顧問:</td><td>{$consultant}
+    <button type="button" class="btn-glow" style="line-height: 1;" onclick="popup();">{if="$consultant_id"}變更{else}指定{/if}顧問</button>
+  </td></tr>
+  <tr><td align="right" valign="top">教材:</td><td>{$material}<br>{$material2}
+    <button type="button" class="btn-glow" style="line-height: 1;" onclick="popup2();">{if="$material_id"}變更{else}指定{/if}教材</button>
+  </td></tr>
+  <tr><td align="right" valign="top">學員:</td><td>
+    {loop="$persons"}
+    <div style="padding-top:5px;" title="{$value.note|nl2br}">
+      {if="$type==30"}<input type="checkbox" name="member_reg[]" value="{$value.cid}">{/if}{$value.member_name} ({$value.first_name} {$value.last_name})
+      </div>
+      <div style="margin-left: 14px;">
+      {loop="$value.interest"}
+      <span class='label label-blue' style="line-height: 2;">{$value.title}</span>&nbsp;
+      {/loop}
+      {loop="$value.skill"}
+      <span class='label label-green'>{$value.title}</span>&nbsp;
+      {/loop}</div>
+    {/loop}
+  </td></tr>
+  {if="$type==30"}
+  <tr><td>&nbsp;</td><td></td></tr>
+  <tr><td colspan="2">移動打勾的學員到: <div class="ui-select"><select name="classroom" id="classroom">
+	{if="$can_move"}
+    <option value="-1" data-level="-1">新教室</option>
+	{/if}
+    {loop="$classroom"}
+    <option value="{$value.id}" data-level="{$value.level_id}">{$value.sn}</option>
+    {/loop}
+  </select></div>&nbsp;&nbsp;&nbsp;<input type="button" class="btn-glow primary" value="確認送出" onclick="send();">&nbsp;&nbsp;&nbsp;&nbsp;
+    {if="$can_enter"}
+      <input type="button" class="btn-glow" value="進入教室" onClick="enter();">&nbsp;&nbsp;&nbsp;
+    {else}
+      <input type="button" class="btn-glow inverse" value="進入教室">&nbsp;&nbsp;&nbsp;
+    {/if}
+    <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+  </td></tr>
+  {else}
+  <tr><td colspan="2" align="right">
+    {if="$can_enter"}
+    <input type="button" class="btn-glow" value="進入教室" onClick="enter();">&nbsp;&nbsp;&nbsp;
+    {else}
+    <input type="button" class="btn-glow inverse" value="進入教室">&nbsp;&nbsp;&nbsp;
+    {/if}
+    <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+  </td></tr>
+  {/if}
+</table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+var level_id = '{$level_id}';
+var use_url = '{$use_url}';
+
+function enter()
+{
+  top.location.href = '/admin/free/enter?id={$id}&ref={$ref}';
+}
+
+function send()
+{
+  if ($('input[name*=member_reg]:checked').length == 0)
+  {
+    alert('請勾選緻少一名學員');
+    return;
+  }
+  var lv = $('#classroom option:selected').data('level');
+  if (lv != -1 && lv != level_id && !confirm('新教室的等級與原教室不同，確定要移動嗎?'))
+    return;
+  if (!confirm('確認要將選擇的學員移至 ' + $('#classroom option:selected').text() + ' 嗎?'))
+    return;
+  $('#frm').submit();
+}
+
+function popup()
+{
+  var confirmed = '{$confirmed}';
+
+  if (confirmed > 0 && !confirm('此顧問已確認上課，確定要改變顧問嗎?'))
+    return;
+
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/free/consultant?id={$id}',
+    title : '{if="$consultant_id"}變更{else}指定{/if}顧問',
+  });
+}
+
+function popup2()
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/free/material?id={$id}',
+    title : '{if="$material_id"}變更{else}指定{/if}教材',
+  });
+}
+
+$(function () {
+  $( document ).tooltip({
+    track: true,
+    content: function() {
+      return $(this).attr('title');
+    }
+  });
+});
+</script>

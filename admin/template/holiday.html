@@ -1,0 +1,42 @@
+{include="header"}
+<form method=POST action="holiday/config_save">
+<div class="col-md-12 column">
+          <div class="field-box">
+              開課時段:
+                <select style="width:100px;display:inline" class="form-control" name="config8">{loop="$start_time"}<option value="{$key}" {if="$config8==$key"}selected{/if} >{$value}</option>{/loop}</select> 至 
+				<select style="width:100px;display:inline" class="form-control" name="config9">{loop="$end_time"}<option value="{$key}" {if="$config9==$key"}selected{/if} >{$value}</option>{/loop}</select>
+				<input type="submit" class="btn-glow primary" value="GO">
+          </div>
+</div>
+</form>
+<br>
+<div class="col-md-12 column">
+          <div class="field-box">
+查詢日期:<input type="text" value="" style="width:100px;display:inline" name="search_begin" id="search_begin" size="10" class="form-control input-datepicker search_date" picker="date" />
+</div>
+</div>
+
+
+{include="footer"}
+
+<script>
+function do_search(){
+
+	d = $('#search_begin').val();
+
+  $.fancybox({
+
+    type : 'iframe',
+
+    href : "holiday/popup?date=" + d,
+
+    title : d,
+	
+	width: '250'
+
+  });
+}
+$(function(){
+	$('#search_begin').val('{$date}');
+});
+</script>

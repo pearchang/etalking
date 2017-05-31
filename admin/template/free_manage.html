@@ -1,0 +1,100 @@
+{include="header"}
+日期: {$date}<br>
+時段: {$time}<br><br>
+<style>
+  .classroom {
+    min-width:180px;
+    min-height: 180px;
+    float:left;
+    border: solid 1px #999;
+    padding: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .classroom span {
+    color: red;
+  }
+  .classroom div {
+    float: right;
+    z-index: 100;
+  }
+</style>
+{loop="$list"}
+<div class="classroom" style="cursor:pointer;" data-id="{$value.id}" data-sn="{$value.sn}">
+  <span>{if="$value.webex_name"}{$value.webex_name}{else}尚未指定教室{/if} {$value.sn}&nbsp;&nbsp;{$value.type_text}&nbsp;&nbsp;{$value.level_text}</span><br>
+  {if="$value.consultant_confirmed"}
+  <span style="color:blue">{$value.consultant} (已確認)</span>
+  {else}
+  {$value.consultant}
+  {/if}<br>
+  {$value.material}<br>
+  {$value.material2}<br>
+  {loop="$value.persons"}
+  {$value.level_name} - {$value.member_name} ({$value.first_name} {$value.last_name})<br>
+  {/loop}
+  <div>
+    <div style="float: left; padding-top: 5px;">
+      <div style="float: left;"><input type="checkbox" class="use_url" id="use_url_{$value.id}" data-id="{$value.id}" {$value.use_url}></div>
+      <label for="use_url_{$value.id}" style="margin-left:-5px;">URL</label>&nbsp;&nbsp;
+    </div>
+  {if="$value.can_enter"}
+  <input type="button" class="btn-glow" value="進" onClick="enter('{$value.id}');" data-id="{$id}">&nbsp;&nbsp;&nbsp;
+  {else}
+  <input type="button" class="btn-glow inverse" value="進">&nbsp;&nbsp;&nbsp;
+  {/if}
+  </div>
+</div>
+{/loop}
+{include="footer"}
+<script language="javascript">
+function enter(id)
+{
+  window.location.href = '/admin/free/enter?id=' + id;
+}
+
+  function popup(id, sn)
+{
+//  console.log(event);
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/free/popup?id=' + id,
+    title : '教室 ' + sn,
+  });
+}
+
+$(function () {
+  $('.classroom').click (function (event) {
+    var e = $(event.target);
+//  console.log(e.data('id'));
+    if (e.prop('className').indexOf('classroom') != -1)
+      popup(e.data('id'), e.data('sn'));
+    else if (e.prop('type') == 'button' && e.data('id') !== undefined && e.data('id') != '')
+      window.open('/admin/free/enter?id=' + e.data('id') + '&ref=' + e.data('ref'));
+  });
+
+  $('.use_url').click (function (event) {
+    var e = $(event.target);
+    console.log(e.prop('checked'));
+    $.ajax({
+      url: '/admin/free/use_url',
+      data: {
+        id: e.data('id'),
+        use_url: e.prop('checked') ? '1' : '0'
+      },
+      dataType: 'json',
+      success: function (result) {
+        if (!result.status)
+          alert(result.msg);
+        else
+        {
+          alert ('設定完成');
+          parent.parent.location.href = parent.parent.location.href;
+        }
+      },
+      error: function () {
+        alert('設定失敗');
+      }
+    });
+  });
+});
+</script>

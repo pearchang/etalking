@@ -1,0 +1,83 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html dir="ltr" lang="zh-TW" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html dir="ltr" lang="zh-TW" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html dir="ltr" lang="zh-TW" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html dir="ltr" lang="zh-TW" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="ltr" lang="zh-TW" itemscope itemtype="http://schema.org/Blog">
+<!--<![endif]-->
+<head>
+    <base href="{$BASE_URL}">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5.js"></script>
+    <![endif]-->
+    <script src="/js/jquery-2.1.3.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="海棠設計">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>{$SITE_TITLE} 後端管理系統</title>
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<form id="loginform" name="form1" method="post" action="login">
+
+<div id="WRAPPER">
+    <article id="CONTENT">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="52" height="26" align="left">帳&nbsp;&nbsp;&nbsp;&nbsp;號：</td>
+                <td colspan="2" align="left" style="background-image:url(images/main_input_bg.jpg); background-repeat:no-repeat; padding-left:8px; background-position:left 3px;">
+                    <input type="text" name="account" id="account" style=" color:#fff; width:132px; height:14px; border:0; background-color:#fc958d;" required />
+                </td>
+            </tr>
+            <tr>
+                <td height="26" align="left">密&nbsp;&nbsp;&nbsp;&nbsp;碼：</td>
+                <td colspan="2" align="left" style="background-image:url(images/main_input_bg.jpg); background-repeat:no-repeat; padding-left:8px; background-position:left 3px;">
+                    <input type="password" name="password" id="password" style=" color:#fff; width:132px; height:14px; border:0; background-color:#fc958d;" required />
+                </td>
+            </tr>
+            <tr>
+                <td height="45" align="left">驗證碼：</td>
+                <td width="54" align="left" valign="top" style="background-image:url(images/main_input_bg2.jpg); background-repeat:no-repeat; background-position:left 11px; padding-left:4px; padding-top:10px;">
+                    <input type="text" name="captcha" id="captcha" style=" font-size:11px; color:#fff; width:44px; height:14px; border:0; background-color:#fc958d;" required />
+                </td>
+                <td width="104"><img src='captcha.php?{function="time()"}'></td>
+            </tr>
+            <tr>
+                <td height="58" colspan="3" align="left" valign="top" style="padding-top:11px; padding-left:57px;"><input type=image src="images/btn_login.jpg" width="106" height="47" class="imgover"></td>
+            </tr>
+        </table>
+    </article>
+</div>
+    </form>
+<script type="text/javascript" src="js/rollover.js"></script>
+
+</body>
+<script>
+    $(document).ready(function(){
+        $('#loginform').submit(function(){
+            if($('#user').val()==''){
+                alert('帳號必填');
+                $('#user').focus();
+                return false;
+            }
+            if($('#pass').val()==''){
+                alert('密碼必填');
+                $('#pass').focus();
+                return false;
+            }
+            if($('#captcha').val()==''){
+                alert('驗證碼必填');
+                $('#captcha').focus();
+                return false;
+            }
+            return true;
+        })
+    });
+</script>
+</html>

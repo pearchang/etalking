@@ -1,0 +1,48 @@
+{include="header"}
+  <div class="table-wrapper section">	<div class="col-md-12 column">				<div class="col-md-2">					<select class="filter form-control">					{loop="$category"}						<option value="{$key}" {if="$key==$filter"}selected{/if} >{$value}</option>					{/loop}					</select>				</div>	</div>	
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md" align="center">類別</th>
+                      <th class="col-md" align="center">起始日期</th>
+                      <th class="col-md" align="center">結束日期</th>					  					  <th class="col-md" align="center">排程日期</th>
+                      <th class="col-md" align="center">產生日期</th>       					  <th class="col-md" align="center">檔案下載</th> 					 
+                      <th class="col-md-2">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="7" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="center">{$value.i}</td>
+                        <td align="center">{$category[$value.category]}</td>
+                        <td align="center">{$value.sdate}</td>
+                        <td align="center">{$value.edate}</td>
+                        <td align="center">{$value.insert_date}</td>												<td align="center">{if="$value.cron_date=='0000-00-00 00:00:00'"}尚未執行{else}{$value.cron_date}{/if}</td>						<td align="center">						  {if="$value.cron_date!='0000-00-00 00:00:00'"}						    {if="!empty($value.filename)"}								<button class="btn-flat white download" data-filename="{$value.filename}"><i class="icon-edit"></i>檔案下載</button>							{else}								<div>無任何資料</div>							{/if}													  {else}							尚未執行						  {/if}												</td>
+                        <td><div style="text-align:center;">												  												  {if="$value.cron_date!='0000-00-00'"}							<button class="btn-flat white renew" data-id="{$value.id}" data-category="{$value.category}"><i class="icon-edit"></i>重新產生報表</button>						  {else}							<button class="btn-flat gray"><i class="icon-edit"></i>重新產生報表</button>						  {/if}
+                          <button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button></div></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+                <!-- right column -->
+                <div class="col-md-4 column">
+                </div>
+                <!-- end right column -->
+            </div>
+          </div>
+{include="footer"}<script>	$('.renew').click(function(){		if (!confirm('確定重新產生報表嗎?'))		return;		document.location = "report/renew?filter="+ $(this).data('category') +"&id=" + $(this).data('id');	});		$('.download').click(function(){		document.location = "../report/"+ $(this).data('filename');	});		$('.filter').change(function(){		document.location = "report?filter=" + $(this).val();	});</script>

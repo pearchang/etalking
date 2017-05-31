@@ -1,0 +1,23 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+
+  <div class="class">
+    
+	{include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><a href="/student/contract">我的帳戶-合約資料</a><span>前往簽約</span></div>
+    <div class="main-title">
+      <h1>文樺數位線上服務契約書</h1>
+	  <h2>         
+        {if="!empty($contract1['contract_name'])"}【<span>{$contract1['contract_name']}</span>】{/if}
+      </h2>
+    </div>
+	<div class="contract row law">
+	{$contract1['content']}
+	</div>
+    <div class="contract row">
+		<div class="contract-button"><a class="button agree" data-id="{$_GET['id']}">我同意上述合約內容並完成簽約</a></div>
+    </div>
+  </div>
+{include="footer"}
+<script src="js/student.signing.js"></script>

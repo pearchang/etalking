@@ -1,0 +1,85 @@
+#main-view {
+	top: 125px;
+}
+
+.step2 {
+    min-height: 125px;
+    position: fixed;
+}
+
+.sign-table {
+    margin-top: 65px;
+}
+.sign-table tbody td,
+.photo-table tbody td {
+    text-align: left;
+}
+
+.sign-table .doc-table td, 
+.sign-table .doc-table th {
+    white-space: normal;
+}
+
+.fixed-notes {
+    width: 100%;
+    height: 55px;
+    position: fixed;
+    left: 0;
+	display: block;
+    line-height: 55px;
+    color: #fff;
+    z-index: 123;
+}
+.fixed-notes.active {
+	background: #ff176b;
+}
+
+
+
+
+.photo-table .doc-table {
+	margin-top: 15px;
+}
+
+.round-label {
+	display: inline-block;
+    padding: 8px 10px;
+    margin: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 13px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 20px;
+}
+
+.sign-table .label-default {
+    background: #fff;
+    color: #b1b1b1;
+    border: 1px solid;
+}
+
+.sign-receipt-box-2 .modal-dialog {
+    margin-top: 100px;
+}
+
+.overflow {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.btn-box-in span:first-child {
+    float: left;
+}
+
+.btn-box-in span:nth-child(2n) {
+    float: right;
+}
+
+
+
+
+
+

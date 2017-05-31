@@ -1,0 +1,114 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$MODIFY_URL}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+      <div class="field-box" id="div_account">
+        <div class="text">
+          <label>帳號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="account" id="account" value="{$account}" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_password">
+        <div class="text">
+          <label>變更密碼<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="password" id="password" value="" />
+            <span>不變更不需輸入</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_user_name">
+        <div class="text">
+          <label>姓名<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="user_name" id="user_name" value="{$user_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_first_name">
+        <div class="text">
+          <label>英文名<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="first_name" id="first_name" value="{$first_name}" pattern="[a-zA-Z\s.]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_last_name">
+        <div class="text">
+          <label>英文姓<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="last_name" id="last_name" value="{$last_name}" pattern="[a-zA-Z\s.]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_tel">
+        <div class="text">
+          <label>電話<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="tel" id="tel" value="{$tel}" pattern="^0[-\d]{8,13}" />
+            <span>02-12345678、0912-345678</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_in_tel">
+        <div class="text">
+          <label>分機<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="in_tel" id="in_tel" value="{$in_tel}" pattern="[\d]{2,6}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_email">
+        <div class="text">
+          <label>Email<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="email" id="email" value="{$email}" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_is_manager">
+        <div class="text">
+          <label>主管權限<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$is_manager_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_group_id">
+        <label>組別<sup>*</sup>:</label>
+        <div class="col-md-6">
+          {$group_select}
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+<script language="javascript">
+  function checkForm(frm)
+  {
+    var l = $('form[name=frm] input[name="group[]"]:checked').length;
+    if (l < 1)
+    {
+      alert('請至少選擇1個組別');
+      return false;
+    }
+  }
+</script>
+{include="footer"}

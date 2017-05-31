@@ -1,0 +1,99 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$MODIFY_URL}" enctype="multipart/form-data">
+      <div class="field-box" id="div_ent_name">
+        <div class="text">
+          <label>企業名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="ent_name" id="ent_name" value="{$ent_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_biz_no">
+        <div class="text">
+          <label>統一編號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="biz_no" id="biz_no" value="{$biz_no}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_account">
+        <div class="text">
+          <label>帳號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="account" id="account" value="{$account}" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" />
+            <span>3-20字元，可大小寫英文、數字、符號(. - _)，第一個字須為英文</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_password">
+        <div class="text">
+          <label>變更密碼:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="password" id="password" value="" />不變更不需輸入
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_tel">
+        <div class="text">
+          <label>電話<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="tel" id="tel" value="{$tel}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_address">
+        <div class="text">
+          <label>地址<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="address" id="address" value="{$address}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_adm_name">
+        <div class="text">
+          <label>管理者姓名<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="adm_name" id="adm_name" value="{$adm_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_adm_tel">
+        <div class="text">
+          <label>管理者電話<sup>*</sup>:</label>
+          <div class="col-md-4">
+            <input class="form-control" type="text" name="adm_tel" id="adm_tel" value="{$adm_tel}" required />
+          </div>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="adm_tel_ext" id="adm_tel_ext" value="{$adm_tel_ext}" placeholder="分機" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_adm_email">
+        <div class="text">
+          <label>管理者Email<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="adm_email" id="adm_email" value="{$adm_email}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+              {$status_select}
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}

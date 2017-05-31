@@ -1,0 +1,53 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+指定教材: <div class="col-md-3">
+<!--  <input id="material" class="form-control" size="32"><input type="hidden" name="material_id" id="material_id"> -->
+<select name="material_id" id="material_id">
+  {loop="$list"}
+  <option value="{$value.id}">{$value.eng_title} ({$value.title})</option>
+  {/loop}
+</select>
+</div><br><br><br><br><br>
+<input type="button" class="btn-glow primary" value="確認送出" onclick="dosubmit();">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn-glow" value="取 消" onClick="parent.$.fancybox.close();"><br><br>
+{include="footer_foot"}
+<script language="javascript">
+$("#material_id").select2({width:'400px'});
+function dosubmit()
+{
+  if ($('#material_id').val() == "" || $('#material_id').val() == "0")
+  {
+    alert ('請選擇教材');
+    return;
+  }
+
+  $.ajax({
+    url: '/admin/elective_mgr/change_material',
+    data: {
+      id: {$id},
+      material: $('#material_id option:selected').val()
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+      {
+        alert ('設定完成');
+        parent.parent.location.href = parent.parent.location.href;
+      }
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+{if="$not_available"}
+  alert('找不到教材');
+  parent.$.fancybox.close();
+{/if}
+</script>

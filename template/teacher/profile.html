@@ -1,0 +1,20 @@
+	<div class="class-top class-top-teacher">
+      <div class="class-top-inner">
+        <div class="row">
+          <div class="class-top-title class-top-title-teacher columns large-4">
+            <h2>Teacher's Area</h2>
+            <h3> <b>{$teacher['first_name']} {$teacher['last_name']}</b></h3>
+            <p> <b>Taipei Time</b><span> {function="date('H:i')"} </span>(GMT+08:00)</p>
+          </div>
+          <div class="class-top-sum class-top-sum-teacher columns large-8">
+            <ul>
+              <li><a href="/teacher/newclass"><span class="num" id="newclass"></span></a><b>New Classes</b></li>
+              <li><a href="/teacher/classes"><span class="num" id="classes"></span></a><b>Classes</b></li>
+              <li><a href="/teacher/demo"><span class="num" id="demo"></span></a><b>DEMO</b></li>
+              <li><a href="/teacher/classes"><span class="num" id="overdue"></span></a><b>About to Start</b></li>
+              <li><a href="/teacher/classes?type=2"><span class="num" id="report"></span></a><b>Unfilled Reports</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>

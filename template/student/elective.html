@@ -1,0 +1,77 @@
+{include="header"}
+<script>
+	$('body').data('type','{$type}');
+</script>
+  <div class="class">
+  
+	<div class="alert-bar alert-bar-student" style="display:none">
+      <div class="alert-bar-inner row"><a class="button-close" onClick="$('.alert-bar').hide();"><img src="images/icon_close.png" alt=""></a><span></span></div>
+    </div>
+	
+	{include="profile"}
+	
+    <nav class="nav-groups nav-groups-elective">
+      <ul>
+        <li><a href="/student/booking">自由課程</a></li>
+		<li><a href="/student/elective" {if="$type==elective"}class="active"{/if}>選修課程</a></li>
+        <li><a href="/student/hall"  {if="$type==hall"}class="active"{/if}>大會堂</a></li>
+        <!--<li><a >隨到隨上</a></li>-->
+	  </ul>
+    </nav>
+	
+    <div class="class-note class-note-student">
+      <p> <span>注意事項</span>課程表所顯示的時間為您的所在時區。<br>開課前12小時內已預約課程將不可取消，開課前1小時系統開放線上預覽教材。</p>
+    </div>
+
+    <nav class="sub-nav sub-nav-elective row">
+      <h2>課程類型</h2>
+      <div class="sub-nav-button">
+	  {loop="$var_interest_type"}<a href="/student/{$type}?interest={$key}" class='button round {if="$key==$interest"}active{/if}'>{$value}</a>{/loop}
+	  </div>
+    </nav>
+	
+    <div class="elective-list row">
+
+	{loop="data"}
+	
+      <div class="columns small-12 medium-6 large-4" data-id="{$value['id']}" >
+        <div class="elective-card">
+		{if="$value['disabled']"}
+		  <div class="elective-card-date elective-card-date-student" >+我要預約</div>
+		{else}
+          <a class="booking" data-courseid="{$value['course_id']}"  data-level="{$value['level']}" ><div class="elective-card-date elective-card-date-student" >+我要預約</div></a>
+		{/if}  
+          <div class="elective-card-content">
+            <span>{$value['duration']}</span>
+            <h2>{$value['course_name']}</h2>
+            <div class="elective-pic" ><img src="{$value['image']}" alt="" style="width:100%"></div>
+            <div class="elective-card-label elective-card-label-student">
+				{loop="$value['interest']"}<span>{$value['title']}</span>{/loop}
+			</div>
+            {if="$value['almous_full']"}<span class="elective-card-tag elective-card-tag-student">即將額滿</span>{/if}
+            <div class="elective-card-info elective-card-info-student">
+              <ul>
+                <li><b>已預約人數</b><span>{$value['registration']}/{$limit_person}</span></li>
+                <li><b>使用點數</b><span>{$value['point']}</span></li>
+                <li> <b>老師</b><span>{$value['consultant']}</span></li>   
+                {if="$type==elective"}<li class="side"><b>共 </b><span>{$value['lesson_total']}</span><b>堂</b></li>{/if}
+              </ul>
+            </div>
+          </div>
+          <div class="elective-card-button elective-card-button-student">
+		  <a class="button submit class_intro" data-courseid="{$value['course_id']}" data-disabled='{if="$value['disabled']"}1{else}0{/if}' >查看課程介紹</a>
+		  </div>
+        </div>
+      </div>
+ 
+    {/loop}
+	
+      <div class="columns small-12 centered">
+        {$paginate}
+      </div>
+    </div>
+
+
+  </div>
+  
+ {include="footer_elective"}

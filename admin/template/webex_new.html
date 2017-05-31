@@ -1,0 +1,71 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data">
+      <div class="field-box" id="div_webex_name">
+        <div class="text">
+          <label>WebEx名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="webex_name" id="webex_name" value="{$webex_name}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_type">
+        <div class="text">
+          <label>類型<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$type_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_url">
+        <div class="text">
+          <label>URL<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="url" id="url" value="{$url}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_account">
+        <div class="text">
+          <label>帳號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="account" id="account" value="{$account}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_password">
+        <div class="text">
+          <label>密碼<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="password" id="password" value="{$password}" required />
+          </div>
+        </div>
+      </div>
+<!--      <div class="field-box" id="div_open_pass">
+        <div class="text">
+          <label>進入密碼:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="open_pass" id="open_pass" value="{$open_pass}" />
+          </div>
+        </div>
+      </div> -->
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+              {$status_select}
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-flat primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}

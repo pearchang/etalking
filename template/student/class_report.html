@@ -1,0 +1,173 @@
+{include="header"}
+<form class=fill>
+<link rel="stylesheet" href="css/style_page.css">
+  <div class="class">
+    {include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student/classroom?type=history">學習紀錄-歷史課程</a><span>學員課後評鑑</span></div>
+    <div class="main-title">
+      <h1>學員課後評鑑</h1>
+    </div>
+    <div class="class-report">
+      <ul>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h2>{$items[19]['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-student">
+		  {loop="$items[19]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[19]" {if="$data[19]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[20]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[20]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[20]" {if="$data[20]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[21]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[21]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[21]" {if="$data[21]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+			<br>
+			{loop="$checkbox[21]['checkbox']"}
+            <label>
+              <input class="checkbox21" type="checkbox" value="{$key}" name="checkbox[21][]" {if="count($data_checkbox[21]) && in_array($key,$data_checkbox[21])"}checked{/if}>{$value}
+            </label>
+            {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[22]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[22]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[22]" {if="$data[22]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+			<br>
+			{loop="$checkbox[22]['checkbox']"}
+            <label>
+              <input class="checkbox22" type="checkbox" value="{$key}" name="checkbox[22][]" {if="count($data_checkbox[22]) && in_array($key,$data_checkbox[22])"}checked{/if}>{$value}
+            </label><br>
+            {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[23]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[23]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[23]" {if="$data[23]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+			<br>
+			{loop="$checkbox[23]['checkbox']"}
+            <label>
+              <input class="checkbox23" type="checkbox" value="{$key}" name="checkbox[23][]" {if="count($data_checkbox[23]) && in_array($key,$data_checkbox[23])"}checked{/if}>{$value}
+            </label>
+            {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h2>{$items[24]['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[24]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[24]" {if="$data[24]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[25]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[25]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[25]" {if="$data[25]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[26]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student demand-side">
+            {loop="$items[26]['options']"}
+			{if="$key==209"}
+            <label>
+              <input type="radio" value="{$key}" name="items[26]" {if="$data[26]==$key"}checked{/if}  class="demand-side-radio">{$value}
+			  <input type="text" placeholder="請說明" name="checkbox[26][]" class="demand-side-text" value="{$data_checkbox[26][0]}">
+			</label><br>
+			{else}
+			<label>
+              <input type="radio" value="{$key}" name="items[26]" {if="$data[26]==$key"}checked{/if}>{$value}
+            </label><br>
+			{/if}
+           {/loop}            			
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h2>{$items[27]['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[27]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[27]" {if="$data[27]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h3>{$items[28]['text']}</h3>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            {loop="$items[28]['options']"}
+            <label>
+              <input type="radio" value="{$key}" name="items[28]" {if="$data[28]==$key"}checked{/if}>{$value}
+            </label>
+           {/loop}
+          </div>
+        </li>
+        <li>
+          <div class="class-report-title class-report-title-student">
+            <h2>{$items[29]['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-student">
+            <textarea name="items[29]">{$data[29]}</textarea>
+          </div>
+        </li>
+      </ul>
+      <div class="class-report-button class-report-button-student"><a href="javascript:history.back();" class="button round">返回</a>{if="!$data"}<a class="button round submit">送出</a>{/if}</div>
+    </div>
+  </div>
+  <input type=hidden name="id" value="{$id}">
+</form>
+  
+{include="footer"}
+ <script src="js/student.class_report.js"></script>

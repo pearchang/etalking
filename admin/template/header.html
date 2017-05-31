@@ -1,0 +1,102 @@
+{include="header_head"}
+<!-- navbar -->
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="main">{$SITE_TITLE} 後端管理系統</a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li><div style="color: #cccccc;">{$VERSION}</div></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                    {$admin_name}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    {if="$can_change_password"}<li><a href="password">變更密碼</a></li>{/if}
+                    <!-- <li><a href="system">系統設定</a></li> -->
+                    <li><a href="logout">登出</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="logout" role="button" title="登出">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li id="menu_main" class="{if="$FUNC=='main'"}active{/if}">
+                <a href="main" class="{if="$FUNC=='main'"}active{/if}">
+                    <i class="icon-home"></i>
+                    <span>首頁</span>
+                </a>
+            </li>
+            {loop="$menu_list"}
+            {if="empty($value.code)"}
+            <li id="li_{$value.id}">
+                {if="$value.selected"}
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                {/if}
+                <a class="dropdown-toggle" href="#">
+                    {if="$value.icon"}
+                    <i class="icon-{$value.icon}"></i>
+                    {else}
+                    <i class="icon-star"></i>
+                    {/if}
+                    <span>{$value.name}</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+            <ul class="submenu">
+                {loop="$value.menu_list"}
+                <li id="menu_{$value.code}">
+                    <a href="{$value.code}" class="{if="$FUNC==$value.code"}active{/if}">
+                        {if="$value.icon"}
+                        <i class="icon-{$value.icon}"></i>
+                        {else}
+                        <i class="icon-star"></i>
+                        {/if}
+                        <span style="margin-left: 20px;">{$value.name}</span>
+                    </a>
+                </li>
+                {/loop}
+                </ul>
+            </li>
+            {else}
+            <li id="menu_{$value.code}">
+                <a href="{$value.code}" class="{if="$FUNC==$value.code"}active{/if}">
+                {if="$value.icon"}
+                    <i class="icon-{$value.icon}"></i>
+                {else}
+                    <i class="icon-star"></i>
+                {/if}
+                    <span>{$value.name}</span>
+                </a>
+            </li>
+            {/if}
+            {/loop}
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+    <!-- main container -->
+    <div class="content">
+        <div id="pad-wrapper" class="form-page">
+            <!-- head -->
+            <div class="row header">
+                <div class="col-md-12">
+                    <h3>{$menu_name} {$submenu_name}<small>{$func_name}　</small></h3>
+                </div>
+            </div>
+            <!-- end head -->
+            <!-- global msg -->
+            <div id="global_error" style="display:none;"><i id="global_error_icon"></i><span id="global_error_msg"></span></div>
+            <!-- global msg -->
+            <!-- content -->

@@ -1,0 +1,76 @@
+{include="header"}
+
+  <div class="class section">
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>Account settings</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/account">Settings</a></li>
+        <li><a href="/teacher/salary" class="active">Salary</a></li>
+      </ul>
+    </nav>   
+    <nav class="sub-nav sub-nav-teacher row">
+      <div class="columns small-12 medium-12">
+        <h4 class="primary-orange"><b>Salary Records</b><a class="tip-info" href="javascript:;">i<span class="tip"><span>Note</span>Barack Obama <b class="primary-orange">NT${$wage}</b> per session</span></a></h4>
+      </div>
+    </nav>
+    <div class="account-table account-table-teacher salary-table-cont row">
+      <div class="salary-title-date">{$title}</div>
+      <table>
+        <thead>
+          <td>Time</td>
+          <td>Class</td>
+          <td>Students</td>
+          <td>Hours</td>
+          <td>Demos</td>
+          <td>Rewards and Punishment</td>
+          <td>Pay</td>
+          <td>Remark</td>
+        </thead>
+		
+		{loop="$data"}
+        <tr>
+          <td data-title="Time" class="time"><span>{$value['date']['start_time']}</span><span class="tilde">~</span><span>{$value['date']['end_time']}</span></td>
+          <td data-title="Class" class="text-left">
+            <div class="class-card-label class-card-label-teacher"><span>{$value['type']}</span><span>Level {$value['level']}</span></div>
+            {$value['title']}
+            <!--<br>系列課程第 <span class="primary-orange">1/10</span> 堂-->
+          </td>
+          <td data-title="Students" class="student">{$value['students']}</td>
+          <td data-title="Hours">{$value['hour']}</td>
+          <td data-title="Demos">{$value['demo']}</td>
+          <td data-title="Rewards and Punishment" class="column-price column-price-teacher">{if="$value['reward']!=0"}NT$ <span class="price">{function="number_format($value['reward'])"}</span>{/if}</td>
+          <td data-title="Pay" class="column-price column-price-teacher">NT$ <span class="price">{function="number_format($value['salary'])"}</span></td>
+          <td data-title="Remark" class="column-note left-align">{$value['memo']}</td>
+        </tr>
+		{/loop}
+		
+        <tr class="total-front">
+          <th colspan="8">&nbsp;</th>
+        </tr>
+        <tr class="total">
+          <th>Total</th>
+          <td data-title="Class" class="table-hide-for-large-up"></td>
+          <td data-title="Students" class="table-hide-for-large-up"></td>
+          <td data-title="Hours">{$total['hours']}</td>
+          <td data-title="Demos">{$total['demo']}</td>
+          <td data-title="Rewards and Punishment" class="column-price column-price-teacher">{if="$total['reward']>0"}NT$ <span class="price">{function="number_format($total['reward'])"}</span>{/if}</td>
+          <td data-title="Pay" class="column-price column-price-teacher">{if="$total['salary']>0"}NT$ <span class="price">{function="number_format($total['salary'])"}</span>{/if}</td>
+          <td data-title="Remark" class="table-hide-for-large-up"></td>
+        </tr>
+      </table>
+      
+      <div class="row salary-button">
+          <div class="small-12 medium-4 large-2 columns medium-centered">
+            <a href="javascript:;" class="button teacher expand round" onclick="history.back();">Back</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+{include="footer"}
+<link rel="stylesheet" href="css/page.css">
+<link rel="stylesheet" href="css/style_page.css">
+<script src="js/common.js"></script>
+<script src="js/class.js"></script>

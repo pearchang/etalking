@@ -1,0 +1,57 @@
+{include="header"}
+
+  <div class="class">
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>My Curriculum - New Classes</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/newclass" class="active">New Classes</a></li>
+        <li><a href="/teacher/classes">Classes</a></li>
+        <li> <a href="/teacher/demo">DEMO</a></li>
+      </ul>
+    </nav>
+    <div class="class-note class-note-teacher">
+      <p> <span>Note</span>All times listed are Taipei time.</p>
+    </div>
+    <nav class="sub-nav sub-nav-teacher row">
+      <h2>Type</h2>
+      <div class="sub-nav-button">
+	  {loop="registration_type"}		
+		<a href="/teacher/newclass?regtype={$key}" class="button round {if="$regtype==$key"}active{/if}">{$value}</a>
+	  {/loop}
+	  </div>
+    </nav>
+    <div class="class-list row">
+	
+	{loop="$data"}
+      <div class="columns small-12 medium-6 large-12">
+        <div class="class-card">
+          <div class="class-card-date class-card-date-teacher"><span>{$value['date']['date']}<span class="week">{$value['date']['week']}</span></span><span class="time"><span>{$value['date']['start_time']}</span><span class="tilde">~</span><span>{$value['date']['end_time']}</span></span></div>
+          <div class="class-card-content">
+            <div class="class-card-label class-card-label-teacher">
+				<span>{$value['type']}</span>
+				<span>Level {$value['level']}</span></div>
+				{if="$value['overdue']"}<span class="class-card-tag class-card-tag-teacher">Overdue</span>{/if}
+            <h2>{if="$value['title']"}{$value['title']}{/if}</h2>
+            <div class="class-member class-member-teacher">
+              <p> <b>Students</b>
+			  {loop="$value['students']"}<a class="name">{$value['member_name']}<span class="tip">{$value['skill']}</span></a>{/loop}
+			  </p>
+            </div>
+          </div>
+          <div class="class-card-button class-card-button-teacher">
+			<a class="button medium submit" data-id="{$value['id']}">Accept!</a>
+			<a class="button medium cancel" data-id="{$value['id']}">No,Thanks!</a>
+		 </div>
+        </div>
+      </div>
+	  
+	{/loop}
+    {$paginate}
+	  
+    </div>
+  </div>
+  
+{include="footer"}
+<script src="js/teacher.newclass.js"></script>

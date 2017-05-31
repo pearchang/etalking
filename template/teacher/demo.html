@@ -1,0 +1,73 @@
+{include="header"}
+
+  <div class="class">
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>My Curriculum - DEMO</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/newclass">New Classes</a></li>
+        <li><a href="/teacher/classes">Classes</a></li>
+        <li> <a href="/teacher/demo" class="active">DEMO</a></li>
+      </ul>
+    </nav>
+    <div class="class-note class-note-teacher">
+      <p> <span>Note</span>All times listed are Taipei time.</p>
+    </div>
+    <div class="class-list row">
+	<form class="fill">
+	<input type="hidden" value="0" name="type">
+      <div class="search-filter search-filter-teacher"><span class="date"><b>Date</b>
+          <input type="text" id="datepicker1" placeholder="Start" name="sdate" value="{$sdate}"><b>~</b>
+          <input type="text" id="datepicker2" placeholder="End" name="edate" value="{$edate}"></span>
+		  <span class="status form-class"><b>Status</b>
+          <input type="text" placeholder="All" value="" disabled="">
+          <ul class="form-class-select">
+            <li><a data-class="All" data-value='0'>All</a></li>
+            <li><a data-class="Up Comning Classes" data-value='1'>Up Comning Classes</a></li>
+            <li><a data-class="Incomplete Report" data-value='2'>Incomplete Report</a></li>
+          </ul></span>
+        <div class="search-filter-button"><a class="button submit">SEND</a><a class="button reset">Reset</a></div>
+      </div>
+	  </form>
+	  {loop="$data"}
+	  
+      <div class="columns small-12 medium-6 large-12" id="{$value['id']}">
+        <div class="class-card">
+          <div class="class-card-date class-card-date-teacher class-card-date-demo"><span>{$value['date']['date']} {$value['date']['week']} <span class="time">{$value['date']['start_time']}</span></span></div>
+          <div class="class-card-content class-demo-card-content">
+			{if="$value['overdue']"}<span class="class-card-tag class-card-tag-teacher">About to Start</span>{/if}
+            <div class="class-card-info class-card-info-teacher">
+              <ul>
+                <li class="full"><b>Class No. </b><span>{$value['sn']}</span></li>
+                <li class="full"><b>Student</b><span>{$value['student']}</span></li>
+                <li> <b>Sales</b><span>{$value['sales']}</span></li>
+                <li><b>Extension</b><span>{$value['sales_tel']}</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="class-card-button class-card-button-teacher">
+			{if="$value['webex']"}
+				<a href="/webex/teacher_demo?classroom={$value['id']}" class="button medium submit">Entering</a>
+			{else}
+				<a class="button medium close disable">Entering</a>
+			{/if}
+						
+			{if="$value['report']>0"}
+				<a href="/teacher/report_demo?classroom={$value['id']}" class="button medium submit">{if="$value['report']==2"}View Report{else}Report{/if}</a>
+			{else}
+				<a class="button medium close disable">Report</a>
+			{/if}			
+		  </div>
+        </div>
+      </div>
+	  
+	{/loop}
+    {$paginate}
+	
+    </div>
+  </div>
+  
+{include="footer"}
+
+<script src="js/teacher.demo.js"></script>

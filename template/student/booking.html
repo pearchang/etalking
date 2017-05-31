@@ -1,0 +1,26 @@
+{include="header"}
+  <div class="class">
+  
+	<div class="alert-bar alert-bar-student" style="display:none">
+      <div class="alert-bar-inner row"><a class="button-close" onClick="$('.alert-bar').hide();"><img src="images/icon_close.png" alt=""></a><span></span></div>
+    </div>
+
+    {include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>課程劃位-自由課程</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/booking" class="active">自由課程</a></li>
+		<li><a href="/student/elective">選修課程</a></li>
+        <li><a href="/student/hall">大會堂</a></li>
+        <!--<li><a >隨到隨上</a></li>-->
+	  </ul>
+    </nav>
+    <div class="class-note class-note-student">
+      <p> <span>注意事項</span>開課前12小時內已預約課程將不可取消。</p>
+    </div>
+    <div class="class-table row calendar">
+
+    </div>
+  </div>
+  {include="footer"}
+  <script src="js/student.booking.js"></script>

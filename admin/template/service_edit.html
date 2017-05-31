@@ -1,0 +1,31 @@
+{include="header"}
+        <div class="row form-wrapper">
+                <!-- left column -->
+                <div class="col-md-12 column">
+                {loop="$list"}
+                <div class="service-box {$value.class} col-md-12">
+                  {$value.cdate}&nbsp;&nbsp;&nbsp;<br>
+                  {$value.content|nl2br}
+                </div>
+                {/loop}
+                <div style="clear:left; padding-top:8px;">
+                </div>
+                <form name="frm" method="post" action="{$UPDATE_URL}">
+                          <div class="text"><br>
+                          回覆訊息:<br>
+                              <textarea class="col-md-8" name="content" id="content" required>{$content}</textarea>
+                          </div>
+                        <div class="submit-box" style="padding-top: 16px;">
+                                <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="button" class="btn-glow" value="返 回" onClick="history.go(-1);">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="hidden" name="status" value="20">
+                                <input type="hidden" name="type" value="2">
+                                <input type="hidden" name="sn" value="{$sn}">
+                                <input type="hidden" name="email" value="{$email}">
+                                <input type="hidden" name="name" value="{$name}">
+                          <input type="hidden" name="tel" value="{$tel}">
+                        </div>
+                </form>
+                </div>
+                <!-- end left column -->
+{include="footer"}

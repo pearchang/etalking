@@ -1,0 +1,71 @@
+{include="header"}
+<form class=fill>
+  <div class="class">
+   {include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Consultants Area</a><span>My Classes - Report</span></div>
+    <div class="main-title">
+      <h1>Report</h1>
+    </div>
+	
+	
+	
+	<nav class="nav-groups nav-groups-teacher" {if="$student_amount<2"}style="display:none"{/if} >
+      <ul>
+		{loop="$students"}
+        <li><a data-id="{$key}" class="student">{$value['first_name']}</a></li>
+		{/loop}		
+      </ul>
+    </nav>	
+	
+	
+    <div class="class-report">
+	
+	{loop="$students"}
+      <ul id="panel{$key}" class="panel">
+	  
+		{loop="$items"}
+	  
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>{$value['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$value['options']"}
+            <label>
+              <input {if="$data[$key1][$key2]==$key3"}checked{/if} type="radio" value="{$key}" name="items[{$key1}][{$key2}]">{$value}
+            </label>
+			{/loop}
+          </div>
+        </li>
+		
+		{/loop}
+        
+        <li>
+          <div class="class-report-title class-report-title-teacher class-report-title-sum">
+            <h2>Summary</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            <p>               
+              Student Name <span>{$value['first_name']} {$value['last_name']}</span>
+            </p>
+            <textarea  name="items[{$key1}][18]">{if="$data"}{$data[$key1][18]}{/if}</textarea>
+            <p>Maximum 500 characters<br>Please fill out descriptive report for the student with at least two good areas to compliment on, one to two areas the student needs to improve on, and with minimal of a suggestion on how to improve on the area(s) stated above.</p>
+          </div>
+        </li>
+		
+      </ul>
+	  {/loop}
+	  
+	  <div class="class-report-button class-report-button-teacher"><a href="javascript:history.back();" class="button round">{if="$data"}Back{else}Cancel{/if}</a>{if="!$data"}<a class="button round submit">Save</a>{/if}</div>      
+    
+	</div>
+	
+	
+ 
+	</div>
+  <input type=hidden name="id" value="{$_GET['classroom']}">
+</form>
+
+ {include="footer"}
+ 
+ <script src="js/teacher.report_class.js"></script>

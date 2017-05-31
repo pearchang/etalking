@@ -1,0 +1,36 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data">
+      <div class="field-box" id="div_name">
+        <div class="text">
+          <label>名稱:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="name" id="name" value="{$name}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_url">
+        <div class="text">
+          <label>網址:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="url" id="url" value="{$url}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-2">
+            {$status_select}
+          </div>
+      </div>
+      {$IMAGES}
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+  <!-- end left column -->
+  {include="footer"}

@@ -1,0 +1,55 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$MODIFY_URL}" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{$id}">
+      <div class="field-box" id="div_date">
+        <div class="text">
+          <label>日期<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$date}" name="date" id="date" class="form-control date" picker="date" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_data">
+        <div class="text">
+          <label>標題<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="data" id="data" value="{$data}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_content2">
+        <div class="text">
+          <label>內文簡述<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$editor_content2}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_content">
+        <div class="text">
+          <label>內文<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$editor_content}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-2">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      {$IMAGES}
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+  <!-- end left column -->
+  {include="footer"}

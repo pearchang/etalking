@@ -1,0 +1,42 @@
+<div class="col-md-12 column">
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_account">
+      <div class="text">
+        <label>帳號:</label>
+        <div class="col-md-6">
+          <input class="form-control inline-input" type="text" value="{$account}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_chi_name">
+      <div class="text">
+        <label>中文姓名:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$chi_name}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_eng_name">
+      <div class="text">
+        <label>英文姓名:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$first_name} {$last_name}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 column">
+  <ul class="nav nav-tabs">
+    <li class="" id="mm_consultant"><a href="/admin/consultant/edit?id={$consultant_id}">基本資料</a></li>
+    <li class="" id="mm_consultant_fixed"><a href="/admin/consultant_fixed?cid={$consultant_id}">固定課表</a></li>
+    <li class="" id="mm_consultant_schedule"><a href="/admin/consultant_schedule?cid={$consultant_id}">近期課程</a></li>
+    <li class="" id="mm_consultant_class"><a href="/admin/consultant_class?cid={$consultant_id}">上課歷史</a></li>
+    <li class="" id="mm_consultant_salary"><a href="/admin/consultant_salary?cid={$consultant_id}">薪資紀錄</a></li>
+  </ul>
+</div>
+<br>

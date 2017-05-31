@@ -1,0 +1,64 @@
+      <div class="class-time">
+        <table>
+		{loop="$hours"}
+          <tr>
+            <td>{$value['start_time']}<br><span class="tilde">~</span><br>{$value['end_time']}</td>
+          </tr>
+        {/loop}
+        </table>
+      </div>
+      <div class="class-datepicker class-datepicker-teacher">
+		{if="$previous"}<a data-week="{$previous}" class="prev arrow">Previous</a>{/if}
+		<span>{$date_range}</span>
+		{if="$next"}<a data-week="{$next}" class="next arrow">Next</a>{/if}
+	  </div>
+      <div class="class-day">
+        <div class="class-day-inner">
+		
+		{loop="$data"}
+		
+          <div class="class-day-wrapper">
+            <div class="class-day-table class-day-table-teacher"><span class="date">{$value['title']}</span>
+              <table>
+				
+				{loop="$value['hour']"}
+				
+					<tr>
+					
+					{if="$value==0"}
+						<td {if="$value1['week']>=6 || ($key2>=19 && $key2<=21) "}class='hot'{/if}>
+							<label></label>
+						</td>						
+					{/if}
+					
+					{if="$value==1"}
+						<td class="open">                     
+							{if="isset($dynamic[$key1][$key2])"}{$dynamic[$key1][$key2]}{else}Available{/if}
+							<div class="cover"><a class="button unbooking" data-date="{$value1['date']}" data-time="{$key2}">Cancel</a></div>
+						</td>
+					{/if}
+					
+					{if="$value==2"}
+						<td class="close">                     
+							{if="isset($dynamic[$key1][$key2])"}{$dynamic[$key1][$key2]}{else}Available{/if}
+							<div class="cover">Can Not Cancel</div>
+						</td>
+					{/if}
+					
+					{if="$value==3"}
+						<td {if="$value1['week']>=6 || ($key2>=19 && $key2<=21) "}class='hot'{/if}>
+							<label><input type="checkbox" class="booking" data-date="{$value1['date']}" data-time="{$key2}">Available</label>
+						</td>
+					{/if}
+					
+					</tr>
+				
+				{/loop}
+              </table>
+            </div>
+          </div>
+
+		{/loop}
+		  
+        </div>
+      </div>

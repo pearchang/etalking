@@ -1,0 +1,47 @@
+{include="header"}
+  <div class="table-wrapper section">
+    項目: {$parent_text}<br>
+    TYPE: {$type_text}<br>
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md">類型</th>
+                      <th class="col-md">tag</th>
+                      <th class="col-md" align="left">項目</th>
+                      <th class="col-md-2">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="4" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="right">{$value.i}</td>
+                        <td align="center">{$value.type_text}</td>
+                        <td align="center">{$value.tag}</td>
+                        <td align="left">{$value.text}</td>
+                        <td><!--<div style="text-align:center;"><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button></div>--></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+                <!-- right column -->
+                <div class="col-md-4 column">
+                </div>
+                <!-- end right column -->
+            </div>
+          </div>
+{include="footer"}

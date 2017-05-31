@@ -1,0 +1,79 @@
+{include="header"}  
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/page.css">
+
+  <div class="class section">
+
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>硬體環境測試</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li> <a href="/student/hardware" class="active">硬體環境測試</a></li>
+        <li> <a>相關問題</a></li>
+      </ul>
+    </nav>
+
+
+
+    <div class="row hardware-box">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row hardware-item">
+            <div class="columns small-12 medium-4 large-3 text-center">
+              <div class="img-box"><h4 class="primary-blue"><b>Step1</b></h4><img src="images/hardware/icon_01.png" alt=""></div>
+            </div>
+            <div class="columns small-12 medium-8 large-9">
+            <h4><b>ETALKING上課連線軟體(手動安裝)</b></h4>
+            <p>在開始上課之前，請先確認您的裝置已安裝完成WebEx及相關應用程式。
+ 請依您常用的瀏覽器下載適合的上課軟體，下載完成後，請先「解壓縮」再進行安裝，如不確定使用的瀏覽器可全部下載安裝。<br> <small>※請注意，使用本安裝程式，您必須具有電腦的管理員權限。</small></p>
+              <h6 class="hardware-title">PC/NB/MAC</h6>
+              <ul class="hardware-list small-block-grid-1 medium-block-grid-3">
+                <li class="text-center"><a href="files/atmcie_B5.msi"><span class="browser-box"><img src="images/browser/02.png" alt=""></span><h5>WebEx</h5><p>For Windows Driver</p></a></li>
+                <li class="text-center"><a href="files/atmcns_B5.msi"><span class="browser-box"><img src="images/browser/01.png" alt=""></span><h5>WebEx</h5><p>For Windows Driver</p></a></li>
+                <li class="text-center"><a href="files/webexmc_intel.dmg"><span class="browser-box"><img src="images/browser/03.png" alt=""></span><h5>WebEx</h5><p>For MAC Driver</p></a></li>
+              </ul>
+              <h6 class="hardware-title">手機/平板</h6>
+              <ul class="hardware-list small-block-grid-1 medium-block-grid-3">
+                <li class="text-center"><a href="https://play.google.com/store/apps/details?id=com.cisco.webex.meetings&hl=zh_TW" target="_blank"><span class="browser-box"><img src="images/browser/04.png" alt=""></span><h5>WebEx</h5><p>For Android</p></a></li>
+                <li class="text-center"><a href="https://itunes.apple.com/us/app/cisco-webex-meetings/id298844386?mt=8" target="_blank"><span class="browser-box"><img src="images/browser/05.png" alt=""></span><h5>WebEx</h5><p>For ios</p></a></li>
+              </ul>
+              <h6 class="hardware-title">協助軟體</h6>
+              <ul class="hardware-list small-block-grid-1 medium-block-grid-3">
+                <li class="text-center"><a href="https://java.com/zh_TW/download/" target="_blank"><span class="browser-box"><img src="images/browser/06.png" alt=""></span><h5>Java</h5><p>For MAC/Windows</p></a></li>
+                <li class="text-center"><a href="files/TeamViewer_Windows.exe" target="_blank"><span class="browser-box"><img src="images/browser/07.png" alt=""></span><h5>遠端連線協助軟體</h5><p>For Windows Driver</p></a></li>
+                <li class="text-center"><a href="files/TeamViewer_MAC.zip" target="_blank"><span class="browser-box"><img src="images/browser/07.png" alt=""></span><h5>遠端連線協助軟體</h5><p>For MAC Driver</p></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row hardware-item">
+            <div class="columns small-12 medium-4 large-3 text-center">
+              <div class="img-box"><h4 class="primary-blue"><b>Step2</b></h4><img src="images/hardware/icon_02.png" alt=""></div>
+            </div>
+            <div class="columns small-12 medium-8 large-9">
+            <h4><b>麥克風&喇叭測試</b></h4>
+            <p>請接上麥克風及喇叭，並依照下列步驟點擊按鈕進行測試。<br>當您可以透過撥放『步驟二、撥放錄音』聽見『步驟一、錄音』所錄下的聲音，即代表麥克風及喇叭測試成功。</p>
+     
+			<div class="record-box">
+                <a href="javascript:;" class="button student tiny round record-btn">步驟一、錄音<i class="material-icons">&#xE837;</i></a>
+                <ul class="bars"><li></li><li></li><li></li><li></li><li></li></ul>
+              </div>
+              <div class="play-box">
+              <a href="javascript:;" class="btn button student tiny round disable play-btn">步驟二、播放錄音<i class="material-icons">&#xE039;</i></a>
+              <ul class="bars"><li></li><li></li><li></li><li></li><li></li></ul>
+              </div>
+              <a href="javascript:;" class="btn button student tiny round disable start-btn">重新錄音<i class="material-icons">&#xE863;</i></a>
+			</div>
+          </div>		
+		 <audio controls src="" id="audio" style="display:none"></audio>		 
+      </div>    
+    </div>    
+  </div>
+  {include="footer"}
+ <script src="js/page.js"></script>
+ <script src="js/student.hardware.js"></script>
+
+ <script src="js/fr/recorder.js"></script>
+ <script src="js/fr/Fr.voice.js"></script>
+

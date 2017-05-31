@@ -1,0 +1,1 @@
+ALTER TABLE `classroom` ADD `use_url` TINYINT NOT NULL AFTER `end_time`;

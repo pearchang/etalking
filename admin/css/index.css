@@ -1,0 +1,38 @@
+@import url("reset.css");
+
+/* -------------------------------------------------以下為body設定------------------------------------------ */
+
+body {color: #fff2f1;margin: 0px;font-family: "Arial", "Helvetica", "sans-serif";font-size: 12px;line-height: 20px;background-color: #1f1f27; overflow-y:hidden; }
+
+
+
+/* -------------------------------------------------以下WRAPPER設定------------------------------------------ */
+
+#WRAPPER{ width:100%;text-align:center;overflow:hidden;}   
+
+
+/* -------------------------------------------------以下內容設定------------------------------------------ */
+
+#CONTENT{ width:210px; height:156px; margin:0 auto; position:absolute; z-index:1; left:50%;top:50%; margin-top:-258px; margin-left:-258px; background-repeat: no-repeat;background-image : url(../images/main_img.jpg); background-position : left top; padding:185px 156px 175px 150px;}
+
+
+
+#MAINPOS{ position:relative;}
+
+#MAIN_PRO{width:344px; height:232px; position:absolute; z-index:3; left:136px; top:94px;}
+#MAIN_SHARE{width:300px; height:178px; position:absolute; z-index:4; left:556px; top:29px;}
+#MAIN_INFOR{width:334px; height:219px; position:absolute; z-index:6; left:68px; top:187px;}
+#MAIN_PEOPLE{width:154px; height:256px; position:absolute; z-index:3; left:402px; top:146px;}
+#MAIN_COUNT{width:390px; height:242px; position:absolute; z-index:7; left:598px; top:205px;}
+#SHARE_PEOPLE{width:64px; height:156px; position:absolute; z-index:6; left:525px; top:126px; display:none;}
+
+#MAIN_PRO_HOVER{width:117px; height:117px; position:absolute; z-index:2; left:51px; top:20px; background-repeat: no-repeat;background-image : url(../images/main_product_hover.png); background-position : left top; padding:40px 30px 40px 50px; color:#ffffff; display:none;}
+#MAIN_SHARE_HOVER{width:107px; height:117px; position:absolute; z-index:2; left:798px; top:20px; background-repeat: no-repeat;background-image : url(../images/main_share_hover.png); background-position : left top; padding: 35px 30px 45px 60px; color:#ffffff; display:none;}
+#MAIN_INFOR_HOVER{width:107px; height:117px; position:absolute; z-index:4; left:320px; top:129px; background-repeat: no-repeat;background-image : url(../images/main_information_hover.png); background-position : left top; padding: 40px 30px 40px 60px; color:#ffffff; display:none;}
+#MAIN_COUNT_HOVER{width:117px; height:117px; position:absolute; z-index:5; left:556px; top:101px; background-repeat: no-repeat;background-image : url(../images/main_count_hover.png); background-position : left top; padding:50px 35px 30px 45px; color:#ffffff; display:none;}
+
+#MAIN_SHARE_VIDEO{width:187px; height:104px; position:absolute; z-index:5; left:579px; top:77px;}
+
+
+
+

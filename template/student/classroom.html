@@ -1,0 +1,94 @@
+{include="header"}
+  <div class="class">
+    {include="profile"}
+    <div class="breadcrumbs row"><a href="index.html"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>學習紀錄-已預約課程</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/classroom" {if="!$history"}class="active"{/if}>已預約課程</a></li>
+        <li><a href="/student/classroom?type=history" {if="$history"}class="active"{/if}>歷史課程</a></li>
+      </ul>
+    </nav>	
+    <div class="class-note class-note-student">
+      <p> <span>注意事項</span>課程表所顯示的時間為您的所在時區。{if="!$history"}<br>開課前12小時內已預約課程將不可取消，開課前1小時系統開放線上預覽教材。{/if}</p>
+    </div>	
+	{if="!$history"}
+    <nav class="sub-nav sub-nav-student row">
+      <h2>課程類型</h2>
+      <div class="sub-nav-button">
+	  {loop="$var_registration_type"}<a href="/student/classroom?type={$type}&regtype={$key}&interest={$interest}" class='button round {if="$key==$regtype"}active{/if}'>{$value}</a>{/loop}
+	  </div>
+    </nav>
+    <nav class="sub-nav sub-nav-student row">
+      <h2>課程主題</h2>
+      <div class="sub-nav-button">
+	  {loop="$var_interest_type"}<a href="/student/classroom?type={$type}&regtype={$regtype}&interest={$key}" class='button round {if="$key==$interest"}active{/if}'>{$value}</a>{/loop}
+	  </div>
+	</nav>
+	{/if}	
+    <div class="class-list row">
+	{loop="$registration"}
+      <div class="columns small-12 medium-6 large-12" data-id="{$value['id']}" >
+        <div class="class-card">
+          <div class="class-card-date class-card-date-student"><span>{$value['date']['date']}<span class="week">{$value['date']['week']}</span></span><span class="time"><span>{$value['date']['start_time']}</span><span class="tilde">~</span><span>{$value['date']['end_time']}</span></span></div>
+          <div class="class-card-content">
+            <div class="class-card-label class-card-label-student"><span class="label-type">{$value['type']}</span>{loop="$value['interest']"}<span>{$value['title']}</span>{/loop}</div>
+			{if="$history && $value['report']==1"}<span class="class-card-tag class-card-tag-student">尚未填寫評鑑</span>{/if}
+			{if="!$history && $value['countdown']"}<span class="class-card-tag class-card-tag-student">即將開始上課</span>{/if}
+		   <h2>{$value['title']}</h2>
+            <p>{$value['brief']}</p>
+            <div class="class-card-info class-card-info-student">
+              <ul>
+                <li> <b>{if="$value['consultant']"}老師{/if}</b><span>{$value['consultant']['first_name']} {$value['consultant']['last_name']}</span></li>
+                <li><b>使用點數</b><span>{function="sprintf('%.1f',$value['point'])"}</span></li>
+                {if="$value['serial']"}<li class="side"><b>系列課程第 </b><span>1/10</span><b>堂</b></li>{/if}
+              </ul>
+            </div>
+          </div>
+		  {if="$history"}
+		  <div class="class-card-button class-card-button-student">
+			{if="$value['report']==0"}<a class="button small close disable">填寫評鑑</a>{/if}
+			{if="$value['report']==1"}<a class="button small cancel" href="/student/class_report/{$value['id']}">填寫評鑑</a>{/if}
+			{if="$value['report']==2"}<a class="button small cancel" href="/student/class_report/{$value['id']}">查看評鑑</a>{/if}
+			{if="$value['material_file']"}
+				<a href="{$value['material_file']}" target='_blank' class="button small submit">預覽教材</a>
+			{else}
+				<a class="button small close disable" >預覽教材</a>
+			{/if}
+			{if="$value['consultant_report']==2"}<a class="button small cancel" href="/student/consultant_report/{$value['id']}">老師評鑑</a>
+			{else}<a class='button small close disable'>老師評鑑</a>{/if}
+		  </div>
+		  {else}
+          <div class="class-card-button class-card-button-student">
+			{if="$value['webex']"}
+				<a href="/webex?classroom={$value['id']}" class="button small submit">進入教室</a>
+			{else}
+				<a class="button small close disable">進入教室</a>
+			{/if}			
+			{if="$value['material_file']"}
+				<a href="{$value['material_file']}" target='_blank' class="button small submit">預覽教材</a>
+			{else}
+				<a class="button small close disable" >預覽教材</a>
+			{/if}
+			{if="$value['cancel']"}
+				{if="$value['t']==40 || $value['t']==50"}
+					<a class="button small cancel unbooking_elective" data-type="{$value['t']}" data-courseid="{$value['course_id']}">取消課程</a>
+				{else}				
+					<a class="button small cancel unbooking" data-date='{function="date('Y-m-d',strtotime($value['open_time']))"}' data-time='{function="date('H',strtotime($value['open_time']))"}'>取消課程</a>
+				{/if}
+			{else}
+				<a class="button small close disable">取消課程</a>
+			{/if}
+		  </div>
+		  {/if}
+		  
+        </div>
+      </div>
+	{/loop}
+	
+	{$paginate}
+	
+
+    </div>
+  </div>  
+  {include="footer"}
+    <script src="js/student.classroom.js"></script>

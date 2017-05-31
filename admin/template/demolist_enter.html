@@ -1,0 +1,28 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<form name="frm" id="frm" method="post" action="/admin/demolist/webex">
+<input type="hidden" name="id" value="{$id}">
+<table cellpadding="3" cellspacing="0" border="0">
+  <tr><td align="right">教室編號:</td><td>{$sn}</td></tr>
+  <tr><td align="right">日期:</td><td>{$date}</td></tr>
+  <tr><td align="right">時段:</td><td>{$time_text}</td></tr>
+  <tr><td align="right">顧問:</td><td>{$consultant_id_text}</td></tr>
+  <tr><td colspan="2">請選擇WebEx會議室: <div class="ui-select"><select name="webex_id" id="webex_id">
+    {loop="$webex"}
+    <option value="{$value.id}">{$value.webex_name}</option>
+    {/loop}
+  </select></div>&nbsp;&nbsp;&nbsp;<input type="button" class="btn-glow primary" value="確認送出" onclick="send();">
+  </td></tr>
+</table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+function send()
+{
+  $('#frm').submit();
+}
+</script>

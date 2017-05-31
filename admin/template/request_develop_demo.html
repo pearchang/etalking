@@ -1,0 +1,228 @@
+{include="header_head"}
+<form name="frm" method="post" id="form" action="/admin/request_develop/save" >
+<input type=hidden name="current_member_id" value="{$current_member_id}">
+<br>
+<table width="100%" border="0">
+	<tr>
+		<td nowrap width="10%" valign="top"><label>聯絡類型</label></td>
+		<td class='contact_status'>
+		</td>
+	</tr>
+	<tr>
+		<td nowrap width="10%" valign="top"><label>聯絡內容</label></td>
+		<td><textarea name="content" id="content" style="width:100%"></textarea><br></td>
+	</tr>
+	<tr>
+		<td nowrap width="10%" valign="top"><label>下次聯絡時間</label></td>
+		<td>
+			日期 <input type="text" value="" name="search_begin" id="search_begin" size="10" class="input-datepicker search_date" picker="date" start_date="{$today}" end_date="{$twoweeks}" />
+			<span style="padding-left:5px">
+			時段 <select name="time">
+				<option value="11:59:59">上午</option>
+				<option value="17:59:59">下午</option>
+				<option value="23:59:59">晚上</option>
+				{loop="$options"}
+					<option value="{$value}">{$key}:00</option>
+				{/loop}
+			</select>
+			</span>
+		</td>
+	</tr>
+</table>
+<br>
+<div class="booking">
+<hr style='border-top: 1px solid'>
+<label>顧問類型</label> <label class="radio-inline" style="width:50px !important; margin-left: 10px !important;"><input type="radio" name="consultant_type" value="10" checked>中師</label>&nbsp;&nbsp;&nbsp;&nbsp;    <label class="radio-inline"><input type="radio" name="consultant_type" value="20">外師</label>
+
+<br>
+<table width="850" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td align="center" width="9%">
+      <table width="100%" cellspacing="0" cellpadding="0"><tr><td height="40">&nbsp;</td></tr></table>
+      <table width="100%">
+        {loop="$hour_list"}
+        <tr><td height="70" align="center">{$value1.hour}:00<br> ~ <br>{$value1.hour}:45</td></tr>
+        {/loop}
+      </table>
+    </td>
+
+    {loop="$week_list"}
+    <td align="center" width="9%">
+      <table width="100%"><tr><td height="40" align="center">{$value.date}<!--<br>{$value.weekday}--></td></tr></table>
+      <table width="100%">
+        {loop="$value.hour_list"}
+        <tr><td height="70" style="border: 1px solid #CCCCCC;" align="center">
+          <input type="checkbox" name="available[]" id="available_{$value2.date}_{$value2.hour}" data-date="{$value2.date}" data-hour="{$value2.hour}" value="10" onclick="register(this);" {$value2.disabled}>
+          <label for="available_{$value2.date}_{$value2.hour}" class="radiobox {$value2.disabled}">預約</label>
+        </td></tr>
+        {/loop}
+      </table>
+    </td>
+    {/loop}
+  </tr>
+</table>
+</div>
+<div class="btn_func" align=right>
+	<br>
+      <input type="hidden" name="type" value="20">
+      <div class="submit-box" style="margin-right:50px">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="parent.$.fancybox.close();">
+      </div> 
+	  
+	  
+</div>
+</form>
+<br>
+{include="footer_foot"}
+
+<script language="javascript">
+	$('.booking').hide();
+	$('#form').submit(function(){
+	
+		var contact_status = $('[name=contact_status]:checked').val();
+		
+		if( !contact_status ){		
+			alert("請選擇聯絡類型");
+			return false;		
+		}else{
+			if( ( contact_status==1 || contact_status==2 ) && $('[name=content]').val()==''  ){
+				alert("請填寫聯絡內容");
+				return false;
+			}
+		}
+		
+		if( !$('[name=search_begin]').val() ){
+		
+			alert("請選擇下次聯絡時間");
+			return false;
+		
+		}
+		
+		return true;
+	});
+function do_search()
+{
+}
+function register(e)
+{
+/*
+	var contact_status = $('[name=contact_status]:checked').val();
+	var search_begin = $('[name=search_begin]').val();
+	var content = $('[name=content]').val();
+		
+	if( contact_status || search_begin ){
+	
+		if( !contact_status ){	
+			alert("請選擇聯絡類型");
+			return false;	
+		}
+		if( !content  ){
+			alert("請填寫聯絡內容");
+			return false;
+		}
+		
+		if( !search_begin ){		
+			alert("請選擇下次聯絡時間");
+			return false;
+		}
+		
+	}
+*/
+  e = $(e);
+  var element = e;
+  var date = e.attr('data-date');
+  var hour = e.attr('data-hour');
+  if (!confirm('確定要預約 ' + date + ' ' + hour + ':00 ~ ' + hour + ':45 DEMO嗎?'))
+  {
+    e.prop('checked', false);
+    return;
+  }
+  var checked = e.prop('checked');
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/register',
+    data: {
+      id: {$id},
+      date: date,
+      hour: hour,
+      content: $('#content').val(),
+	  
+	  search_begin: $('[name=search_begin]').val(),
+	  
+	  time: $('[name=time]').val()
+	  
+	  /*contact_status: contact_status,*/
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        parent.$.fancybox.close();
+        parent.location.href = parent.location.href;
+      }
+      else
+      {
+        alert(result.msg);
+        element.prop('checked', false);
+      }
+    },
+    error: function () {
+      element.prop('checked', !checked);
+      alert('設定失敗');
+    }
+  });
+
+}
+$(function(){
+	{loop="$contact_status"}
+		$('.contact_status').append("<span><input type='radio' value='{$key}' name='contact_status'> {$value}</span>");
+	{/loop}
+	
+	$('.contact_status').find('span').css('padding-right','10px');
+	
+	$('[name=contact_status]').click(function(){
+		var val = parseInt( $('[name=contact_status]:checked').val() );
+		switch(val){
+			case 3: $('.booking').hide(); $('[name=content]').prop('readonly',true).val('未接'); break;
+			case 4: $('.booking').hide(); $('[name=content]').prop('readonly',true).val('關機'); break;
+			case 5: $('.booking').hide(); $('[name=content]').prop('readonly',true).val('空號'); break;
+			case 6: $('.booking').hide(); $('[name=content]').prop('readonly',true).val('通話中'); break;
+			default:
+				if(val==1){
+					check_demo();					
+				}else{
+					$('.booking').hide();
+				}
+				$('[name=content]').prop('readonly',false).val('');
+		
+		}
+		parent.$.fancybox.update();
+	});
+});
+function check_demo(){
+  $.ajax({
+    type: 'post',
+    url: '/admin/request_develop/check_demo',
+    data: {
+      id : {$id}
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        $('.booking').show();
+      }
+      else
+      {
+       $('.booking').hide();
+      }
+	  
+	  parent.$.fancybox.update();
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+</script>

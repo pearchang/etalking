@@ -1,0 +1,111 @@
+{include="header"}
+<div class="table-wrapper section">
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="center">預約時間</th>
+                    <th class="col-md" align="center">預約者</th>
+                    <th class="col-md" align="center">受測者</th>
+                    <th class="col-md" width=200>備註</th>
+                    <th class="col-md" align="center">測試結果</th>
+					
+					<th class="col-md" align="center">是否通過</th> 
+					
+					<th class="col-md" align="center">測試IT</th>                                       
+                    <th class="col-md" align="center">功能</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                    {loop="$list"}
+                    <tr>
+                      <td align="center">{$value.i}</td>
+                      <td align="center">{$value.wdate}  {$value.wtime}</td>
+                      <td align="center">{$value.creator}</td>
+                      <td align="center">{$value.name}</td>
+					  
+					  <td>{$value.note}</td>
+					  
+					  <td align="center">{$value.result}</td>
+					  
+					  <td align="center">{$value.pass}</td>
+					  
+					  <td align="center">{$value.test_user}</td>				  
+					  
+                        
+                      <td><div style="text-align:center;">
+					  
+							<!-- <button class="btn-flat white editor" onclick="edit({$value.id});" ><i class="icon-edit"></i>編輯</button> -->
+					  
+					    {if="$value.status==20"}
+							
+							<!-- <button class="btn-flat gray"><i class="icon-edit"></i>進入教室</button> -->
+                         						  
+							<button class="btn-flat gray"><i class="icon-remove"></i>取消預約</button>
+					  
+					    {else}
+                       
+                            <!-- <button class="btn-flat white" onClick="enter({$value.classroom_id}, '{$value.sn}');"><i class="icon-edit"></i>進入教室</button> -->
+                         						  
+							<button class="btn-flat white" onClick="cancel({$value.classroom_id});"><i class="icon-remove"></i>取消預約</button>
+						{/if}
+                         
+                      </div></td>
+                    </tr>
+                    {/loop}
+                
+                  </tbody>
+                </table>
+                {$page_control}
+              </div>
+              <!-- end left column -->
+          </div>
+        </div>
+<script language="javascript">
+function edit( id )
+{
+        $.fancybox({
+          type : 'iframe',
+          href : '/admin/webex_test/edit?id=' + id,
+          title : '編輯',
+		  
+		  width: '400'
+        });     
+}
+function enter(id, sn)
+{
+  window.location.href = '/admin/webex_test/enter?id=' + id;
+}
+function cancel(id)
+{
+  if (!confirm('確定要取消測試預約嗎?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/webex_test/cancel',
+    data: {
+      id : id,
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        alert('已成功取消');
+        window.location.href = window.location.href;
+      }
+      else
+        alert(result.msg);
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+</script>
+{include="footer"}

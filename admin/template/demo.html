@@ -1,0 +1,78 @@
+{include="header"}
+<div class="table-wrapper section">
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="left">預約時間</th>
+                    <th class="col-md" align="center">教室編號</th>
+                    <th class="col-md" align="left">姓名</th>
+                    <th class="col-md" align="center">性別</th>
+                    <th class="col-md" align="left">電話</th>
+                    <th class="col-md" align="left">Email</th>
+                    <th class="col-md" align="left">顧問</th>
+                    <th class="col-md-2">功能</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {if="isset($nodata)"}
+                    <tr>
+                      <td colspan="9" align="center" class="nodata">沒有資料</td>
+                    </tr>
+                  {else}
+                    {loop="$list"}
+                    <tr>
+                      <td align="right">{$value.i}</td>
+                      <td><b>{$value.date}</b> {$value.time_text}</td>
+                      <td align="center">{$value.sn}</td>
+                      <td>{$value.member_name}</td>
+                      <td align="center">{$value.gender_text}</td>
+                      <td>{$value.mobile}</td>
+                      <td>{$value.email}</td>
+                      <td>{$value.consultant_id_text}</td>
+                      <td><div style="text-align:center;">
+                        {if="$value.status2!=20"}
+                        <button class="btn-flat white" onClick="assign({$value.classroom_id})"><i class="icon-edit"></i>指派顧問</button>
+                        {else}
+                          {if="$value.report"}
+                          <button class="btn-flat white" onClick="report({$value.classroom_id});"><i class="icon-remove"></i>檢視評鑑</button>
+                          {else}
+                          <button class="btn-flat gray"><i class="icon-remove"></i>尚未評鑑</button>
+                          {/if}
+                        {/if}
+                      </div></td>
+                    </tr>
+                    {/loop}
+                  {/if}
+                  </tbody>
+                </table>
+                {$page_control}
+              </div>
+              <!-- end left column -->
+          </div>
+        </div>
+<script language="javascript">
+function assign(id)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/demo/consultant?id=' + id,
+    title : 'DEMO指派顧問'
+  });
+}
+
+function report(id)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/demo/report?id=' + id,
+    title : 'DEMO評鑑',
+  });
+}
+
+</script>
+{include="footer"}

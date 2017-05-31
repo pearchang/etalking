@@ -1,0 +1,52 @@
+{include="header"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md" align="left">教材編號</th>
+                      <th class="col-md" align="center">教材類型</th>
+                      <th class="col-md" align="left">教材名稱</th>
+                      <th class="col-md" align="left">英文名稱</th>
+                      <th class="col-md" align="left">等級</th>
+                      <th class="col-md">狀態</th>
+                      <th class="col-md-2">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="8" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="right">{$value.i}</td>
+                        <td>{$value.sn}</td>
+                        <td align="center">{$value.type_text}</td>
+                        <td>{$value.title}</td>
+                        <td>{$value.eng_title}</td>
+                        <td>{$value.level_name}</td>
+                        <td align="center"><span class="label label-{$value.status_text_color}">{$value.status_text}</span></td>
+                        <td><div style="text-align:center;"><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button>
+                          <button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button></div></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+                <!-- right column -->
+                <div class="col-md-4 column">
+                </div>
+                <!-- end right column -->
+            </div>
+          </div>
+{include="footer"}

@@ -1,0 +1,286 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data" onsubmit="return checkForm(this);">
+      <div class="field-box" id="div_account">
+        <div class="text">
+          <label>帳號<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="account" id="account" value="{$account}" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" />
+            <span>3-20字元，可大小寫英文、數字、符號(. - _)，第一個字須為英文</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_password">
+        <div class="text">
+          <label>預設密碼<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="password" id="password" value="{$password}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_pid">
+        <div class="text">
+          <label>證件號碼<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="pid" id="pid" value="{$pid}" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_first_name">
+        <div class="text">
+          <label>First Name<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="first_name" id="first_name" value="{$first_name}" required pattern="[a-zA-Z\s.]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_last_name">
+        <div class="text">
+          <label>Last Name<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="last_name" id="last_name" value="{$last_name}" required pattern="[a-zA-Z\s.]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_chi_name">
+        <div class="text">
+          <label>中文姓名:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="chi_name" id="chi_name" value="{$chi_name}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_gender">
+        <div class="text">
+          <label>性別<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$gender_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_tel">
+        <div class="text">
+          <label>電話<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="tel" id="tel" value="{$tel}" required pattern="[-+\d]{8,15}"  />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_email">
+        <div class="text">
+          <label>Email<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="email" id="email" value="{$email}" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_birthdate">
+        <div class="text">
+          <label>生日<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$birthdate}" name="birthdate" id="birthdate" class="form-control date" picker="date" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_course_pay">
+        <div class="text">
+          <label>一般薪資(堂)<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="course_pay" id="course_pay" value="{$course_pay}" required pattern="[-+]?[0-9]*[.,]?[0-9]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_demo_payment">
+        <div class="text">
+          <label>DEMO計薪方式:</label>
+          <div class="col-md-6">
+            {$demo_payment_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_demo_pay">
+        <div class="text">
+          <label>DEMO薪資(堂/次)<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="demo_pay" id="demo_pay" value="{$demo_pay}" pattern="[-+]?[0-9]*[.,]?[0-9]+" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_type">
+        <div class="text">
+          <label>顧問類型<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$type_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_location">
+        <div class="text">
+          <label>Location<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <div class="ui-select">
+              <select name="location" id="location">
+                {include="country_options"}
+              </select></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_country">
+        <div class="text">
+          <label>Country of Birth<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <div class="ui-select">
+              <select name="country" id="country">
+                {include="country_options"}
+              </select></div>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_education">
+        <div class="text">
+          <label>Education:</label>
+          <div class="col-md-6">
+            {$education_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_exp1">
+        <div class="text">
+          <label>Work Experience I:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="exp1" id="exp1" value="{$exp1}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_exp2">
+        <div class="text">
+          <label>Work Experience II:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="exp2" id="exp2" value="{$exp2}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_lang1">
+        <div class="text">
+          <label>First Language<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$lang1_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_lang2">
+        <div class="text">
+          <label>Second Language:</label>
+          <div class="col-md-6">
+            {$lang2_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_intro">
+        <div class="text">
+          <label>Introduction<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$editor_intro}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_level">
+        <div class="text">
+          <label>教授等級<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {$level_select}
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="field-box" id="div_interest">
+        <div class="text">
+          <label>教授主題<sup>*</sup>:</label>
+          <div class="col-md-9">
+            {$interest_select}
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="field-box" id="div_bank_name">
+        <div class="text">
+          <label>Bank Name/<br/>PayPal Account:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="bank_name" id="bank_name" value="{$bank_name}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_bank_routing">
+        <div class="text">
+          <label>Routing Number:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="bank_routing" id="bank_routing" value="{$bank_routing}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_bank_account">
+        <div class="text">
+          <label>Account Number:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="bank_account" id="bank_account" value="{$bank_account}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$status_select}
+          </div>
+        </div>
+      </div>
+      {$IMAGES}
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+<script language="javascript">
+  function checkForm(frm)
+  {
+//    var l = $('form[name=frm] input[name="interest[]"]:checked').length;
+//    if (l < 1)
+//    {
+//      alert('請至少選擇1個主題');
+//      return false;
+//    }
+    var l = $('form[name=frm] input[name="level[]"]:checked').length;
+    if (l < 1)
+    {
+      alert('請至少選擇1個等級');
+      return false;
+    }
+
+    // file size
+    var imgs = $('input[name*="image"]');
+    for (var k = 0; k < imgs.length; k++)
+    {
+      var i = imgs.get(k);
+      if(i.files && i.files.length == 1)
+      {
+        if (i.files[0].size > 524288)
+        {
+          alert(i.files[0].name + ": 圖片最多500KB");
+          return false;
+        }
+        if (i.files[0].type != 'image/jpg' && i.files[0].type != 'image/jpeg' && i.files[0].type != 'image/png')
+        {
+          alert(i.files[0].name + ": 圖片僅支援PNG, JPG檔案");
+          return false;
+        }
+      }
+    }
+  }
+</script>
+{include="footer"}

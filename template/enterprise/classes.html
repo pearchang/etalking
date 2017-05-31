@@ -1,0 +1,114 @@
+{include="header"}
+
+  <div class="class">
+    {include="profile"}
+    <nav class="nav-groups nav-groups-enterprise">
+      <ul>
+        <li> <a href="/enterprise/employee">員工列表</a></li>
+        <li> <a href="/enterprise/classes" class="active">歷史課程</a></li>
+      </ul>
+    </nav>
+
+    <!-- identification -->
+    <div class="account-table account-table-enterprise enterprise row">
+	<input type="hidden" value="{$_GET['type']}" name="type">
+	<input type="hidden" value="{$_GET['interest']}" name="interest">
+       <div class="search-filter search-filter-enterprise">
+		<!--
+        <span class="date"><b>日期</b>
+          <input type="text" id="datepicker1" placeholder="Start" name="sdate" value="">
+          </span>
+		-->
+          <span class="status form-class"><b>課程類型</b>
+          <input type="text" placeholder="All" value="{$registration_type[$_GET['type']]}" disabled="">
+          <ul class="form-class-select type">
+			<li><a data-class="All" data-id="0">全部</a></li>
+		{loop="$registration_type"}
+			<li><a data-class="{$value}" data-id="{$key}" >{$value}</a></li>	
+		{/loop}
+          </ul>
+		  </span>
+          <span class="status form-class"><b>課程主題</b>
+          <input type="text" placeholder="All" value="{$interest[$_GET['interest']]}" disabled="">
+          <ul class="form-class-select interest">
+            <li><a data-class="All" data-id="0">全部</a></li>
+        {loop="$interest"}
+			<li><a data-class="{$value}"  data-id="{$key}">{$value}</a></li>
+		{/loop}    
+          </ul></span>
+        <div class="search-filter-button "><a class="button search">查詢</a></div>
+      </div>
+      <table>
+        <thead>
+          <td> <b>上課日期</b></td>
+		  <td> <b>姓名</b></td>
+          <td> <b>課程名稱</b></td>
+		  <td><b>帳號</b></td>
+          <td> <b>使用點數</b></td>
+          <td><b>是否出席</b></td>
+        </thead>
+		{loop="$data"}
+        <tr data-id="{$value['classroom_id']}">
+          <td data-title="上課日期">{$value['open_time']}</td>
+		  <td data-title="姓名">
+		{if="!empty($value['first_name'])"}
+			{$value['first_name']} {$value['last_name']}
+		{else}
+			{$value['member_name']}
+		{/if}
+			</td>
+          <td data-title="課程名稱">{$value['title']}</td>
+		  <td data-title="帳號">{$value['account']}</td>
+          <td data-title="使用點數"><span class="minus">{$value['point']} 點</span></td>
+		  {if="$value['attend']==10"}
+          <td data-title="是否出席" class="column-button column-button-enterprise attend"><a class="button">已出席</a></td>
+		  {else}
+		  <td data-title="是否出席" class="column-button column-button-enterprise absence"><a class="button">缺席</a></td>
+		  {/if}
+        </tr>
+		{/loop}
+      </table>
+	  
+      {$paginate}
+	  
+    </div>
+  </div>
+
+
+{include="footer"}
+
+<script>
+	$('.type li a').on('click', function(){
+		var id = $(this).data('id');
+		$('[name=type]').val(id);
+	});
+	$('.interest li a').on('click', function(){
+		var id = $(this).data('id');
+		$('[name=interest]').val(id);
+	});
+	
+	$('.search').click(function(){
+		var sdate = $('[name=sdate]').val();
+		//var edate = $('[name=edate]').val();
+		var tp    = $('[name=type]').val();
+		var it    = $('[name=interest]').val();
+		/*
+		if(sdate!=''  || edate!=''  ){
+		
+			RE = /^\d{2}\/\d{2}\/\d{4}$/;
+			if( !RE.test( sdate ) ){
+				dialog("日期錯誤");
+				return false;
+			}
+			
+			if( !RE.test( edate ) ){
+				dialog("結束日期錯誤");
+				return false;
+			}
+		}
+		document.location = "/enterprise/classes?sdate="  + sdate + "&interest=" + it + "&type=" + tp ;
+		*/
+		document.location = "/enterprise/classes?interest=" + it + "&type=" + tp ;
+	});
+	
+</script>

@@ -1,0 +1,52 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+
+  <div class="class">
+  
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>我的帳戶-點數明細</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/account">帳戶設定</a></li>
+        <li><a href="/student/points">點數明細</a></li>
+        <li><a href="/student/contract" class="active">合約資料</a></li>
+        <li><a href="/student/rule">學員公約暨上課須知</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-title">
+      <h2>【<span>續約：240堂（2016年7月)</span>】</h2>
+      <h4 class="account_title"><span>合約總額&nbsp;<span>28,000</span>&nbsp;元</span>
+      <span>&nbsp;&nbsp;&nbsp;總期數&nbsp;<span>7</span>&nbsp;期</span></h4>
+    </div>
+    <div class="search-filter search-filter-student"></div>
+    <div class="account-table account-table-student row">
+      <table>
+        <thead>
+          <td>期數</td>
+          <td>本期金額</td>
+          <td>截止日期</td>
+          <td>付款日期</td>
+          <td>付款方式</td>
+          <td>備註說明</td>
+        </thead>
+		
+		{loop="$data"}
+        <tr>
+          <td data-title="期數">訂金</td>
+          <td data-title="本期金額" class="column-price column-price-student">NT$<span class="price">4,000</span>元</td>
+          <td data-title="截止日期" class="column-date">2016/05/28<span>00:00</span></td>
+          <td data-title="付款日期" class="column-date">2016/05/28<span>00:00</span></td>
+          <td data-title="付款方式" class="column-pay">現金</td>
+          <td data-title="備註說明"></td>
+        </tr>
+		{/loop}
+
+      </table>
+      <div class="contract-button"><a href="student_account_contract.html" class="button">返回列表</a></div>
+    </div>
+  </div>
+  
+{include="footer"}
+<script src="js/student.contract.js"></script>

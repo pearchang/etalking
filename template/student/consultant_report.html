@@ -1,0 +1,45 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+  <div class="class">
+    {include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student/classroom?type=history">學習紀錄-歷史課程</a><span>學員課後評鑑</span></div>
+    <div class="main-title">
+      <h1>老師評鑑</h1>
+    </div>
+    <div class="class-report">
+	<ul>
+		{loop="$items"}
+	  
+        <li>
+          <div class="class-report-title class-report-title-teacher">
+            <h2>{$value['text']}</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            {loop="$value['options']"}
+            <label>
+              <input {if="$data[$key1]==$key2"}checked{/if} type="radio" disabled>{$value}
+            </label>
+			{/loop}
+          </div>
+        </li>
+		
+		{/loop}
+        
+        <li>
+          <div class="class-report-title class-report-title-teacher class-report-title-sum">
+            <h2>Summary</h2>
+          </div>
+          <div class="class-report-form class-report-form-teacher">
+            <textarea  disabled>{$data[18]}</textarea>
+           </div>
+        </li>
+		
+    </ul>
+
+	  
+      <div class="class-report-button class-report-button-student"><a href="javascript:history.back();" class="button round">返回</a></div>
+    </div>
+  </div>
+
+  
+{include="footer"}

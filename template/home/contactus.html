@@ -1,0 +1,30 @@
+	
+	<section class="page-contact">
+		<div class="text-wrapper">
+			<h4>填寫資料</h4>
+			<p>TEL 02-2790-6378  |  FAX  02-2790-4140</p>
+			<form class="row etalking-form contact_us">
+				<div class="columns small-12 medium-6 large-6">
+					<input type="text" placeholder="姓名" value="" name="full_name">
+				</div>
+				<div class="columns small-12 medium-6 large-6">
+					<input type="text" placeholder="電話" value="" name="phonenumber">
+				</div>
+				<div class="columns small-12 medium-6 large-6">
+					<input type="text" placeholder="Email" value="" name="email">
+				</div>
+				<div class="columns small-12 medium-6 large-6 form-time" data-dropdown="contact-time" aria-controls="contact-time">
+					<input type="text" placeholder="聯絡時間" value="" disabled>
+					<ul class="form-time-select" id="contact-time" data-dropdown-content aria-hidden="true" tabindex="-1">
+						<li><a href="#!" data-time="10:00~12:00">10:00~12:00</a></li>
+						<li><a href="#!" data-time="13:00~15:00">13:00~15:00</a></li>
+						<li><a href="#!" data-time="15:00~17:00">15:00~18:00</a></li>
+					</ul>
+				</div>
+				<button class="btn white contactus_submit">送出</button>
+				<input type=hidden name="contact_time" value="">
+			</form>
+		</div>
+	</section>
+
+	<script src="js/contactus.js"></script>

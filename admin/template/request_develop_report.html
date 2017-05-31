@@ -1,0 +1,23 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+  <tr><td align="right" nowrap width="5%">教室編號:</td><td>{$sn}</td></tr>
+  <tr><td align="right">日期:</td><td>{$date}</td></tr>
+  <tr><td align="right">時段:</td><td>{$time_text}</td></tr>
+  <tr><td align="right">姓名:</td><td>{$member_name}</td></tr>
+  <tr><td align="right">顧問:</td><td>{$consultant_text}</td></tr>
+  <tr><td align="right" valign="top">評鑑報告:</td><td>
+    <table cellpadding="3" cellspacing="0" border="0" width="100%">
+      {loop="$ques_list"}
+        <tr><td align="right" nowrap width="5%">{$value.question}:</td><td>{$value.answer}</td></tr>
+      {/loop}
+    </table>
+  </td></tr>
+  <tr><td colspan="2" align="right"><input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br></td></tr>
+</table>
+</form>
+{include="footer_foot"}

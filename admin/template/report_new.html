@@ -1,0 +1,39 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" onClick="return check(this);">
+     <div class="field-box">
+        <div class="text">
+          <label>分類:</label>
+          <label>
+            <font color="red">{$category[$cid]}</font>			<input type=hidden value="{$cid}" name="category">
+          </label>
+        </div>
+      </div>
+      <div class="field-box" id="div_begin">
+        <div class="text">
+          <label>起始日期<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" {if="$cid==7"}readonly{/if} value="{if="$cid==7"}2016-07-01{else}{$sdate}{/if}" name="sdate" id="sdate" class="form-control date " picker="date" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_end">
+        <div class="text">
+          <label>結束日期<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$edate}" name="edate" id="edate" class="form-control date" picker="date" required />
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}<script>	function check(form){				var sdate = $('#sdate').val().replace(/-/g,'');		var edate = $('#edate').val().replace(/-/g,'');		if( parseInt(sdate) > parseInt(edate)){			alert("起始日期不得大於結束日期");			return false;		}		return true;	}</script>

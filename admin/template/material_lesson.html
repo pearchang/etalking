@@ -1,0 +1,104 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="material_brief"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-number">#</th>
+            <th class="col-md" align="left">教材編號</th>
+            <th class="col-md" align="left">教材名稱</th>
+            <th class="col-md" align="left">英文名稱</th>
+            <th class="col-md">狀態</th>
+            <th class="col-md-2">功能</th>
+          </tr>
+          </thead>
+          <tbody>
+          {if="isset($nodata)"}
+          <tr>
+            <td colspan="7" align="center" class="nodata">沒有資料</td>
+          </tr>
+          {else}
+          {loop="$list"}
+          <tr>
+            <td align="right">{$value.i}</td>
+            <td>{$value.sn}</td>
+            <td>{$value.title}</td>
+            <td>{$value.eng_title}</td>
+            <td align="center"><span class="label label-{$value.status_text_color}">{$value.status_text}</span></td>
+            <td><div style="text-align:center;"><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button>
+              <button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button></div></td>
+          </tr>
+          {/loop}
+          {/if}
+          </tbody>
+        </table>
+        {$page_control}
+      </div>
+      <!-- end left column -->
+    </div>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}
+<script language="javascript">
+  function cancel(id)
+  {
+    var reason = prompt("請輸入退點原因:");
+    if (reason == null || reason == "")
+      return;
+    $.ajax({
+      type: 'post',
+      url: '/admin/member_class/cancel',
+      data: {
+        id : id,
+        reason : reason
+      },
+      dataType: 'json',
+      success: function (result) {
+        if (result.status)
+        {
+          alert('已成功取消');
+          window.location.href = window.location.href;
+        }
+        else
+          alert(result.msg);
+      },
+      error: function () {
+        alert('操作失敗');
+      }
+    });
+  }
+
+  function back(id)
+  {
+    var reason = prompt("請輸入退點原因:");
+    if (reason == null || reason == "")
+      return;
+    $.ajax({
+      type: 'post',
+      url: '/admin/member_class/back',
+      data: {
+        id : id,
+        reason : reason
+      },
+      dataType: 'json',
+      success: function (result) {
+        if (result.status)
+        {
+          alert('退點完成');
+          window.location.href = window.location.href;
+        }
+        else
+          alert(result.msg);
+      },
+      error: function () {
+        alert('操作失敗');
+      }
+    });
+  }
+</script>

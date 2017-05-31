@@ -1,0 +1,25 @@
+{if="$total_item"}
+  <ul class="pagination pull-right">
+    {if="$cur_page > 1"}
+      <li><a href="{$plink}1">‹‹</a></li>
+      <li><a href="{$plink}{$prior_page}">‹</a></li>
+    {else}
+      <li><a>‹‹</a></li>
+      <li><a>‹</a></li>
+    {/if}
+    {loop="$page_list"}
+      {if="$value == $cur_page"}
+        <li class="active"><a>{$value}</a></li>
+      {else}
+      <li><a href="{$plink}{$value}">{$value}</a></li>
+      {/if}
+    {/loop}
+    {if="$cur_page < $total_page"}
+      <li><a href="{$plink}{$next_page}">›</a></li>
+      <li><a href="{$plink}{$total_page}">››</a></li>
+    {else}
+      <li><a>›</a></li>
+      <li><a>››</a></li>
+    {/if}
+  </ul>
+{/if}

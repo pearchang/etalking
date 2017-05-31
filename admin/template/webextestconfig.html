@@ -1,0 +1,103 @@
+{include="header"}
+
+<span style="color:red; font-size:14px;font-weight: bold;">紅: 已預約人數</span>&nbsp;&nbsp;&nbsp;
+
+<span style="color:blue; font-size:14px;font-weight: bold;">藍: 可預約人數</span><br><br>
+
+<div class="table-wrapper section">
+  
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<td>查詢日期：<input type="text" value="" name="search_begin" id="search_begin" size="10" class="input-datepicker search_date" picker="date" /></td>
+  </table>
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+    <tr>
+
+      <td align="center" width="8%" valign="top">
+
+        <table width="100%" cellspacing="" border="0"><tr><td height="40">&nbsp;</td></tr></table>
+
+        <table width="100%">
+
+          {loop="$hour_list"}
+
+          <tr><td height="60" align="center">{$value1.hour_begin}<br> ~ <br>{$value1.hour_end}</td></tr>
+
+          {/loop}
+
+        </table>
+
+      </td>
+
+
+
+      {loop="$date_list"}
+
+      <td align="center">
+
+        <table width="100%" border="0"><tr><td height="40" align="center" nowrap="">{$value.date}<br>{$value.name}</td></tr></table>
+
+        <table width="100%">
+
+          {loop="$value.hour_list"}
+
+          <tr>
+		{if="$test && $value.already>=$value.avaliable"}
+			<td height="60" style="border: 1px solid #CCCCCC; cursor: pointer;" align="center">
+		{else}	
+			<td height="60" style="border: 1px solid #CCCCCC; {if="$value.expired"}cursor:not-allowed {else}cursor: pointer;{/if}" align="center" {if="!$value.expired"} onclick="popup('{$w}','{$value.date}','{$value.hour}');" {/if} >
+		{/if}
+		
+            <span class="{if="$value.already==0"}r1{else}r0{/if}">{$value.already}</span><br>
+
+            <span class="{if="$value.avaliable>0"}p0{else}p1{/if}">{$value.avaliable}</span><br>
+
+          </td></tr>
+
+          {/loop}
+
+        </table>
+
+      </td>
+
+      {/loop}
+
+    </tr>
+
+  </table>
+
+
+
+</div>
+
+{include="footer"}
+
+<script>
+
+function do_search(){
+	document.location = 'webextestconfig?&w=0&search_begin=' + encodeURIComponent($('#search_begin').val());
+}
+
+
+  function popup(w,d,h)
+
+{
+
+  $.fancybox({
+
+    type : 'iframe',
+
+    href : "{$url}?w=" + w + "&date=" + d + "&time=" + h,
+
+    title : d + ' ' + h,
+	
+	width: '300'
+
+  });
+
+}
+
+
+
+</script>

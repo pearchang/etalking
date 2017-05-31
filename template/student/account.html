@@ -1,0 +1,249 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+<link rel="stylesheet" href="css/page.css">
+<form class="fill">
+  <div class="class section">
+  
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>我的帳戶-帳戶設定</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/account" class="active">帳戶設定</a></li>
+        <li><a href="/student/points">點數明細</a></li>
+        <li><a href="/student/contract">合約資料</a></li>
+        <li><a href="/student/rule">學員公約暨上課須知</a></li>
+      </ul>
+    </nav>
+
+
+
+    <div class="row">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12 medium-6">
+            <h4 class="primary-blue"><b>帳戶資料</b></h4>
+            </div>
+            <div class="columns small-12 medium-6 small-text-left medium-text-right">
+            <small><span class="primary-blue">＊</span>欄位資料如欲修改請聯繫客服人員</small>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>中文姓名</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['member_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline withlabel"><span class="primary-blue">＊</span>英文姓名</label>
+                </div>
+                <div class="small-6 medium-4 columns">
+                  <label>First Name</label>
+                  <input type="text" class="radius" placeholder="" value="{$data['first_name']}" disabled="disabled">
+                </div>
+                <div class="small-6 medium-4 columns">
+                  <label>Last Name</label>
+                  <input type="text" class="radius" placeholder="" value="{$data['last_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>性別</label>
+                </div>
+                <div class="small-6 medium-4 columns end form-sex">
+                  <input type="text" placeholder="" value="male">
+                  <a href="javascript:;" class='sex-swich disabled {if="$data['gender']==1"}male{else}female{/if}'>
+                    <div data-value="male" class="select-male">男</div>
+                    <div data-value="female" class="select-female">女</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>帳號</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['account']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">			  
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline ">更改密碼</label>
+                </div>
+                <div class="small-12 medium-8 columns">				 
+                  <input type="text" class="radius" placeholder="請輸入6~20英數字區分大小寫" value="" name="passwd">
+                  <input type="text" class="radius" placeholder="再次輸入新密碼" value="" name="passwd2">
+                </div>
+				
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12">
+            <h4 class="primary-blue"><b>個人資料</b></h4>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>Email</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="email" class="radius" placeholder="" value="{$data['email']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>生日</label>
+                </div>
+                <div class="small-6 medium-4 end columns">
+                  <input type="date" class="radius" placeholder="" value="{$data['birthdate']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>地址</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['address']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">學歷</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  
+                  <select class="radius" name="education">
+				  {loop="$var_member_education"}
+                    <option value="{$key}" {if="$key==$member['education']"}selected{/if} >{$value}</option>
+				  {/loop}
+                  </select>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-blue">＊</span>行動電話</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['mobile']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">住家電話</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" name='tel' class="radius" placeholder="" value="{$data['tel']}">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12">
+            <h4 class="primary-blue"><b>偏好設定</b></h4>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-9 medium-centered">
+          <div class="row preferences-box">
+            <div class="small-12 columns">
+                <h5>喜好/興趣（複選至少3項）</h5>
+                <div class="preferences student">
+                {loop="$interest"}
+                  <input type='checkbox' name='interest[]' class='interest' value="{$value['id']}" {if="$value['checked']"}checked{/if} style="display:none">
+				  <a class='interest-btn button round {if="$value['checked']"}active{/if}' data-id="{$value['id']}">{$value['title']}</a>
+				{/loop}                
+                </div>
+            </div>
+          </div>
+          <div class="row preferences-box">
+            <div class="small-12 columns">
+                <h5>欲加強的能力（複選1~3項）</h5>
+                <div class="preferences student">
+				{loop="$skill"}
+                  <input type='checkbox' name='skill[]' class='skill' value="{$value['id']}" {if="$value['checked']"}checked{/if}  style="display:none">
+				  <a class='skill-btn button round {if="$value['checked']"}active{/if}' data-id="{$value['id']}">{$value['title']}</a>
+				{/loop}				
+                </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+
+    <div class="row ">
+      <div class="columns small-12 large-10 large-centered">
+        <div class="row btn-box">
+          <div class="small-12 medium-6 large-4 columns medium-centered">
+            <a class="button student expand round submit">儲存送出</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</form>
+{include="footer"}
+<script src="js/page.js"></script>
+<script src="js/crud.js"></script>
+<script src="js/student.account.js"></script>

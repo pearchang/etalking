@@ -1,0 +1,63 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="consultant_brief"}
+  <div class="table-wrapper section">
+    年月: {$ym}<br>
+    {include="table_header"}
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-number">#</th>
+            <th class="col-md" align="center">課程時間</th>
+            <th class="col-md" align="center">類型</th>
+            <th class="col-md" align="left">課程名稱</th>
+            <th class="col-md" align="right">授課時數</th>
+            <th class="col-md" align="right">授課薪資</th>
+            <th class="col-md" align="right">獎懲調整</th>
+            <th class="col-md" align="right">合計</th>
+            <th class="col-md" align="center">功能</th>
+          </tr>
+          </thead>
+          <tbody>
+          {if="isset($nodata)"}
+          <tr>
+            <td colspan="9" align="center" class="nodata">沒有資料</td>
+          </tr>
+          {else}
+          {loop="$list"}
+          <tr>
+            <td align="right">{$value.i}</td>
+            <td align="center">{$value.date} {$value.time2}:00</td>
+            <td align="center">{$value.type_text}</td>
+            <td>{$value.material}</td>
+            <td align="right">{$value.hour|number_format:1}</td>
+            <td align="right">{$value.salary|number_format:0}</td>
+            <td align="right">{$value.reward|number_format:0} {if="$value.reward!=0"}<br>{$value.memo}{/if}</td>
+            <td align="right">{$value.total|number_format:0}</td>
+            <td><div style="text-align:center;"><button class="btn-flat white" onClick="popup({$value.id}, '{$value.date} {$value.time2}:00');"><i class="icon-edit"></i>調整薪資</button></div></td>
+          </tr>
+          {/loop}
+          {/if}
+          </tbody>
+        </table>
+        {$page_control}
+      </div>
+      <!-- end left column -->
+    </div>
+  </div>
+</div>
+{include="footer"}
+
+<script language="javascript">
+function popup(id, title)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/consultant_salary/popup?id=' + id,
+    title : title,
+  });
+}
+</script>

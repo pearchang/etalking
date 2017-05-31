@@ -1,0 +1,100 @@
+{include="header"}
+
+  <div class="class section">
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>Account settings</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/account">Settings</a></li>
+        <li><a href="/teacher/salary" class="active">Salary</a></li>
+      </ul>
+    </nav>
+	
+    <nav class="sub-nav sub-nav-teacher row">
+      <div class="columns small-12 medium-12">
+        <h4 class="primary-orange"><b>Salary Records</b><a class="tip-info" href="javascript:;">i<span class="tip"><span>Note</span><b class="primary-orange">NT${$wage}</b> per session</span></a></h4>
+      </div>
+      <div class="search-filter search-filter-teacher">
+          <span class="date"><b>Date</b>
+          <input type="text" id="datepicker3" placeholder="Start" name="sdate" value="{$calendar}" readonly>
+          </span>
+      </div>
+    </nav>
+    <div class="account-table account-table-teacher row">
+      <div class="salary-title-date">{$title}</div>
+      <table>
+        <thead>
+          <td>Date</td>
+          <td>Hours</td>
+          <td>Demos</td>
+          <td>Rewards and Punishment</td>
+          <td>Pay</td>
+          <td>&nbsp;</td>
+        </thead>
+	{loop="$data"}
+        <tr>
+          <td data-title="Date">{$value['date']}</td>
+          <td data-title="Hours">{$value['hour']}</td>
+          <td data-title="Demos" class="column-price column-price-teacher">{$value['demo']}</td>
+          <td data-title="Rewards and Punishment" class="column-price column-price-teacher">{if="$value['reward']!=0"}NT$ <span class="price">{function="number_format($value['reward'])"}</span>{/if}</td>
+          <td data-title="Pay" class="column-price column-price-teacher">{if="$value['salary']>0"}NT$ <span class="price">{function="number_format($value['salary'])"}</span>{/if}</td>
+          <td class="column-button column-button-teacher"><a class="button cancel" href="/teacher/salary_content?d={$value['date']}">查看薪資明細</a></td>
+        </tr>        
+    {/loop} 
+	  </table>
+
+      <table class="salary-total">
+        <tr>
+          <th>總時數</th>
+          <td data-title="總時數">{$total['hours']}</td>
+        </tr>
+        <tr>
+          <th>獎金</th>
+          <td data-title="獎金" class="column-price column-price-teacher">NT$ <span class="price">{function="number_format($total['reward'])"}</span></td>
+        </tr>
+        <tr>
+          <th>薪資</th>
+          <td data-title="薪資" class="column-price column-price-teacher">NT$ <span class="price">{function="number_format($total['salary'])"}</span></td>
+        </tr>
+        <tr>
+          <th>總計</th>
+          <td data-title="總計" class="column-price column-price-teacher">NT$ <span class="price">{function="number_format($total['total'])"}</span></td>
+        </tr>
+      </table>
+      
+      <div class="row salary-button">
+          <div class="small-12 columns show-for-small-only">
+            <a href="javascript:;" class="button teacher expand round">回到當月</a>
+          </div>
+          <div class="small-6 medium-4 large-2 columns">
+		{if="$next"}
+            <a class="button teacher expand round line" href="/teacher/salary?m={$next}" >後一個月份</a>
+		{else}
+			<a class="button teacher expand round line close" >後一個月份</a>
+		{/if}	
+          </div>
+          <div class="small-6 medium-4 large-2 large-offset-3 columns show-for-medium-up">
+            <a class="button teacher expand round"  href="/teacher/salary?m={$current}">回到當月</a>
+          </div>
+          <div class="small-6 medium-4 large-2 large-offset-3 columns">
+            <a class="button teacher expand round line"  href="/teacher/salary?m={$prev}">前一個月份</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+  
+{include="footer"}
+    <link rel="stylesheet" href="css/foundation-datepicker.css">
+    <link rel="stylesheet" href="css/page.css">
+    <link rel="stylesheet" href="css/style_page.css">
+<script src="js/vendor/circle-progress.js"></script>
+<script src="js/common.js"></script>
+<script src="js/foundation-datepicker.js"></script>
+<script src="js/class.js"></script>
+<script>
+$('#datepicker3').change(function(){
+	document.location = "/teacher/salary?m=" + $(this).val();
+});
+</script>

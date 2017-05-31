@@ -1,0 +1,137 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="member_brief"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-number">#</th>
+            <th class="col-md" align="center">建檔日期</th>
+            <th class="col-md" align="center">合約編號</th>
+            <th class="col-md" align="center">合約版本</th>
+            <th class="col-md" align="left">合約名稱</th>
+            <th class="col-md" align="left">方案名稱</th>
+            <th class="col-md" align="center">合約起訖</th>
+            <th class="col-md" align="right">合約期限(月)</th>
+            <th class="col-md" align="right">售價</th>
+            <th class="col-md" align="right">合約點數</th>
+            <th class="col-md" align="right">贈點</th>
+            <th class="col-md" align="center">簽約狀態</th>
+            <th class="col-md" align="center">付款日期</th>
+            <th class="col-md" align="center">開通日期</th>
+            <th class="col-md" align="center">合約狀態</th>
+            <th class="col-md" align="center">建立者</th>
+            <th class="col-md">功能</th>
+          </tr>
+          </thead>
+          <tbody>
+          {if="isset($nodata)"}
+          <tr>
+            <td colspan="17" align="center" class="nodata">沒有資料</td>
+          </tr>
+          {else}
+          {loop="$list"}
+          <tr>
+            <td align="right">{$value.i}</td>
+            <td align="center">{$value.cdate}</td>
+            <td align="center">{$value.sn}</td>
+            <td align="center">{$value.contract_text}</td>
+            <td align="left">{$value.contract_name}</td>
+            <td>{$value.plan_name}</td>
+            <td align="center">{$value.begin} ~ {$value.end}</td>
+            <td align="right">{$value.period}</td>
+            <td align="right">{$value.price}</td>
+            <td align="right">{$value.point}</td>
+            <td align="right">{$value.gift}</td>
+            <td align="center">{$value.sign_time}</td>
+            <td align="center"><a href="javascript:" onclick="popup({$value.id}, '{$value.sn}')">{$value.paid_time}</a></td>
+            <td align="center">{if="$value.open_time"}{$value.open_time}{elseif="$value.can_open"}
+              {if="$admin_manager"}<button class="btn-flat white" onClick="_open({$value.id});"><i class="icon-edit"></i>開通合約</button>{else}已可開通{/if}
+              {else}未達條件{/if}</td>
+            <td align="center">{$value.status_text}</td>
+            <td align="center">{$value.creator_text}</td>
+            <td><div style="text-align:center;">
+              {if="$value.can_edit"}
+                <button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button>
+              {else}
+              <button class="btn-flat gray"><i class="icon-edit"></i>編輯</button>
+              {/if}
+              {if="$value.can_delete"}
+              <button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button>
+              {else}
+              <button class="btn-flat gray"><i class="icon-remove"></i>刪除</button>
+              {/if}
+            </div></td>
+          </tr>
+          {/loop}
+          {/if}
+          </tbody>
+        </table>
+        {$page_control}
+      </div>
+      <!-- end left column -->
+    </div>
+  </div>
+  <!-- end left column -->
+<script language="javascript">
+function _paid(id)
+{
+  if (!confirm('確定設定為已付款?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/member_contractdata/paid',
+    data: {
+      id: id
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+        window.location.href = window.location.href;
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+function _open(id)
+{
+  if (!confirm('確定要開通此合約嗎?'))
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/member_contractdata/open',
+    data: {
+      id: id
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+        window.location.href = window.location.href;
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+function popup(id, title)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/member_contractdata/bill?id=' + id,
+    title : title,
+  });
+}
+
+</script>
+{include="footer"}

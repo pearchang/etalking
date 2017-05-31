@@ -1,0 +1,59 @@
+        <div class="row filter-block">
+                <div class="col-md-12">
+            <div class="pull-right">
+              {has="$search_date"}
+              <span style="margin-right: 20px; float:left;">
+              查詢日期:
+              <input type="text" value="{$search_begin}" name="search_begin" id="search_begin" size="10" class="input-datepicker search_date" picker="date" /> ~
+              <input type="text" value="{$search_end}" name="search_end" id="search_end" size="10" class="input-datepicker search_date" picker="date" />
+                </span>
+              {/has}
+              {has="$filter_list"}
+              <span style="margin-right: 20px; float:left;">
+                {$FILTER_NAME}: <select name="filter" id="search_filter" style="margin-right:24px;" onchange="changeFilter();">
+                {loop="$filter_list"}
+                  <option value="{$value.value}">{$value.text}</option>
+                {/loop}
+                </select>
+                </span>
+              {/has}
+              {has="$filter2_list"}
+              <span style="margin-right: 20px; float:left;">
+                {$FILTER2_NAME}: <select name="filter2" id="search_filter2" style="margin-right:24px;" onchange="changeFilter();">
+                {loop="$filter2_list"}
+                  <option value="{$value.value}">{$value.text}</option>
+                {/loop}
+                </select>
+                </span>
+              {/has}
+              {has="$search"}
+              <form name="sfrm" id="sfrm" method="get" style="margin:0; float:left;" onsubmit="return do_search();">
+                搜尋: <input type="text" class="search" name="keyword" id="search_keyword" value="{$keyword}" placeholder="按ENTER搜尋">
+              </form>
+              {/has}
+              {if="$custom"}
+              {$custom}
+              {/if}
+              {if="$add_button"}
+              {if="$popup_add"}
+              <a class="btn-flat success" href="javascript:" onclick="add_popup('{$NEW_URL}{if="$filter"}&{$filter_field}={$filter}{/if}');"><i class="icon-plus"></i> 新增{$NAME}</a>
+              {else}
+              <a class="btn-flat success" href="{$NEW_URL}{if="$filter"}&{$filter_field}={$filter}{/if}"><i class="icon-plus"></i> 新增{$NAME}</a>
+              {/if}
+              {/if}
+              {if="$export_button"}
+              <a class="btn-flat success" href="{$EXPORT_URL}{if="$filter"}&{$filter_field}={$filter}{/if}"><i class="icon-share-alt"></i> 匯出{$NAME}</a>
+              {/if}
+            </div>
+          </div>
+        </div>
+<script language="javascript">
+function add_popup(url)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : url,
+    title : '新增',
+  });
+}
+</script>

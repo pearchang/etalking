@@ -1,0 +1,87 @@
+{include="header"}
+<div class="row form-wrapper">
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data">
+      <div class="field-box" id="div_cat_id">
+        <div class="text">
+          <label>方案分類<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$cat_id_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_plan_name">
+        <div class="text">
+          <label>方案名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="plan_name" id="plan_name" value="{$plan_name}" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_period">
+        <div class="text">
+          <label>合約期限(月)<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$period_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_price">
+        <div class="text">
+          <label>售價<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control integer" type="number" name="price" id="price" value="{$price}" min="0" max="999999" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_point">
+        <div class="text">
+          <label>合約點數<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="number" name="point" id="point" value="{$point}" min="0" max="999999" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_gift">
+        <div class="text">
+          <label>贈點<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="number" name="gift" id="gift" value="{$gift}" min="0" max="999999" />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_begin">
+        <div class="text">
+          <label>銷售起始日<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$begin}" name="begin" id="begin" class="form-control date" picker="date" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_end">
+        <div class="text">
+          <label>銷售結束日<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$end}" name="end" id="end" class="form-control date" picker="date" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_status">
+        <div class="text">
+          <label>狀態<sup>*</sup>:</label>
+          <div class="col-md-6">
+              {$status_select}
+          </div>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<!-- end left column -->
+{include="footer"}

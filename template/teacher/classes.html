@@ -1,0 +1,90 @@
+{include="header"}
+  <div class="class">
+	{include="profile"}
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>My Curriculum - Classes</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/newclass">New Classes</a></li>
+        <li><a href="/teacher/classes" class="active">Classes</a></li>
+        <li> <a href="/teacher/demo">DEMO</a></li>
+      </ul>
+    </nav>
+    <div class="class-note class-note-teacher">
+      <p> <span>Note</span>All times listed are Taipei time.</p>
+    </div>
+    <nav class="sub-nav sub-nav-teacher row">
+      <h2>Type</h2>
+      <div class="sub-nav-button">
+	  {loop="registration_type"}		
+		<a href="/teacher/classes?regtype={$key}" class="button round {if="$regtype==$key"}active{/if}">{$value}</a>
+	  {/loop}
+	  </div>
+	  <form class="fill">
+		<input type="hidden" value="0" name="type">
+      <div class="search-filter search-filter-teacher"><span class="date"><b>Date</b>
+          <input type="text" id="datepicker1" placeholder="Start" name="sdate" value="{$sdate}"><b>~</b>
+          <input type="text" id="datepicker2" placeholder="End" name="edate" value="{$edate}"></span>
+		  <span class="status form-class"><b>Status</b>
+          <input type="text" placeholder="All" value="" disabled="" class='type'>
+          <ul class="form-class-select">
+            <li><a data-class="All" data-value='0'>All</a></li>
+            <li><a data-class="Up Comning Classes" data-value='1'>Up Comning Classes</a></li>
+            <li><a data-class="Incomplete Report" data-value='2'>Incomplete Report</a></li>
+          </ul></span>
+        <div class="search-filter-button"><a class="button submit">SEND</a><a class="button reset">Reset</a></div>
+      </div>
+	  </form>
+    </nav>
+    <div class="class-list row">
+	
+	{loop="$data"}
+	
+      <div class="columns small-12 medium-6 large-12" id="{$value['id']}">
+        <div class="class-card">
+          <div class="class-card-date class-card-date-teacher"><span>{$value['date']['date']}<span class="week">{$value['date']['week']}</span></span><span class="time"><span>{$value['date']['start_time']}</span><span class="tilde">~</span><span>{$value['date']['end_time']}</span></span></div>
+          <div class="class-card-content">
+            <div class="class-card-label class-card-label-teacher">
+				<span>{$value['type']}</span>
+				<span>Level {$value['level']}</span>
+			</div>
+			{if="$value['overdue']"}<span class="class-card-tag class-card-tag-teacher">About to Start</span>{/if}
+            <h2>{if="$value['title']"}{$value['title']}{/if}</h2>
+            <div class="class-member class-member-teacher">
+              <p> <b>Students</b>
+			  {loop="$value['students']"}<a class="name">{$value['member_name']}<span class="tip">{$value['skill']}</span></a>{/loop}
+			  </p>
+            </div>
+          </div>
+          <div class="class-card-button class-card-button-teacher">
+			{if="$value['webex']"}
+				<a href="/webex/teacher?classroom={$value['id']}" class="button medium submit">Entering</a>
+			{else}
+				<a class="button medium close disable">Entering</a>
+			{/if}
+			{if="$value['material_file']"}
+				<a  href="{$value['material_file']}" target='_blank'  class="button medium submit">Preview PDF</a>
+			{else}
+				<a class="button medium submit disable">Preview PDF</a>
+			{/if}
+			{if="$value['ucf_file']"}
+				<a href="{$value['ucf_file']}" target='_blank' class="button medium submit">Download</a>
+			{else}
+				<a class="button medium submit disable">Download</a>
+			{/if}
+			{if="$value['report']>0"}
+				<a href="/teacher/report_class?classroom={$value['id']}" class="button medium submit">{if="$value['report']==2"}View Report{else}Report{/if}</a>
+			{else}
+				<a class="button medium close disable">Report</a>
+			{/if}
+		  </div>
+        </div>
+      </div>
+      
+    {/loop}
+    {$paginate}
+	
+    </div>
+  </div>
+  
+{include="footer"}
+<script src="js/teacher.classes.js"></script>

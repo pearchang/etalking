@@ -1,0 +1,91 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<input type="hidden" name="id" value="{$id}">
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+  <tr><td align="right" nowrap>教室編號:</td><td>{$sn}</td></tr>
+  <tr><td align="right">日期:</td><td>{$date} {$type}</td></tr>
+  <tr><td align="right">時段:</td><td>{$time_text}</td></tr>
+  <tr><td align="right">類型:</td><td>{$type_text}</td></tr>
+  <!-- <tr><td align="right">等級:</td><td>{$level_text}</td></tr> -->
+  <tr><td align="right">顧問:</td><td>{$consultant}
+    <button type="button" class="btn-glow" style="line-height: 1;" onclick="popup();">{if="$consultant_id"}變更{else}指定{/if}顧問</button>
+  </td></tr>
+  <tr><td align="right" valign="top">教材:</td><td>{$material}<br>{$material2}
+    {if="$type==50"}
+    <button type="button" class="btn-glow" style="line-height: 1;" onclick="popup2();">{if="$material_id"}變更{else}指定{/if}教材</button>
+    {/if}
+  </td></tr>
+  <tr><td align="right" valign="top">學員:</td><td>
+    {if="$persons"}
+      {loop="$persons"}
+      <div style="padding-top:5px;" title="{$value.note|nl2br}">
+        {if="$type==30"}<input type="checkbox" name="member_reg[]" value="{$value.cid}">{/if}{$value.member_name} ({$value.first_name} {$value.last_name})
+        </div>
+        <div style="margin-left: 14px;">
+        {loop="$value.interest"}
+        <span class='label label-blue' style="line-height: 2;">{$value.title}</span>&nbsp;
+        {/loop}
+        {loop="$value.skill"}
+        <span class='label label-green'>{$value.title}</span>&nbsp;
+        {/loop}</div>
+      {/loop}
+    {else}
+      <br><br><br>
+    {/if}
+  </td></tr>
+  <tr><td colspan="2" align="right">
+    {if="$can_enter"}
+    <input type="button" class="btn-glow" value="進入教室" onClick="enter();">&nbsp;&nbsp;&nbsp;
+    {else}
+    <input type="button" class="btn-glow inverse" value="進入教室">&nbsp;&nbsp;&nbsp;
+    {/if}
+    <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+  </td></tr>
+</table>
+{include="footer_foot"}
+<script language="javascript">
+var level_id = '{$level_id}';
+var use_url = '{$use_url}';
+
+function enter()
+{
+  top.location.href = '/admin/elective_mgr/enter?id={$id}&ref={$ref}';
+}
+
+
+function popup()
+{
+  var confirmed = '{$confirmed}';
+
+  if (confirmed > 0 && !confirm('此顧問已確認上課，確定要改變顧問嗎?'))
+    return;
+
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/elective_mgr/consultant?id={$id}',
+    title : '{if="$consultant_id"}變更{else}指定{/if}顧問',
+  });
+}
+
+function popup2()
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/elective_mgr/material?id={$id}',
+    title : '{if="$material_id"}變更{else}指定{/if}教材',
+  });
+}
+
+$(function () {
+  $( document ).tooltip({
+    track: true,
+    content: function() {
+      return $(this).attr('title');
+    }
+  });
+});
+</script>

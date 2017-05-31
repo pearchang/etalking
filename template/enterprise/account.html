@@ -1,0 +1,156 @@
+{include="header"}
+<form class="fill">
+<div class="class section">
+	{include="profile"}
+	
+    <div class="row enterprise_account_section">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12 medium-6">
+            <h4 class="enterprise_color"><b>帳戶資料</b></h4>
+            </div>
+            <div class="columns small-12 medium-6 small-text-left medium-text-right">
+            <small><span class="enterprise_color">＊</span>欄位資料如欲修改請聯繫客服人員</small>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="enterprise_color">＊</span>企業名稱</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['ent_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="enterprise_color">＊</span>地址</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['address']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="enterprise_color">＊</span>公司電話</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['tel']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="enterprise_color">＊</span>帳號(統編)</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['biz_no']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline ">更改密碼</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="password" class="radius" placeholder="請輸入6~20英數字區分大小寫" name="passwd" value="">
+                  <input type="password" class="radius" placeholder="再次輸入新密碼" name="passwd2"  value="">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12">
+            <h4 class="enterprise_color"><b>管理者資料</b></h4>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">姓名</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['adm_name']}" name="adm_name">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">E-mail</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['adm_email']}" name="adm_email">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">電話</label>
+                </div>
+                <div class="small-12 medium-4 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['adm_tel']}" name="adm_tel" >
+                </div>
+                <div class="small-12 medium-2 columns small-text-left medium-text-right">
+                  <label class="inline">分機</label>
+                </div>
+                <div class="small-12 medium-2 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['adm_tel_ext']}" name="adm_tel_ext">
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div>  
+
+
+    <div class="row ">
+      <div class="columns small-12 large-10 large-centered">
+        <div class="row btn-box">
+          <div class="small-12 medium-6 large-4 columns medium-centered">
+            <a href="javascript:;" class="button enterprise expand round submit">儲存送出</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+  </form>
+{include="footer"}
+
+<link rel="stylesheet" href="css/page.css">
+<script src="js/enterprise.account.js"></script>

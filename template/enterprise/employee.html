@@ -1,0 +1,83 @@
+{include="header"}
+
+  <div class="class">
+	{include="profile"}
+   
+    <nav class="nav-groups nav-groups-enterprise">
+      <ul>
+        <li> <a href="/enterprise/employee" class="active">員工列表</a></li>
+        <li> <a href="/enterprise/classes">歷史課程</a></li>
+      </ul>
+    </nav>
+      <!-- search -->
+    <form class="search">
+    <div class="row search-bar ">
+      <div class="large-6 small-12 large-centered columns">
+       <div class="large-2 small-4 columns"><p class="search-text">搜尋</p></div>
+       <div class="large-10 small-8 columns  end">
+          <div class="row collapse postfix-radius">
+            <div class="small-10 columns">
+              <input type="text" placeholder="" name="keyword">
+            </div>
+            <div class="small-2 columns">
+              <a class="button postfix radius search_btn"><i class="material-icons">&#xE8B6;</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+    <!-- search -->
+    <div class="account-table account-table-enterprise enterprise row">
+      <table>
+        <thead>
+          <td> <b>姓名</b></td>
+          <td> <b>帳號</b></td>
+          <td> <b>點數餘額</b></td>
+          <td><b>到期日</b></td>
+          <td><b>上課歷程</b></td>
+        </thead>
+		
+		{loop="$data"}
+        <tr>
+          <td data-title="姓名">
+		  {if="!empty($value['first_name'])"}
+			{$value['first_name']} {$value['last_name']}
+		{else}
+			{$value['member_name']}
+		{/if}
+		  </td>
+          <td data-title="帳號">{$value['account']}</td>
+          <td data-title="點數餘額"><span class="minus">{$value['point']} 點</span></td>
+          <td data-title="到期日">{$value['expire']}</td>
+          <td data-title="上課歷程" class="column-button column-button-enterprise"><a href="/enterprise/employee_view/{$value['id']}" class="button check">查看</a></td>
+        </tr>
+		{/loop}
+		
+      </table>
+	  
+	  {$paginate}
+      
+    </div>
+  </div>
+  
+ {include="footer"}
+ 
+ <script>
+	
+	$('.search_btn').click(function(){
+		$('.search').submit();
+	});
+	
+	$('.search').submit(function(){
+		
+		var kw = $('[name=keyword]').val();
+		if(kw == '')
+			dialog("請輸入關鍵字");
+		else
+			document.location = '/enterprise/employee?keyword=' + kw;
+		return false;
+	});
+	
+	
+ </script>

@@ -1,0 +1,86 @@
+<div class="col-md-12 column">
+  <div class="col-md-12 column">
+    {if="$enterprise_name"}
+    <div class="field-box" id="div_enterprise" style="margin-bottom: 0 !important;">
+      <div class="text">
+        <label>所屬企業:</label>
+        <div class="col-md-9">
+          <input class="form-control inline-input" type="text" value="{$enterprise_name}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  {/if}
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_account" style="margin-bottom: 0 !important;">
+      <div class="text">
+        <label>帳號(證件號碼):</label>
+        <div class="col-md-6">
+          <input class="form-control inline-input" type="text" value="{$account}" readonly />
+        </div>
+      </div>
+    </div>
+    <div class="field-box" id="div_birthdate">
+      <div class="text">
+        <label>生日:</label>
+        <div class="col-md-6">
+          <input type="text" value="{$birthdate}" class="form-control  inline-input" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_member_name" style="margin-bottom: 0 !important;">
+      <div class="text">
+        <label>中文姓名:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$member_name}" readonly />
+        </div>
+      </div>
+    </div>
+    <div class="field-box" id="div_gender">
+      <div class="text">
+        <label>性別:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$gender_text}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 column">
+    <div class="field-box" id="div_eng_name" style="margin-bottom: 0 !important;">
+      <div class="text">
+        <label>英文姓名:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$first_name} {$last_name}" readonly />
+        </div>
+      </div>
+    </div>
+    <div class="field-box" id="div_point">
+      <div class="text">
+        <label>點數:</label>
+        <div class="col-md-6">
+          <input class="form-control  inline-input" type="text" value="{$point}" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 column">
+  <ul class="nav nav-tabs">
+    <li class="" id="mm_member"><a href="/admin/member/edit?id={$member_id}&eid={$enterprise_id}">基本資料</a></li>
+    <li class="" id="mm_member_contractdata"><a href="/admin/member_contractdata?mid={$member_id}&eid={$enterprise_id}">合約資料</a></li>
+    <li class="" id="mm_member_history"><a href="/admin/member_history?mid={$member_id}&eid={$enterprise_id}">歷史紀錄</a></li>
+    <li class="" id="mm_member_class"><a href="/admin/member_class?mid={$member_id}&eid={$enterprise_id}">上課紀錄</a></li>
+    <li class="" id="mm_member_point"><a href="/admin/member_point?mid={$member_id}&eid={$enterprise_id}">點數明細</a></li>
+    <li class="" id="mm_member_test"><a href="/admin/member_test?mid={$member_id}&eid={$enterprise_id}">電腦測試紀錄</a></li>
+    {if="$admin_teaching"}
+    <li class="" id="mm_member_bl_member"><a href="/admin/member_bl_member?mid={$member_id}&eid={$enterprise_id}">學員黑名單</a></li>
+    <li class="" id="mm_member_bl_consultant"><a href="/admin/member_bl_consultant?mid={$member_id}&eid={$enterprise_id}">顧問黑名單</a></li>
+    {/if}
+    {if="$enterprise_id"}
+    <li class="" id="mm_member_enterprise"><a href="/admin/enterprise" style="color:green;">返回企業帳號列表</a></li>
+    {/if}
+  </ul>
+</div>
+<br>

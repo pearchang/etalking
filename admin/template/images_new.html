@@ -1,0 +1,21 @@
+{loop="$list"}
+<div class="field-box" id="div_image{$value.i}"{if="$value.desc"} style="margin-bottom:0"{/if}>
+  <div class="text">
+    <label>{$value.title}{if="$value.required"}<sup>*</sup>{/if}:</label>
+    <div class="col-md-6">
+      <input type="file" name="image{$value.i}" id="image{$value.i}"{if="$value.required"} required{/if} {if="$value.accept"}accept="{$value.accept}"{/if}>
+      <br/>尺寸: {$value.width} x {$value.height}
+    </div>
+  </div>
+</div>
+{if="$value.desc"}
+<div class="field-box" id="div_text{$value.i}">
+  <div class="text">
+    <label>{$value.title}(描述){if="$value.required"}<sup>*</sup>{/if}:</label>
+    <div class="col-md-2">
+      <input class="form-control" type="text" name="image_text{$value.i}" id="image_text{$value.i}"{if="$value.required"} required{/if}>
+    </div>
+  </div>
+</div>
+{/if}
+{/loop}

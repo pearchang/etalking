@@ -1,0 +1,127 @@
+{include="header"}
+  <div class="table-wrapper section">
+    {include="table_header"}
+				<div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th class="col-number">#</th>
+                      <th class="col-md" align="center">合約編號</th>
+                      <th class="col-md" align="left">姓名</th>
+                      <th class="col-md" align="left">電話</th>
+                      <th class="col-md" align="left">Email</th>
+                      <th class="col-md" align="left">合約名稱</th>
+                      <th class="col-md" align="left">方案名稱</th>
+                      <th class="col-md" align="left">原方案內容</th>
+                      <th class="col-md" align="center">合約起訖</th>
+                      <th class="col-md" align="right">合約期限(月)</th>
+                      <th class="col-md" align="right">售價</th>
+                      <th class="col-md" align="right">合約點數</th>
+                      <th class="col-md" align="right">贈點</th>
+                      <th class="col-md-2">功能</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {if="isset($nodata)"}
+                      <tr>
+                        <td colspan="14" align="center" class="nodata">沒有資料</td>
+                      </tr>
+                    {else}
+                      {loop="$list"}
+                      <tr>
+                        <td align="right">{$value.i}</td>
+                        <td align="center">{$value.sn}</td>
+                        <td>{$value.member_name}</td>
+                        <td>{$value.mobile}</td>
+                        <td>{$value.email}</td>
+                        <td>{$value.contract_name}</td>
+                        <td>{$value.plan_name}</td>
+                        <td>${$value.oprice} / {$value.opoint}點 贈{$value.ogift}點</td>
+                        <td align="center">{$value.begin} ~ {$value.end}</td>
+                        <td align="right">{$value.period}</td>
+                        <td align="right"><a href="javascript:" onclick="popup({$value.id}, '{$value.sn}')">{$value.price}</a></td>
+                        <td align="right">{$value.point}</td>
+                        <td align="right">{$value.gift}</td>
+                        <td><div style="text-align:center;">
+                          <button class="btn-flat white" onClick="approve({$value.id});"><i class="icon-edit"></i>核可</button>
+                          <button class="btn-flat white" onClick="deny({$value.id});"><i class="icon-delete"></i>退回</button>
+                        </div></td>
+                      </tr>
+                      {/loop}
+                    {/if}
+                    </tbody>
+                  </table>
+                  {$page_control}
+              </div>
+                <!-- end left column -->
+
+                <!-- right column -->
+                <div class="col-md-4 column">
+                </div>
+                <!-- end right column -->
+            </div>
+          </div>
+<script language="javascript">
+function approve(id)
+{
+  if (!confirm('確定審核通過?'))
+      return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/check/update',
+    data: {
+      id: id,
+      status: 20
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+        window.location.href = window.location.href;
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+function deny(id)
+{
+  var memo = prompt("請輸入退回原因:");
+  if (memo == null || memo == "")
+      return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/check/update',
+    data: {
+      id: id,
+      status: 30,
+      note: '退回原因: ' + memo
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+          window.location.href = window.location.href;
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+}
+
+function popup(id, title)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/member_contractdata/bill?readonly=true&id=' + id,
+    title : title,
+  });
+}
+
+</script>
+{include="footer"}

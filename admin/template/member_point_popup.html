@@ -1,0 +1,111 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<form name="frm" id="frm" method="post" action="/admin/member_point/point">
+<input type="hidden" name="id" value="{$id}">
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+  <tr><td align="right" width="5%" nowrap>請選擇增減點數:</td><td>
+    <select name="point" id="point">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="-1">-1</option>
+      <option value="-2">-2</option>
+      <option value="-3">-3</option>
+      <option value="-4">-4</option>
+      <option value="-5">-5</option>
+      <option value="-6">-6</option>
+      <option value="-7">-7</option>
+      <option value="-8">-8</option>
+      <option value="-9">-9</option>
+      <option value="-10">-10</option>
+      <option value="-11">-11</option>
+      <option value="-12">-12</option>
+      <option value="-13">-13</option>
+      <option value="-14">-14</option>
+      <option value="-15">-15</option>
+      <option value="-16">-16</option>
+      <option value="-17">-17</option>
+      <option value="-18">-18</option>
+      <option value="-19">-19</option>
+      <option value="-20">-20</option>
+      <option value="-21">-21</option>
+      <option value="-22">-22</option>
+      <option value="-23">-23</option>
+      <option value="-24">-24</option>
+      <option value="-25">-25</option>
+      <option value="-26">-26</option>
+      <option value="-27">-27</option>
+      <option value="-28">-28</option>
+      <option value="-29">-29</option>
+      <option value="-30">-30</option>
+    </select>
+  </td></tr>
+  <tr><td align="right">請輸入異動原因:</td><td><textarea name="content" id="content" style="width:100%"></textarea></td></tr>
+  <tr><td colspan="2">&nbsp;&nbsp;&nbsp;<input type="button" class="btn-glow primary" value="確認送出" onclick="send();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+  </td></tr>
+</table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+function send()
+{
+  if ($('#content').val() == "")
+  {
+    alert ('請輸入贈點原因');
+    return false;
+  }
+  $.ajax({
+    url: '/admin/member_point/point',
+    data: {
+      mid: {$member_id},
+      point: $('#point').val(),
+      content: $('#content').val()
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+      {
+        alert ('異動完成');
+        parent.location.href = parent.location.href;
+      }
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+</script>

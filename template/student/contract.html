@@ -1,0 +1,83 @@
+{include="header"}
+<link rel="stylesheet" href="css/style_page.css">
+
+  <div class="class">
+  
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/student">學員專區</a><span>我的帳戶-合約資料</span></div>
+    <nav class="nav-groups nav-groups-student">
+      <ul>
+        <li><a href="/student/account">帳戶設定</a></li>
+        <li><a href="/student/points">點數明細</a></li>
+        <li><a href="/student/contract" class="active">合約資料</a></li>
+        <li><a href="/student/rule">學員公約暨上課須知</a></li>
+      </ul>
+    </nav>
+	<div class="class-note class-note-student">
+      <p> <span>合約須知</span>請點擊"詳細"前往進行簽約及付款流程，如完成簽約需再於三個工作天內完成付款。</p>
+    </div>
+	<form class="fill">
+	<input type="hidden" value="0" name="type">
+    <div class="search-filter search-filter-student">
+		<span class="date"><b>日期</b>
+        <input type="text" id="datepicker1" placeholder="Start" name="sdate" value="{$sdate}"><b>~</b>
+        <input type="text" id="datepicker2" placeholder="End" name="edate" value="{$edate}"></span>
+		<span class="status form-class"><b>項目</b>
+        <input type="text" placeholder="All" value="" disabled="" class='type'>
+        <ul class="form-class-select">
+		{loop="$type"}
+          <li><a data-class="{$value}"  data-value='{$key}'>{$value}</a></li>
+		{/loop}
+        </ul>
+		</span>
+      <div class="search-filter-button"><a class="button submit">SEND</a><a class="button reset">Reset</a></div>
+    </div>
+	</form>
+    <div class="account-table account-table-student row">
+      <table>
+        <thead>
+          <td>成立日期</td>
+          <td>狀態</td>
+          <td>方案名稱</td>
+		  <td>原價</td>
+          <td>合約總額</td>
+          <td>已付總額</td>
+          <td>簽約日期</td>
+          <td>付清日期</td>
+          <td>開通日期</td>
+          <td>到期日期</td>
+          <td> </td>
+        </thead>
+		{loop="$data"}
+        <tr>
+          <td data-title="成立日期">{function="date('Y/m/d',strtotime($value['cdate']))"} <span>{function="date('H:i',strtotime($value['cdate']))"}</span></td>
+          <td data-title="狀態">
+            {if="$value['signed']!=10"}<span class="class-account-tag class-account-tag-student">未簽約</span>{else}
+			<span class="class-account-tag class-account-checked-tag-student">已簽約</span>{/if}
+            {if="$value['paid_time']=='0000-00-00 00:00:00'"}<span class="class-account-tag class-account-tag-student">未付清</span>{else}
+			<span class="class-account-tag class-account-checked-tag-student">已付清</span>{/if}
+          </td>
+		  <td data-title="合約名稱">{$value['contract_name']}<span></span></td>
+		  <td data-title="原價" class="column-price column-price-student">{if="$value['plan_price']>0"}NT$<span class="price">{function="number_format($value['plan_price'])"}</span>元{/if}</td>
+          <td data-title="合約總額" class="column-price column-price-student">{if="$value['price']>0"}NT$<span class="price">{function="number_format($value['price'])"}</span>元{/if}</td>
+          <td data-title="已付總額" class="column-price column-price-student">{if="$value['pay']>0"}NT$ <span class="price">{function="number_format($value['pay'])"}</span>元{/if}</td>
+          <td data-title="簽約日期">{if="$value['sign_time']!='0000-00-00 00:00:00'"}{function="date('Y/m/d',strtotime($value['sign_time']))"} <span>{function="date('H:i',strtotime($value['sign_time']))"}</span>{/if}</td>
+          <td data-title="付清日期">{if="$value['paid_time']!='0000-00-00 00:00:00'"}{function="date('Y/m/d',strtotime($value['paid_time']))"} <span>{function="date('H:i',strtotime($value['paid_time']))"}</span>{/if}</td>
+          <td data-title="開通日期">{if="$value['open_time']!='0000-00-00 00:00:00'"}{function="date('Y/m/d',strtotime($value['open_time']))"} <span>{function="date('H:i',strtotime($value['open_time']))"}</span>{/if}</td>
+          <td data-title="到期日期" class="column-date">{if="$value['end']!='0000-00-00' && $value['open_time']!='0000-00-00 00:00:00'"}{function="date('Y/m/d',strtotime($value['end']))"}{/if}</td>
+          <td class="column-button column-button-student">
+			{if="$value['signed']!=10"}<a href="/student/contract_signing?id={$value['id']}" class="button">前往簽約</a>{/if}
+			{if="$value['signed']==10"}<a class="button check" href="/student/contract_history?id={$value['id']}">合約內容</a>{/if}
+			{if="$value['paid_time']!='0000-00-00 00:00:00'"}<a href="/student/contract_pay/{$value['id']}?type=view" class="button check">付款明細</a>{/if}
+			{if="$value['paid_time']=='0000-00-00 00:00:00'"}<a href="/student/contract_pay/{$value['id']}" class="button open">前往付款</a>{else}<a class="button close">前往付款</a>{/if}
+		  </td>
+        </tr>
+       {/loop}
+      </table>
+      {$paginate}
+    </div>
+  </div>
+  
+{include="footer"}
+<script src="js/student.contract.js"></script>

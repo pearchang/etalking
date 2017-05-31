@@ -1,0 +1,41 @@
+{include="header"}
+<span style="color:red; font-size:14px;font-weight: bold;">紅: 教室數</span>&nbsp;&nbsp;&nbsp;
+<span style="color:blue; font-size:14px;font-weight: bold;">藍: 預約人數</span><br><br>
+<div class="table-wrapper section">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr><td width="8%">&nbsp;</td><td>
+{if="$w==-1"}<<前兩周{else}<a href="/admin/elective_mgr?w={$w1}"><<前兩周</a>{/if}
+      <br><br>
+    </td><td align="right">
+      {if="$w==1"}後兩周>>{else}<a href="/admin/elective_mgr?w={$w2}">後兩周>></a>{/if}
+    </td></tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td align="center" width="8%">
+        <table width="100%" cellspacing=""><tr><td height="40">&nbsp;</td></tr></table>
+        <table width="100%">
+          {loop="$hour_list"}
+          <tr><td height="60" align="center">{$value1.hour}:00<br> ~ <br>{$value1.hour}:45</td></tr>
+          {/loop}
+        </table>
+      </td>
+
+      {loop="$date_list"}
+      <td align="center">
+        <table width="100%"><tr><td height="40" align="center" nowrap="">{$value.date}<br>{$value.name}</td></tr></table>
+        <table width="100%">
+          {loop="$value.hour_list"}
+          <tr><td height="60" style="border: 1px solid #CCCCCC; cursor: pointer;" align="center" onclick="go('elective_mgr/manage?date={$value.date}&time={$value.hour}')">
+            <span class="{if="$value.classroom==0"}r1{else}r0{/if}">{$value.classroom}</span><br>
+            <span class="{if="$value.persons==0"}p1{else}p0{/if}">{$value.persons}</span><br>
+          </td></tr>
+          {/loop}
+        </table>
+      </td>
+      {/loop}
+    </tr>
+  </table>
+
+</div>
+{include="footer"}

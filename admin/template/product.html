@@ -1,0 +1,43 @@
+{include="header"}
+<div class="table-wrapper section">
+  {include="table_header"}
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th class="col-number">#</th>
+          <th class="col-md-2">圖片</th>
+          <th align="left" class="col-md">名稱</th>
+          <th class="col-md-1">Spot Product</th>
+          <th class="col-md-1">狀態</th>
+          <th class="col-md-2">功能</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if="isset($nodata)"}
+        <tr>
+          <td colspan="6" align="center" class="nodata">沒有資料</td>
+        </tr>
+        {else}
+        {loop="$list"}
+        <tr>
+          <td align="right">{$value.i}</td>
+          <td align="center">{$value.thumb|ShowPicture:80}</td>
+          <td>{$value.prod_name}</td>
+          <td align="center"><span style="color:{$value.spot_text_color}">{$value.spot_text}</span></td>
+          <td align="center"><span style="color:{$value.status_text_color}">{$value.status_text}</span></td>
+          <td><div style="text-align:center;"><button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button>             <button class="btn-flat white" onClick="_delete({$value.id});"><i class="icon-remove"></i>刪除</button>
+          </div></td>
+        </tr>
+        {/loop}
+        {/if}
+        </tbody>
+      </table>
+      {$page_control}
+    </div>
+    <!-- end left column -->
+  </div>
+</div>
+{include="footer"}

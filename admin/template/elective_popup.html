@@ -1,0 +1,41 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+  <table cellpadding="3" cellspacing="0" border="0" width="100%">
+    <tr><td align="right" nowrap>課程名稱:</td><td>{$course_name}</td></tr>
+    <tr><td align="right">上課時間:</td><td>{$date}</td></tr>
+    <tr><td align="right" valign="top">教材:</td><td>{$material}<br>{$material2}
+    </td></tr>
+    <tr><td align="right" valign="top">學員:</td><td>
+      {loop="$persons"}
+      <div style="padding-top:5px;" title="{$value.note|nl2br}">
+        {$value.member_name} ({$value.first_name} {$value.last_name})
+      </div>
+      <div style="margin-left: 14px;">
+        {loop="$value.interest"}
+        <span class='label label-blue' style="line-height: 2;">{$value.title}</span>&nbsp;
+        {/loop}
+        {loop="$value.skill"}
+        <span class='label label-green'>{$value.title}</span>&nbsp;
+        {/loop}</div>
+      {/loop}
+    </td></tr>
+    <tr><td colspan="2" align="right">
+      <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+    </td></tr>
+  </table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+  $(function () {
+    $( document ).tooltip({
+      track: true,
+      content: function() {
+        return $(this).attr('title');
+      }
+    });
+  });
+</script>

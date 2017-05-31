@@ -1,0 +1,273 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="member_brief"}
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data" onsubmit="return checkForm();">
+      <input type="hidden" name="member_id" value="{$member_id}">
+      <input type="hidden" name="status" value="10">
+      <div class="field-box" id="div_contract_id">
+        <div class="text">
+          <label>合約版本<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$contract_id_select}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_contract_name">
+        <div class="text">
+          <label>合約名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="contract_name" id="contract_name" value="" required />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_plan_id">
+          <label>合約方案<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <div class="ui-select"><select name='cat_id' id='cat_id' required onchange="cat_change();"><option></option>
+              {loop="$cat_list"}
+              <option value="{$value.id}">{$value.cat_name}</option>
+              {/loop}
+            </select>
+            </div>
+            <div class="ui-select"><select name='plan_id' id='plan_id' required onchange="plan_change();"><option></option>
+              </select>
+            </div>
+          </div>
+      </div>
+      <div class="field-box" id="div_plan_name">
+        <div class="text">
+          <label>方案名稱<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="plan_name" id="plan_name" value="{$plan_name}" readonly  />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_price">
+        <div class="text">
+          <label>銷售金額<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input class="form-control" type="number" name="price" id="price" value="{$price}" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_period">
+        <div class="text">
+          <label>合約期限(月)<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="period" id="period" value="{$period}" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_ct_point">
+        <div class="text">
+          <label>課程點數<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="point" id="point" value="{$point}"  readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_gift">
+        <div class="text">
+          <label>贈送點數<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input class="form-control" type="number" name="gift" id="gift" value="{$gift}" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_begin">
+        <div class="text">
+          <label>合約生效日<sup>*</sup>:</label>
+          <div class="col-md-2">
+            <input type="text" value="{$begin}" name="begin" id="begin" class="form-control date" picker="date" required {$readonly} />
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="field-box" id="div_paid_total">
+        <div class="text">
+          <label>已付金額:</label>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="paid_total" id="paid_total" value="{$paid_total}" />
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="field-box" id="div_memo">
+        <div class="text">
+          <label>合約備註:</label>
+          <div class="col-md-6">
+            {$editor_memo}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_note">
+        <div class="text">
+          <label>內部備註:</label>
+          <div class="col-md-6">
+            {$editor_note}
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_payment">
+        <div class="text">
+          <label>付款拆帳<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <button type="button" class="btn-flat white" onclick="add_bill()">新增帳單</button>
+            <div id="bill_area">
+            <table style="margin-top: 6px;">
+              <tr>
+                <td nowrap>付款方式:</td><td>{$payment_select}</td>
+                <td nowrap>分期數:</td><td>{$installment_select}</td>
+                <td nowrap>應付金額:</td><td><input type="number" name="total" class="form-control" size="6" value="0" pattern="[0-9]" min="0" max="999999"></td>
+              </tr>
+            </table>
+            </div>
+            總計: <span id="total">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+<div id="bill" style="display: none;">
+  <table>
+    <tr>
+      <td>付款方式:</td><td>{$payment_select}</td>
+      <td>分期數:</td><td>{$installment_select}</td>
+      <td>應付金額:</td><td><input type="number" name="total" class="form-control" size="6" value="0" pattern="[0-9]" min="0" max="999999"></td>
+      <td><button type="button" class="btn-flat white" onclick="delete_bill(this)">刪除</button></td>
+    </tr>
+  </table>
+</div>
+<!-- end left column -->
+<script language="javascript">
+function payment_change()
+{
+//  console.log(this);
+  var p = $(this).closest('table');
+  var v = p.find('select[name*=payment] option:selected').val();
+  p.find('select[name*=installment]').attr('disabled', v != 30);
+}
+
+function total_change()
+{
+  var total = 0;
+  var tt = $('#bill_area input[name*=total]');
+  for (var i = 0; i < tt.length; i++)
+  {
+    var e = $(tt.get(i));
+    var v = parseInt(e.val());
+    if (isNaN(v))
+      e.val('0');
+    else
+      total += v;
+  }
+  $('#total').html(total);
+}
+
+function add_bill()
+{
+  var html = $('#bill').html(); //.replace('payment', 'payment[]').replace('installment', 'installment[]').replace('', 'installment[]');
+//  $('#bill_area').html($('#bill_area').html().replace(/payment/g, 'payment[]'));
+//  $('#bill_area').html($('#bill_area').html().replace(/installment/g, 'installment[]'));
+//  $('#bill_area').html($('#bill_area').html().replace(/total/g, 'total[]'));
+
+  $('#bill_area').append(html.replace(/payment/g, 'payment[]').replace(/installment/g, 'installment[]').replace(/total/g, 'total[]'));
+  $('select[name*=payment]').unbind('change', payment_change);
+  $('select[name*=payment]').bind('change', payment_change).trigger('change');
+  $('input[name*=total]').unbind('change', total_change);
+  $('input[name*=total]').bind('change', total_change);
+}
+
+function delete_bill(e)
+{
+  e.closest('table').remove();
+  total_change();
+}
+
+function cat_change()
+{
+  $('#plan_id').html('');
+  var id = $('#cat_id option:selected').val();
+  if (!id)
+    return;
+  $.ajax({
+    type: 'post',
+    url: '/admin/tools/get_plan',
+    data: {
+      id : id
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (result.status)
+      {
+        $('#plan_id').html('<option value=0></option>' + result.data);
+        plan_change();
+      }
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function plan_change()
+{
+  var opt = $('#plan_id option:selected');
+  $('#plan_name').val(opt.attr('data-name'));
+  $('#price').val(opt.attr('data-price'));
+  $('#period').val(opt.attr('data-period'));
+  $('#point').val(opt.attr('data-point'));
+  $('#gift').val(opt.attr('data-gift'));
+}
+
+function checkForm()
+{
+  var v = $('#plan_id option:selected').val();
+  if (v == "" || v == 0)
+  {
+    alert('請選擇方案');
+    return false;
+  }
+
+  var error = false;
+  var total = 0;
+  var tt = $('#bill_area input[name*=total]');
+  for (var i = 0; i < tt.length; i++)
+  {
+    var e = $(tt.get(i));
+    var v = parseInt(e.val());
+    if (isNaN(v) || v == 0 || v != e.val())
+    {
+      e.val('0');
+      e.focus();
+      alert ('請輸入正確整數且大於零的金額');
+      error = true;
+      break;
+    }
+    total += v;
+  }
+  if (total != $('#price').val())
+  {
+    alert ('帳單金額與銷售金額不同');
+    return false;
+  }
+  if (error)
+    return false;
+  $('#bill_area :disabled').attr('disabled', false);
+}
+</script>
+{include="footer"}
+<script language="javascript">
+$(function () {
+  $('#bill_area').html($('#bill_area').html().replace(/payment/g, 'payment[]').replace(/installment/g, 'installment[]').replace(/total/g, 'total[]'));
+  $('#bill_area select[name*=payment]').bind('change', payment_change).trigger('change');
+  $('#bill_area input[name*=total]').bind('change', total_change);
+});
+</script>

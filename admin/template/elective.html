@@ -1,0 +1,73 @@
+{include="header"}
+<div class="table-wrapper section">
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="left">課程名稱</th>
+                    <th class="col-md" align="center">課程類型</th>
+                    <th class="col-md" align="left">教材名稱</th>
+                    <th class="col-md" align="left">顧問</th>
+                    <th class="col-md" align="center">開課日期</th>
+                    <th class="col-md" align="right">堂數</th>
+                    <th class="col-md" align="right">點數</th>
+                    <th class="col-md" align="right">報名人數</th>
+                    <th class="col-md-2">功能</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {if="isset($nodata)"}
+                    <tr>
+                      <td colspan="10" align="center" class="nodata">沒有資料</td>
+                    </tr>
+                  {else}
+                    {loop="$list"}
+                    <tr>
+                      <td align="right">{$value.i}</td>
+                      <td>{$value.course_name}</td>
+                      <td align="center">{$value.type_text}</td>
+                      <td>{$value.material_name}</td>
+                      <td>{$value.consultant_name}</td>
+                      <td align="center">{$value.begin_date}</td>
+                      <td align="right">{$value.cnt|number_format:0}</td>
+                      <td align="right">{$value.point}</td>
+                      <td align="right"><a href="javascript:popup({$value.id});">{$value.regs|number_format:0}</a></td>
+                      <td><div style="text-align:center;">
+                        {if="$value.can_edit"}
+                          <button class="btn-flat white" onClick="_edit({$value.id});"><i class="icon-edit"></i>編輯</button>
+                        {else}
+                          <button class="btn-flat gray"><i class="icon-edit"></i>編輯</button>
+                        {/if}
+                        {if="$value.can_delete"}
+                        <button class="btn-flat white" onClick="_delete({$value.id});" {if="!$value.can_edit"}disabled{/if}><i class="icon-remove"></i>刪除</button></div>
+                        {else}
+                        <button class="btn-flat gray"><i class="icon-remove"></i>刪除</button>
+                        {/if}
+                      </div></td>
+                    </tr>
+                    {/loop}
+                  {/if}
+                  </tbody>
+                </table>
+                {$page_control}
+              </div>
+              <!-- end left column -->
+          </div>
+        </div>
+<script language="javascript">
+
+function popup(id)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/elective/popup?id=' + id,
+    title : '',
+  });
+}
+
+</script>
+{include="footer"}

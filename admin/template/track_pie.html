@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['來源', '總計'],
+		  {loop="$source"}
+          ["{$value['item']}",{$value['total']}],
+          {/loop}
+        ]);
+
+        var options = {
+          title: '來源'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['渠道', '總計'],
+		  {loop="$track"}
+          ["{$value['item']}",{$value['total']}],
+          {/loop}
+        ]);
+
+        var options = {
+          title: '渠道'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+    </script>	
+	
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['年齡', '總計'],
+		  {loop="$age"}
+          ["{$value['item']}",{$value['total']}],
+          {/loop}
+        ]);
+
+        var options = {
+          title: '年齡'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+
+        chart.draw(data, options);
+      }
+    </script>
+	
+	    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['年齡', '總計'],
+		  {loop="$track_type"}
+          ["{$value['item']}",{$value['total']}],
+          {/loop}
+        ]);
+
+        var options = {
+          title: '追蹤狀態'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
+
+        chart.draw(data, options);
+      }
+    </script>
+	
+  </head>
+  <body>
+	<table width=300>
+		<tr>
+			<td width=50%>有效：{$effect[1]}%</td><td width=50%>無效：{$effect[2]}%</td>
+		</tr>
+		<tr>
+			<td>成交：{$deal[1]}%</td><td>未成交：{$deal[2]}%</td>
+		</tr>
+		<tr>
+			<td>男性：{$gender[1]}%</td><td>女性：{$gender[2]}%</td>
+		</tr>
+	</table>
+	<div style="width:100%">
+		<div id="piechart1" style="width: 600px; height: 250px; "></div>
+		<div id="piechart2" style="width: 600px; height: 250px; "></div>
+		<div id="piechart3" style="width: 600px; height: 250px; "></div>
+		<div id="piechart4" style="width: 600px; height: 250px; "></div>
+	</div>
+  </body>
+</html>

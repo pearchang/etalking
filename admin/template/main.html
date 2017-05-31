@@ -1,0 +1,25 @@
+{include="header"}
+<h4>近24小時內教室狀況一覽</h4><br>
+{if="$classroom_list"}
+<table border=1 cellspacing=0 cellpadding=2>
+  <tr><th>教室</th><th>上課時間</th><th>教室類型</th><th>WEBEX</th><th>開教室</th><th>顧問</th><th>教材</th></tr>
+{loop="$classroom_list"}
+<tr>
+  <td align="center">{$value.sn}</td>
+  <td align="center">{$value.open_time|substr:0,16}</td>
+  <td align="center">{$value.type}</td>
+  {if="$value.error"}
+  <td align="center">{if="$value.webex"}沒有WEBEX教室{/if}</td>
+  <td align="center">{if="$value.meeting"}開教室失敗{/if}</td>
+  <td align="center">{if="$value.consultant"}沒有顧問{/if}</td>
+  <td align="center">{if="$value.material"}沒有教材{/if}</td>
+  {else}
+  <td align="center" colspan="4">一切安好</td>
+  {/if}
+</tr>
+{/loop}
+</table>
+{else}
+目前沒有開課
+{/if}
+{include="footer"}

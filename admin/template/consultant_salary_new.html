@@ -1,0 +1,51 @@
+{include="header"}
+<div class="row form-wrapper">
+  {include="consultant_brief"}
+  <!-- left column -->
+  <div class="col-md-12 column">
+    <form name="frm" method="post" action="{$ADD_URL}" enctype="multipart/form-data" onsubmit="return checkForm();">
+      <div class="field-box" id="div_salary">
+        <div class="field-box" id="div_date">
+          <div class="text">
+            <label>日期<sup>*</sup>:</label>
+            <div class="col-md-2">
+              <input type="text" value="{$date}" name="date" id="date" class="form-control date" picker="date" required />
+            </div>
+          </div>
+        </div>
+        <div class="text">
+          <label>薪資調整<sup>*</sup>:</label>
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="salary" id="salary" value="0" required />
+            <span>正值為加薪，負值為減薪</span>
+          </div>
+        </div>
+      </div>
+      <div class="field-box" id="div_memo">
+        <div class="text">
+          <label>調整原因<sup>*</sup>:</label>
+          <div class="col-md-6">
+            {$editor_memo}
+          </div>
+        </div>
+      </div>
+      <div class="submit-box">
+        <input type="submit" class="btn-glow primary" value="確認送出">&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="btn-glow" value="取 消" onClick="history.go(-1);">
+      </div>
+    </form>
+  </div>
+</div>
+{include="footer"}
+<script language="javascript">
+function checkForm()
+{
+  var v = parseInt($('#salary').val())
+  if (isNaN(v) || v == 0)
+  {
+    $('#salary').focus();
+    alert ('請輸入正確的值');
+    return false;
+  }
+}
+</script>

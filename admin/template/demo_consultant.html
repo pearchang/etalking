@@ -1,0 +1,77 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+教室編號: {$sn}<br>
+日期: {$date}<br>
+時段: {$time_text}<br>
+姓名: {$member_name} / {$first_name} {$last_name}<br>
+電話: {$mobile}<br>
+Email: {$email}<br>
+顧問類型: {$prefer_text}<br>
+所屬業務: {$sales_name} / {$sales_first_name} {$sales_last_name}<br>
+分機: {$in_tel}<br>
+<br>
+指定顧問: <div class="col-md-3">
+<!--  <input id="consultant" class="form-control" size="32"><input type="hidden" name="consultant_id" id="consultant_id"> -->
+<select name="consultant_id" id="consultant_id">
+  {loop="$consultant_list"}
+  <option value="{$value.id}">{$value.first_name} {$value.last_name} ({$value.chi_name})</option>
+  {/loop}
+</select>
+</div><br><br><br>
+<input type="button" class="btn-glow primary" value="確認送出" onclick="dosubmit();">&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" class="btn-glow" value="取 消" onClick="parent.$.fancybox.close();"><br><br>
+{include="footer_foot"}
+<script language="javascript">
+$("#consultant_id").select2({width:'400px'});
+$( "#consultant" ).autocomplete({
+  source: function( request, response ) {
+    $.ajax({
+      url: "/admin/demo/autocomplete",
+      dataType: "json",
+      data: {
+        term: request.term,
+        date: '{$date}',
+        time: '{$time}'
+      },
+      success: function( data ) {
+        response( data );
+      }
+    });
+  },
+  minLength: 2,
+  select: function( event, ui ) {
+    $('#consultant_id').val(ui.item.id);
+  }
+});
+
+function dosubmit()
+{
+  if ($('#consultant_id').val() == "" || $('#consultant_id').val() == "0")
+  {
+    alert ('請選擇顧問');
+    return;
+  }
+  $.ajax({
+    url: '/admin/demo/assign',
+    data: {
+      id: {$id},
+      consultant_id: $('#consultant_id').val()
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+        parent.location.href = parent.location.href;
+    },
+    error: function () {
+      alert('設定失敗');
+    }
+  });
+
+}
+</script>

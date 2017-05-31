@@ -1,0 +1,87 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<form name="frm" id="frm" method="post" action="/admin/consultant_salary/update">
+<input type="hidden" name="id" value="{$id}">
+<table cellpadding="3" cellspacing="0" border="0" width="200">
+  <tr><td align="right" width="5%" nowrap>小時:</td><td>
+    <select name="hour" id="hour" onchange="change();">
+      <option value="1.0">1.0</option>
+      <option value="0.9">0.9</option>
+      <option value="0.8">0.8</option>
+      <option value="0.7">0.7</option>
+      <option value="0.6">0.6</option>
+      <option value="0.5">0.5</option>
+      <option value="0.4">0.4</option>
+      <option value="0.3">0.3</option>
+      <option value="0.2">0.2</option>
+      <option value="0.1">0.1</option>
+      <option value="0.0">0.0</option>
+      <option value="-0.1">-0.1</option>
+      <option value="-0.2">-0.2</option>
+      <option value="-0.3">-0.3</option>
+      <option value="-0.4">-0.4</option>
+      <option value="-0.5">-0.5</option>
+      <option value="-0.6">-0.6</option>
+      <option value="-0.7">-0.7</option>
+      <option value="-0.8">-0.8</option>
+      <option value="-0.9">-0.9</option>
+      <option value="-1.0">-1.0</option>
+    </select>
+  </td></tr>
+  <tr><td align="right" nowrap>時薪:</td><td><input type="text" class="form-control " id="wage" value="{$wage}" readonly size="5"></td></tr>
+  <tr><td align="right" nowrap>獎懲:</td><td><input type="number" class="form-control" name="reward" id="reward" pattern="[0-9]" value="{$reward}" size="5" onchange="change()"></td></tr>
+  <tr><td align="right" nowrap>總計:</td><td><input type="text" class="form-control" id="total" value="" readonly size="5"></td></tr>
+  <tr><td align="right">調整原因:</td><td><textarea name="memo" id="memo" style="width:100%">{$memo}</textarea></td></tr>
+  <tr><td colspan="2">&nbsp;&nbsp;&nbsp;<input type="button" class="btn-glow primary" value="確認送出" onclick="send();">&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="button" class="btn-glow" value="關閉視窗" onClick="parent.$.fancybox.close();"><br><br>
+  </td></tr>
+</table>
+</form>
+{include="footer_foot"}
+<script language="javascript">
+function send()
+{
+  if ($('#memo').val() == "")
+  {
+    alert ('請輸入調整原因');
+    return false;
+  }
+  $.ajax({
+    url: '/admin/consultant_salary/update',
+    data: {
+      id: {$id},
+      hour: $('#hour').val(),
+      salary: $('#total').val(),
+      reward: $('#reward').val(),
+      memo: $('#memo').val()
+    },
+    dataType: 'json',
+    success: function (result) {
+      if (!result.status)
+        alert(result.msg);
+      else
+      {
+        alert ('修改完成');
+        parent.location.href = parent.location.href;
+      }
+    },
+    error: function () {
+      alert('操作失敗');
+    }
+  });
+}
+
+function change()
+{
+  $('#total').val(Math.round($('#hour').val() * $('#wage').val() + parseInt($('#reward').val())));
+}
+
+$(function () {
+  $('#hour').val('{$hour}');
+  change();
+});
+</script>

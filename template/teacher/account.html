@@ -1,0 +1,399 @@
+{include="header"}
+<form class="fill" action="/teacher/account" method='POST' enctype='multipart/form-data'>
+  <div class="class section">
+    {include="profile"}
+	
+    <div class="breadcrumbs row"><a href="/"><img src="images/icon_home.png" alt="" class="home"></a><a href="/teacher">Teacher's Area</a><span>Account settings</span></div>
+    <nav class="nav-groups nav-groups-teacher">
+      <ul>
+        <li><a href="/teacher/account" class="active">Settings</a></li>
+        <li><a href="/teacher/salary">Salary</a></li>
+      </ul>
+    </nav>
+	
+    <div class="row teacher">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12 medium-6">
+            <h4 class="primary-orange"><b>Account Details</b></h4>
+            </div>
+            <div class="columns small-12 medium-6 small-text-left medium-text-right">
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">First Name</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['first_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Last Name</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['last_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Chinese Name</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['chi_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Gender</label>
+                </div>
+                <div class="small-6 medium-4 columns end form-sex">
+                  <input type="text" placeholder="" value="male">
+                  <a href="javascript:;" class="sex-swich disabled {if="$data['gender']==1"}male{else}female{/if}">
+                    <div data-value="male" class="select-male">Male</div>
+                    <div data-value="female" class="select-female">Female</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">ID</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['account']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline ">Chang Password</label>
+                </div>
+                <div class="small-12 medium-8 columns">				
+                  <input type="text" class="radius" placeholder="6-20 characters containing letters and numbers. Case-sensitive" value="" name="passwd">
+                  <input type="text" class="radius" placeholder="Re-enter your new password" value="" name="passwd2">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row teacher">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12">
+            <h4 class="primary-orange"><b>Personal Details</b></h4>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Date of Birth</label>
+                </div>
+                <div class="small-6 medium-4 end columns">
+                  <input type="date" class="radius" placeholder="" value="{$data['birthdate']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Email</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="email" class="radius" placeholder="" value="{$data['email']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Location</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['location']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Country of Birth</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['country']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Education</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <select class="radius" name="education" >
+				   {loop="$var_education"}
+                    <option value="{$key}" {if="$key==$data['education']"}selected{/if}>{$value}</option>
+					{/loop}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Work Experience I</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['exp1']}" name="exp1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Work Experience II</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['exp2']}" name="exp2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">First Language</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <select class="radius">
+                    {loop="$var_language"}
+                    <option value="{$key}" {if="$key==$data['lang1']"}selected{/if}>{$value}</option>
+					{/loop}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Second Language</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+					<select class="radius">
+                    {loop="$var_language"}
+                    <option value="{$key}" {if="$key==$data['lang2']"}selected{/if}>{$value}</option>
+					{/loop}
+					</select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline">Introduction</label>
+                </div>
+                <div class="small-12 medium-8 columns">
+                  <textarea name="intro" id="">{$data['intro']}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+      </div>
+    </div>
+    <div class="row teacher">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12">
+            <h4 class="primary-orange"><b>Bank Information</b></h4>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Bank Name</label>
+                </div>
+                <div class="small-6 medium-8 end columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['bank_name']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Routing Number</label>
+                </div>
+                <div class="small-6 medium-8 end columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['bank_routing']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+          <div class="row">
+            <div class="small-12 medium-10 large-9 columns">
+              <div class="row">
+                <div class="small-12 medium-4 columns small-text-left medium-text-right">
+                  <label class="inline"><span class="primary-orange">＊</span>Account Number</label>
+                </div>
+                <div class="small-6 medium-8 end columns">
+                  <input type="text" class="radius" placeholder="" value="{$data['bank_account']}" disabled="disabled">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row teacher">
+      <div class="columns small-12 large-10 large-centered">
+          <div class="row page-title">
+            <div class="columns small-12 medium-6">
+            <h4 class="primary-orange"><b>Upload an image </b></h4>
+            </div>
+            <div class="columns small-12 medium-6 small-text-left medium-text-right">
+            <small><span class="primary-orange">＊</span>JPG / PNG / TIFF    Size limit 500 KB</small>
+            </div>
+          </div>
+      </div>
+      <div class="columns small-12 medium-10 large-9 medium-centered">
+        <ul class="photo-list small-block-grid-1 medium-block-grid-3">
+          <li><h5 class="text-center">Photo ID</h5><div class="photo-box th">{if="isset($avatar[0])"}<img id="avatar_img0"  src="{$avatar[0]}" alt="">{/if}</div>
+		  </li>
+		  
+		  <li><h5 class="text-center">Professional Photo</h5><div class="photo-box th">{if="isset($avatar[1])"}<img id="avatar_img1"  src="{$avatar[1]}" alt="">{/if}</div>
+
+          <div class="row upload-form">
+            <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix"><i class="material-icons">&#xE226;</i></span>
+                </div>
+                <div class="small-9 columns">
+                  <div class="upload-box">
+                    <a class="upload-close" data-tag=1 data-img='{if="isset($avatar[1])"}1{else}0{/if}'>&#215;</a>
+                    <input class="upload_btn" id="avatar1" type="search" placeholder="Select file" value="">					
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </li>
+		  
+          <li><h5 class="text-center">Day to day Photo</h5><div class="photo-box th">{if="isset($avatar[2])"}<img id="avatar_img2" src="{$avatar[2]}" alt="">{/if}</div>
+
+          <div class="row upload-form">
+            <div class="large-12 columns">
+              <div class="row collapse prefix-radius">
+                <div class="small-3 columns">
+                  <span class="prefix"><i class="material-icons">&#xE226;</i></span>
+                </div>
+                <div class="small-9 columns">
+                  <div class="upload-box">
+                    <a class="upload-close" data-tag=2 data-img='{if="isset($avatar[2])"}1{else}0{/if}' >&#215;</a>
+                    <input class="upload_btn" id="avatar2" type="search" placeholder="Select file" value="">					
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="columns small-12 large-10 large-centered">
+        <div class="row btn-box">
+          <div class="small-12 medium-6 large-4 columns medium-centered">
+            <a class="button teacher expand round  submit">SAVE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+  </div>
+  
+<input type='file' name="avatar0" class="avatar0" value="" style="display:none" accept=".png,.jpg,.jpeg">
+<input type='file' name="avatar1" class="avatar1" value="" style="display:none" accept=".png,.jpg,.jpeg">
+<input type='file' name="avatar2" class="avatar2" value="" style="display:none" accept=".png,.jpg,.jpeg">  
+</form>
+
+  
+{include="footer"}
+
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/page.css">
+<script src="js/page.js"></script>
+<script src="js/teacher.account.js"></script>
+{if="$msg"}
+<script> dialog_teacher("{$msg}"); </script>
+{/if}
+
+<script>
+$('.upload_btn').click(function() {
+	var id = $(this).attr('id');
+    $('.' + id ).trigger('click');
+});
+
+$('input[type=file]').change(function() {
+	var id = $(this).attr('class');
+    $('#' + id ).val($(this).val());
+});
+</script> 

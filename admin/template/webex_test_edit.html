@@ -1,0 +1,102 @@
+{include="header_head"}
+<style>
+  html, body {
+    overflow-y: hidden;
+  }
+</style>
+<form name="frm" id="frm" class="editor">
+<table>
+	<tr>
+		<td>
+			<label>備註:</label>
+		</td>
+		<td>
+			<textarea class="form-control" style="width:350px;" rows=5 name="note" id="note">{$data['note']}</textarea>	
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>測試類型:</label>
+		</td>
+		<td>
+		{$subtype_select}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>測試結果:</label>
+		</td>
+		<td>		
+		<textarea class="form-control" style="width:350px" rows=5  name="result" id="result">{$data['result']}</textarea></td>
+	</tr>
+	<tr>
+		<td>
+			<label>是否通過:</label>
+		</td>
+		<td>
+			<select class="form-control" type=text name="pass">
+				<option value='' {if="!is_numeric($data['pass'])"}selected{/if}> </option>
+				<option value=1 {if="$data['pass']==1"}selected{/if}>Yes</option>
+				<option value=0 {if="is_numeric($data['pass']) && $data['pass']==0"}selected{/if}>No</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			
+		</td>
+		<td>
+			<input class="btn-flat primary" type='button' onClick="save();" value="確定">
+		</td>
+	</tr>
+</table>
+</form>
+<script language="javascript">
+function save()
+{
+
+	if( $('[name=subtype]').val()=='' ){
+		alert("請選擇類型");
+		return false;
+	}
+
+	if( $('#note').val()=='' ){
+		alert("請填寫備註");
+		return false;
+	}
+	
+	if( $('#result').val()=='' ){
+		alert("請填寫測試結果");
+		return false;
+	}
+		
+	if( strlen( $('#note').val() ) > 500 ){
+		alert("備註請勿超過500個字元");
+		return false;
+	}
+	if( strlen( $('#result').val() ) > 500 ){
+		alert("測試結果請勿超過500個字元");
+		return false;
+	}
+  $.ajax({
+    type: 'post',
+    url: "/admin/webex_test/save?id={$data['id']}",
+    data: $('.editor').serialize(),
+    dataType: 'json',
+    success: function (result) {
+        parent.$.fancybox.close();
+        parent.location.href = parent.location.href;
+    },
+    error: function () {
+     
+      alert('設定失敗');
+    }
+  });
+
+}
+
+function strlen(tx) {
+	return tx.length;	
+}
+</script>
+{include="footer_foot"}
