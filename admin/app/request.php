@@ -87,8 +87,11 @@ function fn_callback($r)
 	$r['next_time'] = substr($r['next_time'],0,-8).' 晚上';
   elseif($r['next_time']=='0000-00-00 00:00:00')
 	$r['next_time'] = '';
-  else
-	$r['next_time'] = substr($r['next_time'],0,-8).' '.((int)substr($r['next_time'],-8,2)).'點';
+  else {
+    // $r['next_time'] = substr($r['next_time'],0,-8).' '.((int)substr($r['next_time'],-8,2)).'點';
+    $date = new DateTime($r['next_time'], new DateTimeZone('Asia/Taipei'));
+    $r['next_time'] = $date->format("Y-m-d H:i");
+  }
   return $r;
 }
 

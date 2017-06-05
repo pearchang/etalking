@@ -74,6 +74,11 @@
       url += '&search_end=' + encodeURIComponent($('#search_end').val());
     }
 
+    keyword = $('[name="keyword"]')
+    if (keyword.val().length > 0) {
+      url += "&keyword=" + encodeURIComponent(keyword.val())
+    };
+
     window.location.replace(url);
     return false;
   }

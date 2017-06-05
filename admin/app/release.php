@@ -14,6 +14,7 @@ switch (MODE)
       $v['member_id'] = $id;
       $v['type'] = 10; // 指派
       $v['content'] = '轉派給' . $r['user_name'];
+      $v['next_time'] = date("Y-m-d H:i:s");
       $rs->insert('member_history', $v);
     }
     Message('轉派完成', true, MSG_OK);
