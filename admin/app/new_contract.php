@@ -42,7 +42,7 @@ $sql = "SELECT * FROM `plan_category` WHERE status = 10 ORDER BY cat_name";
 $rs->query($sql);
 AssignValues($rs, 'cat');
 
-if (MODE == 'add' || (MODE == 'modify' && !empty(GetParam('password'))))
+if (MODE == 'add' || (MODE == 'modify' && null != GetParam('password')))
 {
   // begin
   $date = date('Y-m-d', strtotime(GetParam('begin')));

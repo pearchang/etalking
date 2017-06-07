@@ -24,7 +24,7 @@ $VARS['status_select'] = GenRadio('status', $var_member_status, true);
 $VARS['is_manager_select'] = GenRadio('is_manager', $var_general_yesno, true);
 $VARS['group_select'] = GenCheckboxBySQL('group', 'SELECT id, group_name AS data FROM `group` WHERE status = 10 ORDER BY group_name');
 
-if (MODE == 'add' || (MODE == 'modify' && !empty(GetParam('password'))))
+if (MODE == 'add' || (MODE == 'modify' && null != GetParam('password')))
 {
   $_POST['passwd'] = GetParam('password');
   $_POST['password'] = GenPassword(GetParam('account'), GetParam('password'));

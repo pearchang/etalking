@@ -18,10 +18,12 @@ $VARS['type_select'] = GenSelect('type', $var_webex_type, false, true);
 
 if (MODE == 'modify')
 {
-  if (empty(GetParam('password')))
+  if (null == GetParam('password')) {
     unset($_POST['password']);
-  if (empty(GetParam('open_pass')))
+  }
+  if (null == GetParam('open_pass')) {
     unset($_POST['open_pass']);
+  }
 }
 ////////////////////////////////////
 require_once('func.inc.php');
