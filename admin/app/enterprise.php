@@ -13,37 +13,33 @@ $TRANSLATE = array (
 $RADIO = array('status');
 $VARS['status_select'] = GenRadio('status', $var_general_status, false, true);
 
-if (MODE == 'add' || ((MODE == 'modify') && !empty(GetParam('password'))))
+if (MODE == 'add' || ((MODE == 'modify') && null != GetParam('password'))) {
   $_POST['password'] = GenPassword(GetParam('account'), GetParam('password'));
-else
+} else {
   unset ($_POST['password']);
+}
 
 ////////////////////////////////////
 require_once('func.inc.php');
 ////////////////////////////////////
 
-function fn_callback($r)
-{
-	return $r;
+function fn_callback($r) {
+  return $r;
 }
 
-function fn_new()
-{
+function fn_new() {
   global $VARS;
 
   $VARS['password'] = makePassword(6);
   $VARS['status'] = DOC_STATUS_SHOW;
 }
 
-function fn_add($id)
-{
+function fn_add($id) {
 }
 
-function fn_edit($id)
-{
+function fn_edit($id) {
 }
 
-function fn_modify($id)
-{
+function fn_modify($id) {
 }
 ?>

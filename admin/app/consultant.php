@@ -52,10 +52,11 @@ $VARS['lang2_select'] = GenSelect('lang2', $var_language, false);
 $VARS['level_select'] = GenCheckboxBySQL('level', "SELECT id, level_name AS `data` FROM `level` WHERE status = 10 ORDER BY `begin`", true);
 //$VARS['interest_select'] = GenCheckboxBySQL('interest', "SELECT id, title AS `data` FROM `interest` WHERE status = 10 ORDER BY eng_title", true);
 
-if (MODE == 'add' || ((MODE == 'modify' || MODE == 'modify2') && !empty(GetParam('password'))))
+if (MODE == 'add' || ((MODE == 'modify' || MODE == 'modify2') && null != GetParam('password'))) {
   $_POST['password'] = GenPassword(GetParam('account'), GetParam('password'));
-else
+} else {
   unset ($_POST['password']);
+}
 ////////////////////////////////////
 	require_once('func.inc.php');
 ////////////////////////////////////

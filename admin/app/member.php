@@ -51,7 +51,7 @@ $VARS['interest_select'] = GenCheckboxBySQL('interest', "SELECT id, title AS `da
 $VARS['skill_select'] = GenCheckboxBySQL('skill', "SELECT id, title AS `data` FROM `skill` WHERE status = 10 ORDER BY title", true);
 $VARS['enterprise_select'] = GenSelectBySQL('enterprise_id', "SELECT id, ent_name AS `data` FROM `enterprise` WHERE status = 10 ORDER BY ent_name", true);
 
-if (MODE == 'add' || ((MODE == 'modify' || MODE == 'modify2') && !empty(GetParam('password'))))
+if (MODE == 'add' || ((MODE == 'modify' || MODE == 'modify2') && null != GetParam('password')))
 {
   $_POST['passwd']  = GetParam('password');
   $_POST['password'] = GenPassword(GetParam('account'), GetParam('password'));

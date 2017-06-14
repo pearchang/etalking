@@ -150,7 +150,8 @@ if(MODE=='pie'){
 	
 	$pie = array();
 	
-	if(GetParam('keyword') && !empty(GetParam('keyword')) ){
+	$em = GetParam('keyword');
+	if(GetParam('keyword') && !empty($em) ){
 		
 		$search = array();
 		
