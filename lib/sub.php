@@ -1,4 +1,4 @@
-<?
+<?php
 function GenCat($v, $top = true)
 {
 	global $page;

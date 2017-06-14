@@ -1,4 +1,4 @@
-<?
+<?php
 class ResultSet
 {
 	var $rs;

@@ -1,4 +1,4 @@
-<?
+<?php
 // 去除斜線問題 \\ No Global
 //foreach ($_POST as $k => $v)
 //{

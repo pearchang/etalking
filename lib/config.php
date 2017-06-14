@@ -1,4 +1,4 @@
-<?
+<?php
 //include('config.local.php');
 
 if (!isset($DBHOST))
