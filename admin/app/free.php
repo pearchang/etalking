@@ -246,6 +246,7 @@ EOT;
       $sql = "SELECT * FROM classroom WHERE id = $new";
       $rs->query($sql);
       $c = $rs->fetch();
+      $consultant_id = $c['consultant_id'];
       if ($c['material_id'] != 0)
       { // get members
         $regs = implode(',', $_POST['member_reg']);
@@ -281,8 +282,10 @@ EOT;
       $rs->query($sql);
       $move_members = $rs->record();
       $members = explode(',', $new_class_members . ',' . $move_members);
-      foreach ($members as $mid)
-      {
+      foreach ($members as $mid) {
+        $member_blacks_count = 0;
+        $teacher_blacks_count = 0;
+
         // 取得學員黑名單
         $sql = "SELECT black_id FROM member_bl_member WHERE member_id = $mid AND deleted = 0";
         $rs3->query($sql);
@@ -292,11 +295,28 @@ EOT;
           $blacklist = [];
         foreach ($blacklist as $bb)
         {
-          if (in_array($bb, $members))
-          {
-            Message('教室裡或欲移動的學員在黑名單內，無法移動', true);
-            exit;
+          if (in_array($bb, $members)) {
+            $member_blacks_count += 1;
           }
+        }
+
+        $sql = "SELECT black_id FROM member_bl_consultant WHERE black_id = $consultant_id AND member_id = $mid AND deleted = 0";
+        $rs3->query($sql);
+
+        if ($rs3->count > 0) $teacher_blacks_count += 1;
+
+        if (($member_blacks_count > 0)) {
+          Message('教室裡或欲移動的學員在黑名單內，無法移動');
+        }
+        
+        if (($teacher_blacks_count > 0)) {
+          Message('此課程的顧問在黑名單內，無法移動');
+        }
+
+        if (($member_blacks_count > 0) || ($teacher_blacks_count > 0)) {
+          GoLast();
+
+          exit;
         }
       }
 
