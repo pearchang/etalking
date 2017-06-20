@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<base href="/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>ETALKING</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/touch-icon_57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon_72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon_114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon_144x144.png" />
+    <!-- Css -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+	
+	<!-- JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="js/foundation/foundation.js"></script>
+	<script src="js/foundation/foundation.topbar.js"></script>
+	<script src="js/foundation/foundation.dropdown.js"></script>
+	<script src="js/foundation/foundation.reveal.js"></script>
+	<script src="js/vendor/jquery.matchHeight-min.js"></script>
+	<script src="js/vendor/TweenMax.min.js"></script>
+	<script src="js/vendor/ScrollMagic.min.js"></script>
+	<script src="js/vendor/animation.gsap.min.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js"></script>
+	<script src="https://www.youtube.com/player_api"></script>
+	<script src="js/all.js"></script>
+
+	<script src="js/crud.js"></script>
+	<script src="js/layout.js"></script>
+
+</head>
+
+<body>
+
+<!--pad mobile menu-->
+<div class="outer-menu hide-for-large-up">
+  <input class="checkbox-toggle" type="checkbox" />
+  <div class="hamburger">
+    <div></div>
+  </div>
+  <div class="menu">
+    <div>
+      <div>
+        <ul>
+          <li><a class="freebtn-mobile">免費體驗</a></li>
+          <li><a href="/home/classes">課程特色</a></li>
+          <li><a href="/home/business">企業方案</a></li>
+          <li><a href="/home/about">關於我們</a></li>
+          <li><a href="/home/faq">常見問題</a></li>
+          <li><a href="javascript:;" data-reveal-id="login">學員專區</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+	<nav class="row menu-wrapper">
+		<h1 class="logo"><a href="/"><span>ETALKING</span></a></h1>
+		<ul class="main-menu">
+			<li class="hide-for-large-up freebtn-mobile"><a >免費體驗</a></li>
+			<li><a href="/home/classes">課程特色</a></li>
+			<li><a href="/home/business">企業方案</a></li>
+			<li><a href="/home/about">關於我們</a></li>
+			<li><a href="/home/faq">常見問題</a></li>
+			{if="$MEMBER_LOGIN==true"}
+			<li><a href="/student/booking" >學員專區</a></li>
+			{else}
+			<li><a href="javascript:;" data-reveal-id="login" class="login_item" >學員專區</a></li>
+			{/if}
+			<li class="menu-move-bar"></li>
+		</ul>
+		<a class="freebtn"><span>免費<br>體驗</span></a>
+	</nav>
+	<div class="free-form etalking-form">
+		<span class="hide-for-large-up close-icon form-close">×</span>
+		<form class="row free_experience">
+			<input type=hidden name="gender" value="1">
+			<input type=hidden name="contact_time" value="">
+				<input type=hidden name="source" value="免費體驗">
+			<h3>填寫資料</h3>
+			<div class="columns small-12 medium-6 large-2">
+				<input type="text" placeholder="姓名" value="" name="guest_name">
+			</div>
+			<div class="columns small-12 medium-6 large-2">
+				<input type="text" placeholder="電話" value="" name="tel">
+			</div>
+			<div class="columns small-12 medium-6 large-3 form-mail">
+				<input type="text" placeholder="Email" value="" name="email">
+			</div>
+			<div class="columns small-12 medium-6 large-2 form-time" data-dropdown="form-time" aria-controls="form-time">
+				<input type="text" placeholder="聯絡時間" value="" disabled>
+				<ul class="form-time-select" id="form-time" data-dropdown-content aria-hidden="true" tabindex="-1">
+				{loop="$var_contact_time"}
+					<li><a href="#!" data-time="{$value}" data-id="{$key}" >{$value}</a></li>
+				{/loop}
+				</ul>
+			</div>
+			<div class="columns small-12 medium-6 large-1 form-sex">
+				<input  href="javascript:" type="text" placeholder="" value="male">
+				<a class="sex-swich male">
+					<div data-value="male" class="select-male">男</div>
+					<div data-value="female" class="select-female">女</div>
+				</a>
+			</div>
+			<div class="columns small-12 large-2 end form-btn">
+				<button type="submit" value="Submit" class="btn white">預約體驗</button>
+			</div>
+			<div class="columns small-12 medium-6 large-12 small-text-left medium-text-right text-right form-agree">
+				<input type="checkbox" id="agree">
+				<label for="agree">我已閱讀並同意接受<a href="/home/privacy" target=_blank>個資保護聲明</a></label>
+			</div>			
+		</form>
+	</div>
+</header>
+
+<div id="login" class="reveal-modal small" data-reveal aria-labelledby="loginTitle" aria-hidden="true" role="dialog">
+  <h2 id="loginTitle" class="text-center modal-title">歡迎來到ETALKING學員專區</h2>
+  <h5 class="text-center primary">準備好要學點新東西了嗎？登入你的帳號和密碼吧。</h5>
+  <form class="login_form">
+  <div class="row form-box">
+  	<div class="columns small-12 large-12 large-centered login_error">
+		<div data-alert class="alert-box alert radius">
+		  輸入錯誤請重新確認您的帳號與密碼!
+		</div>
+  	</div>
+  	<div class="columns small-12 large-12 large-centered">
+      <div class="row collapse prefix-radius">
+        <div class="small-2 large-2 columns">
+          <span class="prefix"><i class="material-icons">&#xE8A6;</i></span>
+        </div>
+        <div class="small-10 large-10 columns">
+          <input name="account" type="text" placeholder="身份證字號/護照號碼" value="{$MEMBER_ACCOUNT}">
+        </div>
+      </div>
+  	</div>
+  	<div class="columns small-12 large-12 large-centered">
+      <div class="row collapse prefix-radius">
+        <div class="small-2 large-2 columns">
+          <span class="prefix"><i class="material-icons key">&#xE0DA;</i></span>
+        </div>
+        <div class="small-10 large-10 columns">
+          <input type="password" name="password" placeholder="密碼" value="{$MEMBER_PASSWORD}" >
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+	  	<div class="columns small-12 medium-4 large-4">
+	  		<a href="/member/forgot"><u>忘記密碼了嗎?</u></a>
+	  	</div>
+	  	<div class="columns small-12 medium-8 large-8 end small-text-left medium-text-right check-block">
+	  		<input type="checkbox" name="keep" id="keep" checked="checked"><label for="keep">記住我的帳號密碼<a href="clear_cookie.php?type=student">(清除密碼)</a></label>
+	  	</div>
+  	</div>
+  	<div class="columns small-12 large-8 text-center">
+  		<div class="g-recaptcha" data-sitekey="{$CAPCHA_PUBLIC_KEY}"></div>
+  	</div>
+  	<div class="columns small-12 large-4">
+  		<a href="#" class="button solid round expand login_btn" >登入</a>
+  		<p class="text-center note-text"><a href="javascript:;" class="close-btn open-form" aria-label="Close"><u>還沒有帳戶嗎?</u></a></p>
+  	</div>
+
+  </div>
+ </form>  
+  <a class="close-reveal-modal primary close-icon" aria-label="Close">&#215;</a>
+</div>
+
+
+<!--success modal-->
+<div id="success" class="reveal-modal small" data-reveal aria-labelledby="loginTitle" aria-hidden="true" role="dialog">
+  <h3 id="loginTitle" class="text-center modal-title">密碼重新發送成功!</h3>
+  <hr>
+  <div class="row msg-box">
+  	<div class="columns small-12 large-12 large-centered">
+  		<h5 class="text-center">Your password has been sent to your E-mail address.</h5>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="columns small-12 medium-6 medium-centered large-4 large-centered">
+  		<a href="javascript:;" class="button small solid round expand close-btn" aria-label="Close">OK</a>
+  	</div>
+  </div>
+  <a class="close-reveal-modal primary close-icon" aria-label="Close">&#215;</a>
+</div>
+
+{$CONTENT_FOR_LAYOUT}
+
+
+<div class="light-box-wrapper" id="ContactUsNow">
+	<div class="light-box">
+		<p>(02)2760-7768<br>Service@etalkingonline.com</p>
+		<span class="light-box-close">×</span>
+	</div>
+</div>
+
+<a class="gotop"><span>TOP</span></a>
+<footer>
+	<img src="images/logo_footer.png" alt="">
+  <ul class="social">
+    <li><a href="https://www.facebook.com/etalkingonline/" target="_blank"><img src="images/icon/fb.png" alt=""></a></li>
+    <li><a href="https://line.me/ti/p/%40pnp2339s" target="_blank"><img src="images/icon/line.png" alt=""></a></li>
+  </ul>
+	<p id="contact-info">(02)2760-7768<br><a href="mailto:Service@etalkingonline.com">Service@etalkingonline.com</a></p>
+	<div class="copyright">Copyright © 2016 文樺數位互動股份有限公司</div>
+</footer>
+
+
+<div id="systemModal" class="reveal-modal small" data-reveal aria-labelledby="loginTitle" aria-hidden="true" role="dialog">
+  <h3 id="loginTitle" class="text-center modal-title">通知</h3>
+  <hr>
+  <div class="row msg-box">
+  	<div class="columns small-12 large-12 large-centered">
+  		<h5 class="text-center"></h5>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="columns small-12 medium-6 medium-centered large-4 large-centered">
+  		<a href="javascript:;" class="button small solid round expand close-btn" aria-label="Close">OK</a>
+  	</div>
+  </div>
+  <a class="close-reveal-modal primary close-icon" aria-label="Close">&#215;</a>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80216860-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Yahoo Code -->
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"5317897"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+<noscript><img src="//bat.bing.com/action/0?ti=5317897&Ver=2" height="0" width="0" style="display:none; visibility: hidden;" /></noscript>
+<!--End Yahoo Code -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1278303935531713');
+fbq('track', 'ViewContent');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1278303935531713&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+</body>
+</html>

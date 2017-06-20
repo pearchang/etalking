@@ -1,0 +1,343 @@
+<?php
+$id = GetParam('id');
+switch (MODE)
+{
+  case 'paid':
+    unset ($v);
+    $v['paid_time'] = 'NOW()';
+    $v['paid'] = '10';
+    $rs->update('member_contract_bill', $id, $v);
+    $cid = $rs->get_value('member_contract_bill', 'contract_id', $id);
+    $sql = "SELECT SUM(total) FROM member_contract_bill WHERE contract_id = $cid AND status = 10 AND paid > 0";
+    $rs->query($sql);
+    $total = $rs->record();
+    $price = $rs->get_value('member_contract', 'price', $cid);
+    if ($price == $total)
+    {
+      unset ($v);
+      $v['paid_time'] = 'NOW()';
+      $rs->update('member_contract', $cid, $v);
+    }
+    Message('設定為已付款', false, MSG_OK);
+    json_output(array('status' => true));
+    break;
+  case 'bill':
+    if (GetParam('readonly'))
+      $VARS['readonly'] = true;
+    $DATA_SQL = "SELECT * FROM member_contract_bill WHERE status = 10 AND contract_id = $id ORDER BY id";
+    break;
+  case 'open':
+    unset ($v);
+    $v['open_time'] = 'NOW()';
+    $rs->update('member_contract', $id, $v);
+    Message('已開通合約', false, MSG_OK);
+    // 加點數
+    $rs->select('member_contract', $id);
+    $r = $rs->fetch();
+    unset ($v);
+    $v['member_id'] = $r['member_id'];
+    $v['type'] = 20; // 買合約
+    $v['target_id'] = $id;
+    $v['brief'] = '購買方案 ' . $r['plan_name'];
+    $v['io'] = $r['point'] + $r['gift'];
+    $sql = "UPDATE member SET point = point + {$v['io']} WHERE id = ". $r['member_id'];
+    $rs3->execute($sql);
+    $v['balance'] = $rs3->get_value('member', 'point', $r['member_id']);
+    $rs2->insert('member_point', $v);
+    json_output(array('status' => true));
+    break;
+  case 'add':
+    // begin
+    $date = date('Y-m-d', strtotime(GetParam('begin')));
+    if ($date < date('Y-m-d'))
+      Message('生效日不得小於今天', true, MSG_WARN);
+    break;
+  case 'modify':
+    // begin
+    $date = date('Y-m-d', strtotime(GetParam('begin')));
+    if ($date < date('Y-m-d'))
+      Message('生效日不得小於今天', true, MSG_WARN);
+    $id = GetParam('id');
+    $rs->select('member_contract', $id);
+    $r = $rs->fetch();
+    $arr = array ('contract_id', 'contract_name', 'price', 'gift', 'begin', 'memo');
+    $new = false;
+//    print_r($r);
+//    print_r($_POST);
+//    exit;
+    foreach ($arr as $a)
+    {
+      if ($r[$a] != $_POST[$a])
+      {
+        $new = true;
+        break;
+      }
+    }
+    if ($new)
+    {
+      $v['status'] = 90; // 取消
+      $rs->update('member_contract', $id, $v);
+      $rs->select('member_contract', $id);
+      $r = $rs->fetch();
+      foreach ($r as $k => $v)
+        if (!isset($_POST[$k]))
+          $_POST[$k] = $v;
+      unset ($_POST['id'], $_POST['creator'], $_POST['modifier'], $_POST['cdate'], $_POST['mdate'], $_POST['signed'], $_POST['sign_time']);
+      $_POST['status'] = 10; // 審核中
+      $_POST['member_id'] = GetParam('mid');
+      $_POST['end'] = getPeriod($_POST['begin'], $_POST['period']);
+      $_POST['sales_id'] = $_SESSION['admin_id'];
+//      $_POST['note'] .= "\n原合約:" . $_POST['sn'];
+      $rs->insert('member_contract', $_POST);
+      $new_id = $rs->last_id;
+      $payment = GetParam('payment');
+      //echo $new_id;
+      $sql = "SELECT status, payment, paid, total, paid_time, sn, `check` FROM member_contract_bill WHERE contract_id = $id AND status = 10";
+      $rs->query($sql);
+      //echo $rs->count;
+      while (($r = $rs->fetch()))
+      {
+        $r['contract_id'] = $new_id;
+        $rs2->insert('member_contract_bill', $r);
+        //echo $rs2->last_sql;
+      }
+      //echo ';5';
+      //exit;
+      $sql = "UPDATE member_contract_bill SET status = 20 WHERE contract_id = $id";
+      $rs->execute($sql);
+      //fn_add($id);
+      Message('合約異動，建立新合約', false, MSG_WARN);
+      GoBack();
+    }
+    else
+    {
+      $payment = GetParam('payment');
+      if (!empty($payment))
+      {
+        $sql = "SELECT id FROM member_contract_bill WHERE contract_id = $id AND status = 10";
+        $rs->query($sql);
+        $id = $rs->record();
+        $v['payment'] = $payment;
+        if ($payment == '30')
+          $v['installment'] = GetParam('installment');
+        $rs2->update('member_contract_bill', $id, $v);
+      }
+//      if ($_POST['paid_total'] >= $_POST['price'])
+//        $_POST['paid_time'] = 'NOW()';
+
+    }
+    break;
+}
+$id = $VARS['member_id'] = $_POST['member_id'] = GetParam('mid');
+$rs->select('member', $id);
+AssignValue($rs);
+$VARS['gender_text'] = $var_member_gender[$VARS['gender']];
+$VARS['add_button'] = MODE == '';
+
+$VARS['func_name'] = '合約資料';
+$TABLE = 'member_contract';
+$FUNC_NAME = '合約資料';
+$CAN_DELETE = MODE != 'bill';
+$SORT_BY = '`begin` DESC, `end` DESC, `id` DESC';
+$TRANSLATE = array (
+  'status' => array($var_contract_status),
+);
+$EDITORS = array (
+  array ('type' => EDITOR_TEXT, 'name' => 'memo', 'height' => 3),
+  array ('type' => EDITOR_TEXT, 'name' => 'note', 'height' => 3),
+);
+$SELECT = array('contract_id', 'plan_id');
+
+$SPECIAL = "member_id = $id";
+
+//$VARS['status_select'] = GenRadio('status', $var_contract_status, true);
+$VARS['payment_select'] = GenSelect('payment', $var_payment2, false, true);
+$VARS['installment_select'] = GenSelect('installment', $var_installment, false, false);
+$sql = "SELECT id, version AS `data` FROM `contract` WHERE `type` = 10 AND status = 10 AND `begin` <= '$today' AND `end` >= '$today' ORDER BY version DESC"; // type=10 學員
+$VARS['contract_id_select'] = GenSelectBySQL('contract_id', $sql, true, true);
+$sql = "SELECT * FROM `plan_category` WHERE status = 10 ORDER BY cat_name";
+$rs->query($sql);
+AssignValues($rs, 'cat');
+//$sql = "SELECT * FROM `plan` WHERE status = 10 AND `begin` <= '$today' AND `end` >= '$today' ORDER BY period, plan_name";
+//$rs->query($sql);
+//AssignValues($rs, 'plan');
+
+if (MODE == 'add')
+{
+//  print_r($_POST);
+//  exit;
+  $_POST['end'] = getPeriod($_POST['begin'], $_POST['period']);
+  $_POST['sales_id'] = $_SESSION['admin_id'];
+}
+
+//echo $DATA_SQL;
+
+////////////////////////////////////
+	require_once('func.inc.php');
+////////////////////////////////////
+
+
+function fn_callback($r)
+{
+  global $rs2;
+
+  if (MODE == 'bill')
+    return cbBill($r);
+
+  if (substr($r['sign_time'], 0, 4) == '0000')
+    $r['sign_time'] = '尚未簽約';
+  else
+    $signed = true;
+  if (substr($r['paid_time'], 0, 4) == '0000')
+    $r['paid_time'] = '尚未付款';
+  else
+    $paid = true;
+  if (substr($r['open_time'], 0, 4) == '0000')
+  {
+    $r['open_time'] = '';
+    $r['can_open'] = $paid & $signed;
+  }
+  else
+    $opened = true;
+  $r['contract_text'] = $rs2->get_value('contract', 'version', $r['contract_id']);
+  // can edit?
+  if ($r['status'] < 90 && !$opened)
+    $r['can_edit'] = true;
+  // can delete?
+  $r['can_delete'] = $r['status'] == 10; // 待審
+  // creator
+  $r['creator_text'] = $rs2->get_value('user', 'user_name', $r['creator']);
+  return $r;
+}
+
+function fn_before_new()
+{
+  global $VARS, $rs3, $today;
+
+  $VARS['status'] = 10; // 審核中
+  $VARS['paid'] = $VARS['gift'] = 0;
+  unset ($VARS['point']);
+  // get begin
+  $sql = "SELECT * FROM member_contract WHERE member_id = " . GetParam('mid') . " AND status = 20 AND open_time <> '0000-00-00 00:00:00' AND `end` >= '$today' ORDER BY `end` DESC LIMIT 1";
+  $rs3->query($sql);
+  if ($rs3->count == 0)
+    $VARS['begin'] = date('Y-m-d', time() + 86400); // 隔天
+  else
+  {
+    $r = $rs3->fetch();
+    $VARS['begin'] = date('Y-m-d', strtotime($r['end']) + 86400);
+    $VARS['readonly'] = 'readonly';
+    $VARS['note'] = '續約合約編號' . $r['sn'];
+  }
+  $VARS['func_name'] = '新增合約';
+}
+
+function fn_new()
+{
+}
+
+function fn_add($id)
+{
+  global $rs2;
+
+  $rs2->select('member', GetParam('mid'));
+  $r = $rs2->fetch();
+  $v['end'] = getPeriod($_POST['begin'], $_POST['period']);
+  $v['chi_name'] = $r['member_name'];
+  $v['eng_name'] = $r['first_name'] . ' ' . $r['last_name'];
+  $v['birthdate'] = $r['birthdate'];
+  $v['legal'] = $r['legal'];
+  $v['tel'] = $r['tel'] . ' ' . $r['mobile'];
+  $v['email'] = $r['email'];
+  $v['address'] = $r['address'];
+  $v['account'] = $r['account'];
+  $v['sales_id'] = $_SESSION['admin_id'];
+  $v['sn'] = getSerialNumber(SN_CONTRACT);
+  $rs2->update('member_contract', $id, $v);
+  // bill
+  foreach ($_POST['payment'] as $idx => $p)
+  {
+    $v['payment'] = $p;
+    $v['installment'] = $_POST['installment'][$idx];
+    $v['total'] = $_POST['total'][$idx];
+    $v['sn'] = getSerialNumber(SN_BILL);
+    $v['contract_id'] = $id;
+    $v['status'] = 10;
+    $rs2->insert('member_contract_bill', $v);
+  }
+}
+
+function fn_edit($id)
+{
+  global $VARS, $rs3;
+
+  $VARS['func_name'] = '編輯合約';
+  // get begin
+  $sql = "SELECT MAX(`end`) FROM member_contract WHERE member_id = " . GetParam('mid') . " AND status = 20 AND open_time <> '0000-00-00 00:00:00' AND `end` >= '$today'";
+  $rs3->query($sql);
+  if ($rs3->count != 0 && !empty($rs3->record()))
+    $VARS['readonly'] = 'readonly';
+  // get plan cat
+  $rs3->select('plan', $VARS['plan_id']);
+  $r = $rs3->fetch();
+  $VARS['cat_id'] = $r['cat_id'];
+  $sql = "SELECT * FROM member_contract_bill WHERE contract_id = $id AND status = 10";
+  $rs3->query($sql);
+  AssignValues($rs3, 'bill');
+}
+
+// TODO: EDIT
+
+function fn_modify($id)
+{
+  global $rs2;
+
+  // 處理bill
+  foreach ($_POST['bill_sn'] as $idx => $sn)
+  {
+    unset ($v);
+    $v['payment'] = $_POST['payment'][$idx];
+    $v['installment'] = $_POST['installment'][$idx];
+    $v['total'] = $_POST['total'][$idx];
+    if (empty($sn))
+    { // 新的
+      $s[] = $v['sn'] = getSerialNumber(SN_BILL);
+      $v['contract_id'] = $id;
+      $v['status'] = 10;
+      $rs2->insert('member_contract_bill', $v);}
+    else
+    {
+      $s[] = "'$sn'";
+      // check paid
+      $sql = "SELECT * FROM member_contract_bill WHERE sn = '$sn'";
+      $rs2->query($sql);
+      $r = $rs2->fetch();
+      if ($r['paid'] > 0)
+        continue;
+      $rs2->update('member_contract_bill', $r['id'], $v);
+    }
+  }
+  if (is_array($s))
+  { // 有舊的，比對後刪除沒在內的
+    $s = implode(', ', $s);
+    $sql = "UPDATE member_contract_bill SET status = 20 WHERE contract_id = $id AND sn NOT IN ($s)";
+    $rs2->execute($sql);
+  }
+}
+
+function cbBill($r)
+{
+  global $VARS, $var_payment2, $var_cc_type;
+
+  $r['payment_text'] = $var_payment2[$r['payment']];
+  if ($r['payment'] == 30) // 分期
+  {
+    $r['payment_text'] .= '/' . $r['installment'] . '期';
+    if ($r['cc_type'])
+      $r['payment_text'] .= '<br>' . $var_cc_type[$r['cc_type']];
+  }
+  if ($VARS['readonly'] && $r['paid'] == 0)
+    $r['paid_time'] = '尚未付款';
+  return $r;
+}
+?>

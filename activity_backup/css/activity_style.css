@@ -1,0 +1,291 @@
+.header{
+	width:100%;
+	margin:0;
+	padding:0;
+}
+.header>img{
+	width: 100%;
+}
+.confuse_container{
+	width: 100%;
+	margin:0;
+	padding:0;
+	position: relative;
+	overflow: hidden;
+	background: url(../images/img/sec2_bg.png) center center no-repeat;
+	background-size: cover;
+}
+
+.confuse_container .confuse_sliders .confuse_slider {
+	position: relative;
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text{
+	width: 30%;
+	height: 35%;
+	padding:1rem;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 500;
+	bottom: 25%;
+	overflow: hidden;
+	text-align: center;file:///D:/works/etalking/1_etalking_activity_1003/images/img/sec2_title.png
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text.confuse_even{
+	right:30%;
+	background:#00b7ee;
+	color:white;
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text h1{
+	font-size: 3rem;
+	margin:0.5rem; 
+	font-weight: bold;
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text.confuse_even h1{
+	color:white;
+
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text.confuse_odd{
+	left:10%;
+	background:#feff93;
+	color:#00b7ee;
+
+}
+.confuse_container .confuse_sliders .confuse_slider .confuse_text.confuse_odd h1{
+	color:#00b7ee;
+
+}
+.confuse_container .confuse_title{
+	position:absolute;
+	width: 30%;
+	text-align: center;
+	left:50%;
+	top:10px;
+	transform:translateX(-45%);
+	z-index: 500;
+}
+.confuse_container .confuse_girl{
+	position: absolute;
+	left: 50%;
+	bottom: -10px;
+	overflow: hidden;
+	transform:translateX(-45%);
+}
+.confuse_container .confuse_girl>img{
+		width:90%;
+		padding:0;
+		margin:0;
+}
+/*navigator*/
+.navigator{
+	position: fixed;
+	height: 8%;
+	width: 100%;
+	padding:1rem;
+	bottom:0;
+	background:#05ddd5;
+	border-bottom:0.5rem solid #00bdb6;
+	z-index: 1000;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.navigator .navi_logo{
+	position: absolute;
+	overflow: hidden;
+}
+.navigator .navi_logo>img{
+	width: 70%;
+}
+.navigator .navi_ex{
+	text-align: center;
+}
+.navigator .navi_top{
+	position:absolute;
+	right:1rem;
+}
+.navigator .navi_top>img{
+	width: 70%;
+}
+/*caca*/
+.caca_container{
+	display: relative;
+	padding-top: 10rem;
+	padding-bottom:0rem;
+	background: rgb(48,186,238); /* Old browsers */
+	background: -moz-linear-gradient(top, rgb(48,186,238) 0%, rgb(150,229,249) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgb(48,186,238) 0%,rgb(150,229,249) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgb(48,186,238) 0%,rgb(150,229,249) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30baee', endColorstr='#96e5f9',GradientType=0 ); /* IE6-9 */
+	}
+.caca_container .caca_title{
+	position: absolute;
+	opacity: 0;
+}
+.caca_container .caca_intro .header>img{
+	width:90%;
+
+}
+.caca_container .caca_intro .header{
+	text-align: center;
+	position:relative;
+
+}
+.caca_container .caca_intro .header .award1{
+	position: absolute;
+	bottom:0;
+	right:-90%;
+	width:70%;
+}
+.caca_container .caca_intro .header .award2{
+	position: absolute;
+	bottom:0;
+	left:-85%;
+	width: 60%;
+}
+.caca_container .caca_intro .header .smalltext{
+	position:absolute;
+	bottom:0;
+	right:-130%;
+
+}
+.caca_container .caca_intro .header .smalltext p{
+		font-size: 0.7rem;
+}
+.caca_container .caca_description{
+	width:100%;
+	padding:1rem 0;
+	margin:4rem 0 1rem;
+	background: white;
+}
+.caca_container .caca_description .caca_des_header{
+	border-top:solid 1rem #106cc1;
+
+	position: relative;
+}
+.caca_container .caca_description .caca_des_header>img{
+	margin-top:-30px;
+	width:15rem;
+}
+.caca_container .caca_description .caca_des_header h4{
+	margin-top:1rem;
+	margin-bottom:2rem;
+	font-size: 1.3rem;
+}
+.caca_container .caca_description .caca_des_steps{
+	width: 30%;
+	display:inline-block;
+}
+.caca_container .caca_description .caca_des_steps h1{
+	color:#106cc1;
+	font-size: 3.5rem;
+	line-height: 3.5rem;
+	padding:0;
+	margin-bottom: 0;
+	font-weight: bold;
+}
+.caca_container .caca_description .caca_des_steps h2{
+	font-size:1.5rem;
+	line-height: 1.5rem
+	margin-top: 0;
+	margin-bottom: 0.2rem;
+	padding:0; 
+	color:#106cc1;
+}
+.caca_container .caca_description .caca_des_steps p{
+	font-size: 1.2rem;
+}
+.caca_container .caca_description .caca_arrow{
+
+	padding:0;
+	width:2.5%;
+	display:inline-block;
+
+}
+.caca_container .caca_description .caca_arrow img{
+	vertical-align: bottom;
+}
+.caca_container .caca_line{
+
+	display: block;
+	width: 100%;
+	border-bottom: solid 1rem #106cc1;
+}
+/*choose*/
+.choose{
+	width: 100%;
+	background: url(../images/img/sec5_bg.jpg)center center no-repeat;
+	background-size: cover;
+	padding:1rem 0 3rem;
+}
+.choose .title{
+	padding:2rem;
+}
+.choose .title img{
+
+}
+.choose .dialog{
+
+	padding:1rem;
+
+}
+.choose .dialog .dialog-content{
+	background: rgba(255,255,255,0.5);
+	border-radius: 20px;
+	height: 37rem;
+	box-sizing: border-box;
+	border:0.4rem solid white;
+	margin-top:4rem;
+	padding:3rem 3rem 2rem;
+	position: relative;
+}
+.choose .dialog .dialog-content .dialog_head{
+	margin-top: -6rem;
+	margin-bottom:0.5rem;
+}
+.choose .dialog .dialog-content h3{
+	display:inline-block;
+	padding:0 1rem;
+	font-size: 1.3rem;
+	line-height: 1.6rem;
+	background: #106cc1 ;
+	border-radius: 30rem;
+	color:white;
+}
+.choose .dialog .dialog-content h2{
+	font-size:1.6rem;
+	color:#106cc1;
+	margin-bottom:1rem;
+}
+/*six*/
+.six{
+	display: relative;
+	padding:3rem 0 3rem;
+	background: rgb(48,186,238); /* Old browsers */
+	background: -moz-linear-gradient(top, rgb(48,186,238) 0%, rgb(150,229,249) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgb(48,186,238) 0%,rgb(150,229,249) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgb(48,186,238) 0%,rgb(150,229,249) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30baee', endColorstr='#96e5f9',GradientType=0 ); /* IE6-9 */
+}
+.six .title{
+	margin-bottom:4rem;
+}
+.six .columns{
+	margin-top:2rem;
+	margin-bottom:2rem;
+}
+/*cefr*/
+.cefr-content .column .row .cefr_logo{
+
+}
+.cefr-content .column .row .cefr_logo>img{
+		margin-top:-2.5rem;
+}
+.cefr-content .column .row .cefr_text>p{
+	font-size: 1.8rem;
+}
+/*lastbg*/
+.lastbg{
+	background: url(../images/img/last_bg.jpg)center center no-repeat;
+	background-size: cover;
+	padding:20vh 20vh 30vh;
+}
