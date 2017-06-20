@@ -1,12 +1,26 @@
 <div class="content">
 	<div class="index-banner">
-		{loop="$banner"}
+	{loop="$banner"}
 		<div>
 			<a href="{$value.url}"><img src="{$value.images.0.image}" data-interchange="[{$value.images.2.image}, (default)], [{$value.images.1.image}, (medium)], [{$value.images.0.image}, (large)]" alt="{$value.name}" /></a>
 		</div>
-		{/loop}
-	</div>
+	{/loop}
 
+	<!--
+		<div>
+			<a href="http://www.etalkingonline.com/activity/"><img src="images/banner/banner_03_l.jpg" data-interchange="[images/banner/banner_03_s.jpg, (default)], [images/banner/banner_03_m.jpg, (medium)], [images/banner/banner_03_l.jpg, (large)]" alt="ETALKING Line 加入好友" /></a>
+		</div>
+		<div>
+			<a ><img src="images/banner/banner_04_l.jpg" data-interchange="[images/banner/banner_04_s.jpg, (default)], [images/banner/banner_04_m.jpg, (medium)], [images/banner/banner_04_l.jpg, (large)]" alt="ETALKING真人互動教學" /></a>
+		</div>
+		<div>
+			<a href="home/classes"><img src="images/banner/banner_01_l.jpg" data-interchange="[images/banner/banner_01_s.jpg, (default)], [images/banner/banner_01_m.jpg, (medium)], [images/banner/banner_01_l.jpg, (large)]" alt="ETALKING 課程特色" /></a>
+		</div>
+		<div>
+			<a href="javascript:;"><img src="images/banner/banner_02_l.jpg" data-interchange="[images/banner/banner_02_s.jpg, (default)], [images/banner/banner_02_m.jpg, (medium)], [images/banner/banner_02_l.jpg, (large)]" alt="ETALKING 30%Off 夏季特惠" /></a>
+		</div>
+	-->
+	</div>
 	<!--video modal-->
 	<div id="video" class="reveal-modal large" data-reveal aria-labelledby="videoTitle" aria-hidden="true" role="dialog">
 	  <h3 id="videoTitle">Bon Iver - Holocene</h3>

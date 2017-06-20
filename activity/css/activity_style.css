@@ -6,6 +6,10 @@
 .header>a>img{
 	width: 100%;
 }
+#gotop>a{
+	background: #000000;
+	display: block;
+}
 .confuse_container{
 	width: 100%;
 	margin:0;
@@ -185,9 +189,6 @@
 	position: absolute;
 	overflow: hidden;
 }
-.navigator .navi_logo>a{
-	height: 2rem;
-}
 .navigator .navi_logo img{
 	width: 70%;
 }
@@ -212,7 +213,7 @@
 /*caca*/
 .caca_container{
 	display: absolute;
-	padding-top: 10rem;
+	padding-top: 4rem;
 	padding-bottom:0rem;
 	background: rgb(48,186,238); /* Old browsers */
 	background: -moz-linear-gradient(top, rgb(48,186,238) 0%, rgb(150,229,249) 100%); /* FF3.6-15 */
@@ -220,10 +221,21 @@
 	background: linear-gradient(to bottom, rgb(48,186,238) 0%,rgb(150,229,249) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#30baee', endColorstr='#96e5f9',GradientType=0 ); /* IE6-9 */
 	}
+.caca_container.chinese_new_year{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#6ed0dd+0,72b7bc+25 */
+	background: #6ed0dd; /* Old browsers */
+	background: -moz-linear-gradient(top, #6ed0dd 0%, #72b7bc 25%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #6ed0dd 0%,#72b7bc 25%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #6ed0dd 0%,#72b7bc 25%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6ed0dd', endColorstr='#72b7bc',GradientType=0 ); /* IE6-9 */
+}
 
+.caca_container .caca_title{
+	display: none;
 
+}
 .caca_container .caca_intro .header>img{
-
+	
 }
 .caca_container .caca_intro_s{
 	display: none;
@@ -245,6 +257,16 @@
 	left:6%;
 	
 }
+.caca_intro a,.caca_intro_s a{
+	color: #000000;
+	text-decoration: underline;
+}
+.caca_intro a:hover{
+	opacity: 0.5;
+}
+.caca_intro_s .smalltext_s{
+	margin-top: 1rem;
+}
 @media only screen and (max-width: 60em){
 	.caca_container{
 		padding-top: 5rem;
@@ -255,13 +277,10 @@
 	.caca_container .caca_intro_s{
 	display: block;
 	}
-	.caca_container .caca_title>img{
-	width: 80%;
-}
 }
 .caca_container .caca_intro .header .smalltext{
 	position:absolute;
-	bottom:-13%;
+	bottom:-16%;
 	right:10%;
 
 }
@@ -437,6 +456,7 @@
 .lastbg{
 	background: url(../images/img/last_bg.jpg)center center no-repeat;
 	background-size: cover;
+	background-attachment: fixed;
 	padding:20vh 20vh 30vh;
 }
 @media only screen and (max-width: 60em){
@@ -511,4 +531,99 @@ footer{
 		padding:0 0.5rem;
 	}
 
+}
+/*20161212 Chistmas Style*/
+.chistmas_style #caca{
+	background: #f2f6fa url('../images/img/sec4_bg.jpg') no-repeat center center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.chistmas_style #caca .award1 img,.chistmas_style #caca .award2 img{
+	border: 3px white solid;
+	border-radius: 50px;
+	box-shadow: 0 0 10px white;
+}
+#snow{
+	position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+.chistmas_style .navigator{
+	background: url('../images/img/xmas_1.png');
+	padding-top: 50px;
+}
+.chistmas_style .navigator:before{
+	background: url('../images/img/xmas_2.png');
+	content: "";
+	width: 211px;
+	height: 368px;
+	position: absolute;
+	left: -30px;
+    bottom: 50px;
+	-o-transform: scale(0.5);
+	-ms-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	transform: scale(0.5);
+	-o-transform-origin: bottom left;
+	-ms-transform-origin: bottom left;
+	-moz-transform-origin: bottom left;
+	-webkit-transform-origin: bottom left;
+	transform-origin: bottom left;
+}
+.chistmas_style .caca_container .caca_description .caca_des_header{
+	border-top: solid 1rem #ed2138;
+}
+.chistmas_style .caca_container .caca_line{
+	border: none;
+	padding-top: 1rem;
+    background: white;
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 25px, rgb(237, 33, 56) 25px, rgb(237, 33, 56) 50px);
+}
+.chistmas_style .closesnow{
+	position: fixed;
+	z-index: 5;
+	top: 15px;
+	right: 15px;
+	width: 60px;
+	height: 60px;
+	-o-transform: scale(0.75);
+	-ms-transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	-webkit-transform: scale(0.75);
+	transform: scale(0.75);
+	background: url('../images/img/xmas_3.png');
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.chistmas_style .closesnow:hover{
+	transform: scale(1);
+}
+.chistmas_style .closesnow.close{
+	opacity: 0.5;
+}
+.chistmas_style .closesnow.close:before{
+	content: "";
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	border: 2px solid #ffaeae;
+	transform: rotate(30deg);
+}
+@media only screen and (max-width: 60em){
+	.chistmas_style #caca{
+		background-image:  none;
+	}
+	.chistmas_style .caca_intro_s{
+		background: #f2f6fa url('../images/img/sec4_bg.jpg') no-repeat left bottom;
+		background-size: 100vw;
+		padding-bottom: 4rem;
+	}
+	.chistmas_style .caca_container .caca_description{
+		margin-top: 0;
+	}
 }

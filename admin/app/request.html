@@ -1,0 +1,91 @@
+{include="header"}
+<div class="table-wrapper section">
+  {include="table_header"}
+      <div class="row">
+              <!-- left column -->
+              <div class="col-md-12">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th class="col-number">#</th>
+                    <th class="col-md" align="center">下次聯繫時間</th>
+                    <th class="col-md" align="center">姓名</th>
+                    <th class="col-md" align="center">性別</th>
+                    <th class="col-md" align="center">電話</th>
+                    <th class="col-md" align="center">Email</th>
+                    <th class="col-md" align="center">內容</th>
+                    {if="$admin_manager||$admin_marketing"}
+                    <th class="col-md" align="center">來源</th>
+                    {/if}
+                    <th class="col-md-2">功能</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {if="isset($nodata)"}
+                    <tr>
+                      <td colspan="9" align="center" class="nodata">沒有資料</td>
+                    </tr>
+                  {else}
+                    {loop="$list"}
+                    <tr>
+                      <td align="right">{$value.i}</td>
+                      <td align="center">{$value.next_time}</td>
+                      <td align="center"><a href="javascript:" onclick="popup({$value.id}, '{$value.member_name}')">{$value.member_name}</a></td>
+                      <td align="center">{$value.gender_text}</td>
+                      <td align="center">{$value.mobile}</td>
+                      <td align="center">{$value.email}</td>
+                      <td align="center">{$value.content|nl2br}</td>
+                      {if="$admin_manager||$admin_marketing"}
+                      <td align="center">{$value.source}{if="$value.track"} [{$value.track}]{/if}</td>
+                      {/if}
+                      <td align="center"><div style="text-align:center;"><a target=_blank href="/admin/request_develop?member_id={$value.member_id}"><button type="button" class="btn-flat white" ><i class="icon-edit"></i>詳細內容</button></a></div></td>
+                    </tr>
+                    {/loop}
+                  {/if}
+                  </tbody>
+                </table>
+                {$page_control}
+              </div>
+              <!-- end left column -->
+          </div>
+</div>
+{include="footer"}
+<script language="javascript">
+  function do_search()
+  {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    var arr = new Array();
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      var p = decodeURIComponent(pair[0]);
+      if (p != 'keyword' && p != 'filter' && p != 'filter2' && p != 'search_begin' && p != 'search_end')
+        arr.push(vars[i]);
+    }
+    var url = '{$FUNC}?' + arr.join('&');
+    url += '&filter=' + encodeURIComponent($('#search_filter').val());
+
+	if( $('#search_filter2').prop('checked') )
+		url += '&filter2=1';
+
+    if ($('#search_begin').length > 0 && $('#search_begin').val() != '' && $('#search_end').val() != '')
+    {
+      url += '&search_begin=' + encodeURIComponent($('#search_begin').val());
+      url += '&search_end=' + encodeURIComponent($('#search_end').val());
+    }
+
+    var keyword = $('input[name="keyword"]');
+    if (keyword.val().length > 0) url += "&keyword=" + encodeURIComponent(keyword.val())
+
+    window.location.replace(url);
+    return false;
+  }
+function popup(id, title)
+{
+  $.fancybox({
+    type : 'iframe',
+    href : '/admin/demolist/history?request=1&id=' + id,
+    title : title,
+  });
+}
+</script>

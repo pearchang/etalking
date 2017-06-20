@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* 以下為body設定 */
+body {color: #fff; margin:0; font-family: "Arial",微軟正黑體, "Helvetica", "sans-serif"; font-size: 13px; line-height: 20px; background-color:#1296db;}
+html{height:100%}
+
+
+
+
+h1{width:100%; color:#fff; font-size:30px; font-weight:bold; letter-spacing:4px; text-align:center; margin-top:60px;}
+p{width:100%; color:#fff; font-size:20px; letter-spacing:4px; text-align:center; line-height:26px; margin-top:40px;}
+p a{color:#fcd518;}
+p a:hover{ text-decoration:none;}
+p a img{padding:0 12px; border:0;}
+
+#IE{width:100%; text-align:center; margin-top:80px;}

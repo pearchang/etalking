@@ -342,29 +342,29 @@ class WebexAPI {
 			<chat>1</chat>
 			<chatHost>0</chatHost>
 			<chatPresenter>0</chatPresenter>
-      <chatAllAttendees>0</chatAllAttendees>
+            <chatAllAttendees>0</chatAllAttendees>
 			<displayQuickStartHost>0</displayQuickStartHost>
 			<displayQuickStartAttendees>0</displayQuickStartAttendees>
 			<supportShareWebContent>0</supportShareWebContent>
 			<supportRemoteComputer>0</supportRemoteComputer>
 			<supportPanelists>0</supportPanelists>
 			<attendeeList>1</attendeeList>
-    </enableOptions>
-    <metaData>
-      <confName>$name</confName>
-    </metaData>            
-    <schedule>
-      <startDate>$time</startDate>
+        </enableOptions>
+        <metaData>
+              <confName>$name</confName>
+        </metaData>            
+        <schedule>
+            <startDate>$time</startDate>
 			<duration>$duration</duration>
 			<openTime>600</openTime>
 			<timeZoneID>48</timeZoneID>
 			<hostWebExID>$webex_id</hostWebExID>
 			<firstAttendeeAsPresenter>0</firstAttendeeAsPresenter>
-    </schedule>
+        </schedule>
 		<attendeeOptions>
 			<registration>0</registration>
-      <joinRequiresAccount>0</joinRequiresAccount>               
-    </attendeeOptions>";
+              <joinRequiresAccount>0</joinRequiresAccount>               
+        </attendeeOptions>";
 
     $data['service'] 	= "meeting.CreateMeeting";
     $xml 				= $this->get_xml($data);

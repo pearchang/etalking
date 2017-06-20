@@ -88,7 +88,7 @@ $(function(){
 
 		post('home/experience', $(this), function(data){
 			if(data.code==1)
-				dialog("我們將盡速與您聯絡");
+				dialog("感謝您對ETALKING有興趣做進一步的了解，課程顧問將盡快與您聯絡");
 			else
 				dialog( data.msg );
 		} ,false );

@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- og --> 
+    <!-- <meta name="keywords" content="keywords" />
+    <meta name="description" content="keywords" /> -->
+
+
+
+    <title>ETALKING</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/touch-icon_57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon_72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon_114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon_144x144.png" />
+    <!-- Css -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+	http://www.etalkingonline.com/  
+	<script>
+	(window._bwtm = window._bwtm || []).push({mid: 9588, pid: 'landing'});
+	</script>
+	<script async src="//rec.scupio.com/recweb/js/rec.js"></script>
+	<script>
+	(scupioconv = window.scupioconv || []).push({bwp: 900, bwpid: 'landing'});
+	</script>
+	<script async src="//img.scupio.com/js/conv.js"></script>
+
+
+</head>
+
+<body>
+
+<!--pad mobile menu-->
+<div class="outer-menu hide-for-large-up">
+  <input class="checkbox-toggle" type="checkbox" />
+  <div class="hamburger">
+    <div></div>
+  </div>
+  <div class="menu">
+    <div>
+      <div>
+        <ul>
+          <li><a href="javascript:;" class="freebtn-mobile">免費體驗</a></li>
+          <li><a href="#ContactUsNow">課程特色</a></li>
+          <li><a href="#ContactUsNow">企業方案</a></li>
+          <li><a href="#ContactUsNow">關於我們</a></li>
+          <li><a href="#ContactUsNow">常見問題</a></li>
+          <li><a href="javascript:;" data-reveal-id="login">學員專區</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+	<nav class="row menu-wrapper">
+		<h1 class="logo">ETALKING</h1>
+		<!--div class="hide-for-large-up hamburger hamburger--spin menu-bar">
+			<div class="hamburger-box">
+				<div class="hamburger-inner"></div>
+			</div>
+		</div-->
+		<ul class="main-menu">
+			<li class="hide-for-large-up freebtn-mobile"><a href="#!">免費體驗</a></li>
+			<li><a href="#ContactUsNow">課程特色</a></li>
+			<li><a href="#ContactUsNow">企業方案</a></li>
+			<li><a href="#ContactUsNow">關於我們</a></li>
+			<li><a href="#ContactUsNow">常見問題</a></li>
+			<li><a href="javascript:;" data-reveal-id="login">學員專區</a></li>
+			<div class="menu-move-bar"></div>
+		</ul>
+		<a href="#!" class="freebtn"><span>免費<br>體驗</span></a>
+	</nav>
+	<div class="free-form">
+		<span class="hide-for-large-up close-icon form-close">×</span>
+		<form action="" class="row">
+			<h3>填寫資料</h3>
+			<div class="columns small-12 medium-6 large-2">
+				<input type="text" placeholder="姓名" value="">
+			</div>
+			<div class="columns small-12 medium-6 large-2">
+				<input type="text" placeholder="電話" value="">
+			</div>
+			<div class="columns small-12 medium-6 large-3 form-mail">
+				<input type="text" placeholder="Email" value="">
+			</div>
+			<div class="columns small-12 medium-6 large-2 form-time" data-dropdown="form-time" aria-controls="form-time">
+				<input type="text" placeholder="聯絡時間" value="" disabled>
+				<ul class="form-time-select" id="form-time" data-dropdown-content aria-hidden="true" tabindex="-1">
+					<li><a href="#!" data-time="10:00~12:00">10:00~12:00</a></li>
+					<li><a href="#!" data-time="13:00~15:00">13:00~15:00</a></li>
+					<li><a href="#!" data-time="15:00~17:00">15:00~18:00</a></li>
+				</ul>
+			</div>
+			<div class="columns small-12 medium-6 large-1 form-sex">
+				<input type="text" placeholder="" value="male">
+				<a href="#!" class="sex-swich male">
+					<div data-value="male" class="select-male">男</div>
+					<div data-value="female" class="select-female">女</div>
+					<!-- <span class="toggle-bar"></span> -->
+				</a>
+			</div>
+			<div class="columns small-12 large-2 end form-btn">
+				<button type="submit" value="Submit" class="btn white">立即測驗</button>
+			</div>
+			<div class="columns small-12 medium-6 large-12 small-text-left medium-text-right text-right form-agree">
+				<input type="checkbox" name="agree" id="agree">
+				<label for="agree">我已閱讀並同意接受<a href="#!">個資保護聲明</a></label>
+			</div>
+
+		</form>
+	</div>
+</header>
+
+
+<!--login modal-->
+<div id="login" class="reveal-modal small" data-reveal aria-labelledby="loginTitle" aria-hidden="true" role="dialog">
+  <h2 id="loginTitle" class="text-center modal-title">歡迎來到ETALKING學員專區</h2>
+  <h5 class="text-center primary">準備好要學點新東西了嗎？登入你的帳號和密碼吧。</h5>
+  <div class="row form-box">
+  	<div class="columns small-12 large-12 large-centered">
+		<div data-alert class="alert-box alert radius">
+		  輸入錯誤請重新確認您的帳號與密碼!
+		</div>
+  	</div>
+  	<div class="columns small-12 large-12 large-centered">
+      <div class="row collapse prefix-radius">
+        <div class="small-2 large-2 columns">
+          <span class="prefix"><i class="material-icons">&#xE8A6;</i></span>
+        </div>
+        <div class="small-10 large-10 columns">
+          <input type="text" placeholder="身份證字號/護照號碼">
+        </div>
+      </div>
+  	</div>
+  	<div class="columns small-12 large-12 large-centered">
+      <div class="row collapse prefix-radius">
+        <div class="small-2 large-2 columns">
+          <span class="prefix"><i class="material-icons key">&#xE0DA;</i></span>
+        </div>
+        <div class="small-10 large-10 columns">
+          <input type="password" placeholder="密碼">
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+	  	<div class="columns small-12 medium-4 large-4">
+	  		<a href="javascript:;"><u>忘記密碼了嗎?</u></a>
+	  	</div>
+	  	<div class="columns small-12 medium-8 large-8 end small-text-left medium-text-right check-block">
+	  		<input type="checkbox" name="keep" id="keep" checked="checked"><label for="keep">記住我的帳號密碼<a href="javascript:;">(忘記密碼)</a></label>
+	  	</div>
+  	</div>
+  	<div class="columns small-12 large-8 text-center">
+  		<div class="g-recaptcha" data-sitekey="6LdR8yATAAAAAI953Llj7Ccyww7dn7iDaycB4xss"></div>
+  	</div>
+  	<div class="columns small-12 large-4">
+  		<a href="student_class_booking.html" class="button solid round expand close-btn" aria-label="Close">登入</a>
+  		<p class="text-center note-text"><a href="javascript:;" class="close-btn open-form" aria-label="Close"><u>還沒有帳戶嗎?</u></a></p>
+  	</div>
+
+  </div>
+
+  <a class="close-reveal-modal primary close-icon" aria-label="Close">&#215;</a>
+</div>
+
+
+
+<div class="content">
+	<div class="index-banner">
+		<div>
+			<div class="text-wrapper">
+				<div class="text">
+					<h2>挑戰英文心視野</h2>
+					<h4><big><b>專業</b></big> 評估確實分析學習起步點<br><big><b>彈性</b></big> 規劃課程內容及上課時間<br><big><b>重視</b></big> 在乎每位學員的學習成效</h4>
+					<a href="javascript:;" data-reveal-id="video" data-ytvideoid="TWcyIpul8OE" class="btn white modal-btn">觀看影片</a>
+					<a href="javascript:;" class="btn white">開始</a>
+				</div>
+			</div>
+			<img src="images/banner/banner_01_l.jpg" data-interchange="[images/banner/banner_01_s.jpg, (default)], [images/banner/banner_01_m.jpg, (medium)], [images/banner/banner_01_l.jpg, (large)]" />
+		</div>
+		<!--div>
+			<div class="text-wrapper">
+				<div class="text">
+					<h2>ETALKING 英文腦袋看世界</h2>
+					<h2>挑戰英文心視野</h2>
+					<h4>專業 評估確實分析學習起步點<br>彈性 規劃課程內容及上課時間<br>重視 在乎每位學員的學習成效</h4>
+					<a href="javascript:;" data-reveal-id="video" data-ytvideoid="TWcyIpul8OE" class="btn white modal-btn">觀看影片</a>
+					<a href="javascript:;" class="btn white">開始</a>
+				</div>
+			</div>
+			<img src="images/banner/banner_01_l.jpg" data-interchange="[images/banner/banner_01_s.jpg, (default)], [images/banner/banner_01_m.jpg, (medium)], [images/banner/banner_01_l.jpg, (large)]" />
+		</div-->
+	</div>
+
+	<!--video modal-->
+	<div id="video" class="reveal-modal large" data-reveal aria-labelledby="videoTitle" aria-hidden="true" role="dialog">
+	  <h3 id="videoTitle">Bon Iver - Holocene</h3>
+	  <div class="flex-video widescreen vimeo"><div id="feature-video"></div></div>
+	  <a class="close-reveal-modal primary close-icon" aria-label="Close">&#215;</a>
+	</div>
+
+
+	<section class="index-function">
+		<h2 class="title">How It Works</h2>
+		<h4 class="title-tip">Etalking利用歐洲語言共同標準CEFR提供給你獨家的英文學習方向</h4>
+		<div class="row">
+			<div class="columns small-12 text-center func-step_0">
+				<img src="images/index/function_00.png" alt="">
+			</div>
+			<div class="columns small-12 func-step" id="func-step-1">
+				<div class="row">
+					<div class="step-line-hor line1-1 line_left line_left_border_radius">
+						<div class="step-line-str line1-2"></div>
+					</div>
+					<div class="columns small-12 medium-5 text-center">
+						<img src="images/index/funtion_01.png" alt="">
+					</div>
+					<div class="columns small-12 medium-7 text-center text-part">
+						<div class="num orange">01</div>
+						<div class="text">
+							<h4>需求分析</h4>
+							<p><span>傾聽你的英文需求與想法，告訴我們學習目標，</span><span>留下聯絡資訊，我們將盡快聯絡你給予幫助。</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="columns small-12 func-step" id="func-step-2">
+				<div class="row">
+					<div class="step-line-hor line2-1 line_right line_right_border_radius">
+						<div class="step-line-str line2-2"></div>
+					</div>
+					<div class="columns small-12 medium-5 text-center right">
+						<img src="images/index/funtion_02.png" alt="">
+					</div>
+					<div class="columns small-12 medium-7 text-center text-part right">
+						<div class="num blue">02</div>
+						<div class="text">
+							<h4>量身打造</h4>
+							<p><span>確切了解你的需求與程度，量身打造課程，</span><span>達到你希望的學習目標，實際體驗我們上課模式。</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="columns small-12 func-step" id="func-step-3">
+				<div class="row">
+					<div class="step-line-hor line3-1 line_left line_left_border_radius">
+						<div class="step-line-str line3-2"></div>
+					</div>
+					<div class="columns small-12 medium-5 text-center">
+						<img src="images/index/funtion_03.png" alt="">
+					</div>
+					<div class="columns small-12 medium-7 text-center text-part">
+						<div class="num green">03</div>
+						<div class="text">
+							<h4>達成目標</h4>
+							<p><span>你可選擇自己想要的時間及適合的等級，</span><span>在你有空的時間學習喜歡的課程內容，</span><span>有效率的達到需求與期望目標，</span><span>還可線上選修課程，</span><span>加強額外專業能力。</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="columns small-12 func-step" id="func-step-4">
+				<div class="row">
+					<div class="step-line-hor line4-1 line_right line_right_border_radius">
+						<div class="step-line-str line4-2"></div>
+					</div>
+					<div class="columns small-12 medium-5 text-center right">
+						<img src="images/index/funtion_04.png" alt="">
+					</div>
+					<div class="columns small-12 medium-7 text-center text-part right">
+						<div class="num yellow">04</div>
+						<div class="text">
+							<h4>學習追蹤</h4>
+							<p><span>我們將追蹤你的學習進度，</span>
+							<span>隨時回顧學習過程，</span>
+							<span>針對學習的實際狀況來調整並給予建議，</span>
+							<span>在學習過程中會不斷幫你做適當的學習方向調整。</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<section class="index-why">
+		<h2 class="title">在Etalking瘋英語</h2>
+		<div class="row">
+			<h4 class="title-tip">Etalking打破傳統的學習框架，推動線上英語教學服務，創造一個給學員最好的教育平台</h4>
+			<div class="whyenglish">
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_01.png" alt="">
+					<h4>知識學習英文<br><span class="en">Build Knowledge</span></h4>
+					<p class="text">立即掌握國外第一手資訊、隨時增加國際知識，不再只是來自單板的教科書，學英文可以從興趣喜好知識中學習。</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_02.png" alt="">
+					<h4>英文口若懸河<br><span class="en">Strong communication skill</span></h4>
+					<p class="text">其實您也很想表達自己的意見及想法，但就是礙於腦中的單字句型有限，Etalking讓你將英文成為以不用思考就可以流利說出的語言，建立超強的溝通能力！</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_03.png" alt="">
+					<h4>向全世界招手<br><span class="en">Connect with the world</span></h4>
+					<p class="text">「世界是平的，即使不出國，知識也能與國外互通」，Etalking成為您和世界接軌的橋樑，讓您驕傲地現身於世界舞台，衝出台灣，邁向國際！</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_04.png" alt="">
+					<h4>人生的可能性<br><span class="en">More opportunities</span></h4>
+					<p class="text">因為不錯的英文，獲到更多的面試機會，進而改變你的世界，Etalking幫你學好英文，創造更多的人生可能性、擁有更多的選擇，站在職場中的最前端！</p>
+				</div>
+
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_01.png" alt="">
+					<h4>知識學習英文<br><span class="en">Build Knowledge</span></h4>
+					<p class="text">立即掌握國外第一手資訊、隨時增加國際知識，不再只是來自單板的教科書，學英文可以從興趣喜好知識中學習。</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_02.png" alt="">
+					<h4>英文口若懸河<br><span class="en">Strong communication skill</span></h4>
+					<p class="text">其實您也很想表達自己的意見及想法，但就是礙於腦中的單字句型有限，Etalking讓你將英文成為以不用思考就可以流利說出的語言，建立超強的溝通能力！</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_03.png" alt="">
+					<h4>向全世界招手<br><span class="en">Connect with the world</span></h4>
+					<p class="text">「世界是平的，即使不出國，知識也能與國外互通」，Etalking成為您和世界接軌的橋樑，讓您驕傲地現身於世界舞台，衝出台灣，邁向國際！</p>
+				</div>
+				<div class="columns small-12 medium-3">
+					<img src="images/index/why_04.png" alt="">
+					<h4>人生的可能性<br><span class="en">More opportunities</span></h4>
+					<p class="text">因為不錯的英文，獲到更多的面試機會，進而改變你的世界，Etalking幫你學好英文，創造更多的人生可能性、擁有更多的選擇，站在職場中的最前端！</p>
+				</div>
+			</div>
+			<div class="columns small-12 text-center">
+				<a href="#ContactUsNow" class="btn">了解更多</a>
+			</div>
+		</div>
+	</section>
+	<section class="index-now">
+		<div class="text-wrapper">
+			<h4>現在就成為英語達人。</h4>
+			<a href="#ContactUsNow" class="btn white">立即開始</a>
+		</div>
+	</section>
+</div>
+
+<div class="light-box-wrapper" id="ContactUsNow">
+	<div class="light-box">
+		<p>(02)2760-7768<br>catherine.hsu@etalking.com.tw</p>
+		<span class="light-box-close">×</span>
+	</div>
+</div>
+
+<a class="gotop"><span>TOP</span></a>
+<footer>
+	<img src="images/logo_footer.png" alt="">
+	<!-- <ul class="footer-map">
+		<li><a href="#!">課程特色</a></li>
+		<li><a href="#!">企業方案</a></li>
+		<li><a href="#!">關於我們</a></li>
+		<li><a href="#!">常見問題</a></li>
+		<li><a href="#!">學員專區</a></li>
+	</ul> -->
+	<!-- <ul class="social">
+		<li><a href="#!"><img src="images/icon/fb.png" alt=""></a></li>
+		<li><a href="#!"><img src="images/icon/google.png" alt=""></a></li>
+		<li><a href="#!"><img src="images/icon/ig.png" alt=""></a></li>
+		<li><a href="#!"><img src="images/icon/youtube.png" alt=""></a></li>
+	</ul> -->
+	<p id="contact-info">(02)2760-7768<br>catherine.hsu@etalking.com.tw</p>
+	<div class="copyright">Copyright © 2016 文樺數位互動股份有限公司</div>
+</footer>
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="js/foundation/foundation.js"></script>
+<script src="js/foundation/foundation.topbar.js"></script>
+<script src="js/foundation/foundation.dropdown.js"></script>
+<script src="js/foundation/foundation.reveal.js"></script>
+<script src="js/vendor/pace.min.js"></script>
+<script src="js/vendor/jquery.matchHeight-min.js"></script>
+<script src="js/vendor/TweenMax.min.js"></script>
+<script src="js/vendor/ScrollMagic.min.js"></script>
+<script src="js/vendor/animation.gsap.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.youtube.com/player_api"></script>
+<script src="js/all.js"></script>
+
+<script src="js/foundation/foundation.interchange.js"></script>
+<script src="js/vendor/slick.js"></script>
+<script src="js/index.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80216860-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
