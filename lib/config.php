@@ -5,9 +5,9 @@ if (!isset($DBHOST))
 {
   // 資料庫設定
   $DBHOST = 'localhost';
-  $DBUSER = 'etalking_usr';
-  $DBPASS = 'E7GSPdXUMXHy3aDH';
-  $DBNAME = 'etalking_db';
+  $DBUSER = 'etalking2016';
+  $DBPASS = 'nqYt00!1';
+  $DBNAME = 'etalking2016';
 }
 
 // Page title

@@ -1,8 +1,8 @@
 <?php
 	ini_set('display_errors', 1);
 	define('DS',DIRECTORY_SEPARATOR );
-	define('DEBUG',0);
-	define('SQLLOG',0);	//query過的sql stm 將存在 upload/log.txt
+	define('DEBUG',1);
+	define('SQLLOG',1);	//query過的sql stm 將存在 upload/log.txt
 	define('CACHE',0);
 	define('CAPCHA_PUBLIC_KEY','6LfC1SITAAAAANviJtPvfaUSuECXGAmixgQXR8BW');
 	define('CAPCHA_PRIVATE_KEY','6LfC1SITAAAAAIv-ZWZ7XuiY62w1WgZXsGtlFHuz');
@@ -12,9 +12,9 @@
 	define('RAINTPL',__DIR__.DS.'upload'.DS.'tmp'.DS);
 	
 	define('DB_HOST','localhost');
-	define('DB_USER','etalking_usr');
-	define('DB_PASS','E7GSPdXUMXHy3aDH');
-	define('DB_DATABASE','etalking_db');
+	define('DB_USER','etalking2016');
+	define('DB_PASS','nqYt00!1');
+	define('DB_DATABASE','etalking2016');
 	define('DB_PORT',3306);
 	
 	define('SMTP',1);
