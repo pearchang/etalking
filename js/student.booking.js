@@ -75,8 +75,8 @@ function render_calendar( week ){
 				clear();				
 			});
 		});
-		$.unblockUI();
-	},true);
+		
+	});
 	update_dashboard();
 }
 
