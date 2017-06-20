@@ -3,7 +3,7 @@ $id = $VARS['consultant_id'] = GetParam('cid');
 
 switch (MODE)
 {
-  default:      $d = date('Y-m-d');	$d2 = date('Y-m-d', time() + 86400*13 );	$sql = "SELECT * FROM `holiday` WHERE `date` BETWEEN '$d' AND '$d2'";	$rs2->query($sql);	$holiday = array();	if($rs2->count>0){		while($row = $rs2->fetch()){			$holiday[$row['date']][$row['time']]=true;		}	}
+  default:
     $rs->select('consultant', $id);
     AssignValue($rs);
 
@@ -22,7 +22,7 @@ switch (MODE)
       {
         unset ($h);
         $h['date'] = $d;
-        $h['hour'] = $k;				if(isset($holiday[$d][$k])){						$h['data'] = '休';			$hour[] = $h;			continue;		}		
+        $h['hour'] = $k;
         $sql = "SELECT * FROM `classroom` WHERE `date` = '$d' AND `time` = $k AND `status` = 10 AND `type` <> 99 AND consultant_id = $id";
         $rs->query($sql);
         if ($rs->count == 0)

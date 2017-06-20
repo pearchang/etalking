@@ -325,15 +325,8 @@
 			$data = array();
 			$now = date('YmdH');
 			
-			//不開放
-			$sql = "SELECT * FROM `holiday` WHERE `date` BETWEEN '".date('Y-m-d',$sdate)."' AND '".date('Y-m-d',$edate)."'";
-			$stm = $this->dbconn->query($sql);
-			$holiday = array();
-			if($stm->RowCount()>0){
-				while($row = $stm->fetch(PDO::FETCH_ASSOC)){
-					$holiday[$row['date']][$row['time']]=true;
-				}
-			}
+			//全日不開放日期
+			$stop_booking = array('20161225','20170101','20170111', '20170127', '20170128', '20170129', '20170130', '20170131', '20170201', '20170317');
 			
 			for($i= $sdate; $i<= $edate; $i+=86400){
 				$ymd = date('Ymd',$i);
@@ -345,15 +338,15 @@
 					$timestamp = strtotime( date('Y-m-d',$i).' '.$h.':00:00' );
 					
 					//不開放選課
-					if( isset($holiday[date('Y-m-d',$timestamp)][$j]) ){						
-						
-						$hour[$h] = '';
-						
+					if( ($ymd=='20161224' || $ymd=='20161231' || $ymd=='20170126' ) && $h >=18 ){
+						$hour[$h] = false;
+					}elseif(in_array($ymd,$stop_booking)){
+						$hour[$h] = false;
 					}else{
 					
 					
 						//開放選課
-						if($ymd.$h > $now && $ymd >= $contract_begin  && $ymd <= $contract_end && $timestamp - time() >=86400 ){
+						if(!in_array($ymd,$stop_booking) && $ymd.$h > $now && $ymd >= $contract_begin  && $ymd <= $contract_end && $timestamp - time() >=86400 ){
 						
 							if($this->member_level_id==1)
 						
@@ -826,7 +819,7 @@
 			$const = $type == 'elective' ? 40 : 50;
 			
 			$sdate = date('Y-m-d H:i:s');
-			$edate = date('Y-m-d 23:59:59',time()+(86400*366));
+			$edate = date('Y-m-d 23:59:59',time()+(86400*13));
 			
 			
 			//興趣

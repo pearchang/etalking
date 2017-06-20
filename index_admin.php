@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 1);
+//ini_set("display_errors", 1);
 
 if (!defined('ADMIN'))
 {
@@ -21,21 +21,6 @@ if (is_array($u))
     $u[$k] = htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
 
 require('lib/config.php');
-
-require('lib/db.php');
-include('lib/db2.php');
-unset ($_GET['xurl']);
-
-$rs = new ResultSet();
-$rs2 = new ResultSet();
-$rs3 = new ResultSet();
-$mrs = new MultiLangResultSet();
-$mrs2 = new MultiLangResultSet();
-$mrs3 = new MultiLangResultSet();
-
-define ('BEGIN_TIME', $rs->get_value('config','content',8));
-define ('END_TIME',   $rs->get_value('config','content',9));
-
 require('lib/const.php');
 require('lib/functions.php');
 
@@ -105,6 +90,17 @@ $MODE = count($u) > 1 ? $u[1] : '';
 define ('MODE', $MODE);
 $SUB = count($u) > 2 ? $u[2] : '';
 define ('SUB', $SUB);
+
+require('lib/db.php');
+include('lib/db2.php');
+unset ($_GET['xurl']);
+
+$rs = new ResultSet();
+$rs2 = new ResultSet();
+$rs3 = new ResultSet();
+$mrs = new MultiLangResultSet();
+$mrs2 = new MultiLangResultSet();
+$mrs3 = new MultiLangResultSet();
 
 switch (FUNC)
 {

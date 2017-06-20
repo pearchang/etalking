@@ -97,7 +97,7 @@ $register_time = strtotime(date('Y-m-d H:00:00')) + 86400 + 3599; // 一小時-1
 $cancel_time = strtotime(date('Y-m-d H:00:00')) + (12 * 3600) + 3599; // 一小時-1
 $open_time = date('Y-m-d H:i:s', time() + 5 * 60);
 $close_time = date('Y-m-d H:i:s', time() - 45 * 60);
-$consultant_open_time = date('Y-m-d H:i:s', time() + 10 * 60);
+$consultant_open_time = date('Y-m-d H:i:s', time() + 15 * 60);
 $current_time = date('Y-m-d H:i:s');
 // open_time <= $open_time & open_time <= $close_time
 $demo_open_time = date('Y-m-d H:i:s', time() + 60 * 60);

@@ -4,10 +4,9 @@ define ('SITE_ENC_KEY', 'ejtnuakRDtYf8TQm');
 define ('SITE_NAME', 'ETALKING');
 
 define ('DATE_RANGE', 28);
-//define ('BEGIN_TIME', 14);
-//define ('END_TIME', 22);
-
 define ('WEBEX_TEST_MAX_QYT',9);
+define ('BEGIN_TIME', 14);
+define ('END_TIME', 22);
 
 define ('DOC_STATUS_SHOW', 10);
 define ('DOC_STATUS_HIDE', 0);
@@ -135,7 +134,7 @@ $var_member_type = array (
 );
 
 $var_member_history_subtype = array (
-  10 => '其他原因',
+  10 => '無法下載',
   20 => '更換設備',
   30 => '首次環測',
 );
@@ -185,18 +184,18 @@ $var_classroom_status2 = array (
   20 => '完成'
 );
 
-for ($i = BEGIN_TIME; $i <= END_TIME; $i++)
-{
-  $h = sprintf("%02d", $i);
-  $var_schedule_time[$i] = "$h:00 ~ $h:45";
-}
-unset ($h);
-//for ($i = 0; $i <= 23; $i++)
+//for ($i = BEGIN_TIME; $i <= END_TIME; $i++)
 //{
 //  $h = sprintf("%02d", $i);
 //  $var_schedule_time[] = "$h:00 ~ $h:45";
 //}
 //unset ($h);
+for ($i = 0; $i <= 23; $i++)
+{
+  $h = sprintf("%02d", $i);
+  $var_schedule_time[] = "$h:00 ~ $h:45";
+}
+unset ($h);
 
 $var_schedule_available_type = array (
   0 => '',
