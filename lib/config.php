@@ -4,10 +4,10 @@
 if (!isset($DBHOST))
 {
   // 資料庫設定
-  $DBHOST = 'localhost';
-  $DBUSER = 'etalking_usr';
-  $DBPASS = 'E7GSPdXUMXHy3aDH';
-  $DBNAME = 'etalking_db';
+  $DBHOST = '223.27.52.18';
+  $DBUSER = 'etalkingonline';
+  $DBPASS = 'd$gvW443';
+  $DBNAME = 'etalkingonline';
 }
 
 // Page title

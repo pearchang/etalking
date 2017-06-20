@@ -2,20 +2,20 @@
 	class Page extends APP{
 		
 		//以下正式環境使用
-		/*
 		var $CC_MerchantNumber = '761193';
 		var $CC_MerchantNumber_Period = '715511';
-		var $CC_Code = 'abcd1234';
+		var $CC_Code = 'dcP49dXy';
+		var $CC_Code_Period = 'cFP96dgt';
 		var $CC_url = "https://taurus.neweb.com.tw/NewebmPP/cdcard.jsp";
-		*/
 		
 		//以下測試環境使用
-		
+		/*
 		var $CC_MerchantNumber = '761193';
 		var $CC_MerchantNumber_Period = '715511';
 		var $CC_Code = 'abcd1234';
 		var $CC_Code_Period = 'abcd1234';
 		var $CC_url = "https://testmaple2.neweb.com.tw/NewebmPP/cdcard.jsp";
+		*/
 		
 		var $layout = false;
 		

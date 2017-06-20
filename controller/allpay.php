@@ -9,9 +9,10 @@
 		var $order_result_url = '/allpay/CheckOutFeedback';
 		
 		//測試環境
-		var $gateway_url = "http://payment-stage.allpay.com.tw/Cashier/AioCheckOut";		
+		//var $gateway_url = "http://payment-stage.allpay.com.tw/Cashier/AioCheckOut";		
 		//正式環境
-		//var $gateway_url = "https://payment.ec.com.tw/Cashier/AioCheckOut/V2";
+//		var $gateway_url = "https://payment.allpay.com.tw/Cashier/AioCheckOut/V2";
+		var $gateway_url = "https://payment.ecpay.com.tw/Cashier/AioCheckOut/V2";
 		
 		function init(){	
 			parent::init();

@@ -1,3 +1,20 @@
+deny from all
+
+#order deny,allow
+allow from 118.168.152.77
+allow from 60.251.110.67
+allow from 211.21.152.26
+allow from 172.16.18.41
+allow from 223.27.52.17
+allow from 36.224.136.120
+allow from 220.133.198.188
+allow from 219.84.203.65
+allow from 60.250.123.235
+allow from 60.251.110.60
+
+#deny from all
+
+
 AddDefaultCharset UTF-8
 AddType application/x-httpd-php .inc
 

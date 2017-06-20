@@ -11,10 +11,10 @@
 	define('UPLOAD', DOCUMENT_ROOT . 'upload');
 	define('RAINTPL',__DIR__.DS.'upload'.DS.'tmp'.DS);
 	
-	define('DB_HOST','localhost');
-	define('DB_USER','etalking_usr');
-	define('DB_PASS','E7GSPdXUMXHy3aDH');
-	define('DB_DATABASE','etalking_db');
+	define('DB_HOST','223.27.52.18');
+	define('DB_USER','etalkingonline');
+	define('DB_PASS','d$gvW443');
+	define('DB_DATABASE','etalkingonline');
 	define('DB_PORT',3306);
 	
 	define('SMTP',1);
@@ -48,8 +48,8 @@
 	define('CLASSROOM_COUNTDOWN',60);
 	
 	//歐付寶
-	define('AllPay_HashKey','5294y06JbISpM5x9');
-	define('AllPay_HashIV','v77hoKGq4kWxNNIS');
-	define('AllPay_Merchant_Id','2000132');
+	define('AllPay_HashKey','G2dI5pgG9QhehyOY');
+	define('AllPay_HashIV','PUxTZZu5pCmrBzWx');
+	define('AllPay_Merchant_Id','1357082');
 
 ?>
