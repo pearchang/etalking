@@ -12,9 +12,9 @@
 	define('RAINTPL',__DIR__.DS.'upload'.DS.'tmp'.DS);
 	
 	define('DB_HOST','localhost');
-	define('DB_USER','etalking2016');
-	define('DB_PASS','nqYt00!1');
-	define('DB_DATABASE','etalking2016');
+	define('DB_USER','etalking2');
+	define('DB_PASS','Sq3f!p18');
+	define('DB_DATABASE','etalking2_db');
 	define('DB_PORT',3306);
 	
 	define('SMTP',1);
